@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Hello {{user.first_name}} {{user.last_name}},
+
+Thank You! For sending payroll services request, we will reply by email as soon as possible.
+
+Thank you,
+{{SITE_NAME}}
+
+{% endautoescape %}

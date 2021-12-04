@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Hello {{subscription.user.first_name}} {{subscription.user.last_name}},
+
+Just to let you know that your membership billing is generate on {{subscription.enddate|date:"M d, Y"}}.
+
+Thank you,
+{{SITE_NAME}}
+
+{% endautoescape %}

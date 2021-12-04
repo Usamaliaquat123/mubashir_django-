@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>You have a New Job Offer at {{SITE_NAME}}</title>
+    </head>
+    <body>
+        <p>
+            Hello {{joboffer.job.user.first_name}} {{joboffer.job.user.last_name}},
+            <br><br> 
+            {{joboffer.user.first_name}} {{joboffer.user.last_name}} has {{joboffer.action}} your job offer for {{joboffer.job.title}}.
+            <br><br>
+            Thank you,<br>
+            {{SITE_NAME}}
+        </p>
+    </body>
+</html>

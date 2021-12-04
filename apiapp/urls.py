@@ -1,0 +1,37 @@
+from django.urls import path, include
+from django.conf.urls import url
+from apiapp import views
+
+urlpatterns = [
+    path('login', views.login,name='api_user_login'),
+    path('logout', views.logout,name='api_user_logout'),
+    path('states', views.states,name='api_state_list'),
+    path('cities', views.cities,name='api_city_list'),
+    path('category', views.category,name='api_category_list'),
+    path('subcategory', views.subcategory,name='api_subcategory_list'),
+    path('categories', views.categories,name='api_categories_list'),
+    path('languages', views.language,name='api_language_list'),
+    path('register', views.register,name='api_user_register'),
+    path('contact_us', views.contact_us,name='api_contact_us'),
+    path('profile', views.profile,name='api_user_profile'),
+    path('profile_contact_details', views.contact_details,name='api_user_contact_details'),
+    path('update-profile', views.update_profile,name='api_user_update_profile'),
+    path('profile_yourself', views.profile_yourself,name='api_user_profile_yourself'),
+    path('profile_categories', views.profile_categories,name='api_user_profile_categories'),
+    path('profile_schedule', views.profile_schedule,name='api_user_profile_schedule'),
+    path('profile_media', views.profile_media,name='api_user_profile_media'),
+    path('profile_image', views.profile_image,name='api_user_profile_image'),
+    path('profile_video', views.profile_video,name='api_user_profile_video'),
+    path('profile_available', views.profile_available,name='api_user_profile_available'),
+    path('change-password', views.change_password,name='api_user_change_password'),
+    path('forgot-password-request', views.forgot_password_request,name='api_user_forgot_password'),
+    path('forgot-password-reset', views.forgot_password_reset,name='api_user_forgot_reset'),
+    path('push-notification/list', views.push_notification_list,name='api_user_push_notification_list'),
+    path('push-notification/status', views.push_notification_status,name='api_user_push_notification_status'),
+    path('push-notification/update', views.push_notification_update,name='api_user_push_notification_update'),
+    path('job_offers', views.job_offers,name='api_user_job_offers'),
+    path('job_offer_count', views.job_offer_count,name='api_user_job_offer_count'),
+    path('job_offer_detail/<str:token>', views.job_offer_detail,name='api_user_job_offer_detail'),
+    path('job_offer_action/<str:token>', views.job_offer_action,name='api_user_job_offer_action'),
+    path('job_offer_delete/<str:token>', views.job_offer_delete,name='api_user_job_offer_delete'),
+]

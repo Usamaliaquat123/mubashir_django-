@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block pagetitle %}Blog{% endblock %}
+
+{% block breadcrumbs %}
+	{{ block.super }}
+	<li>Blog</li>
+{% endblock %}
+
+{% load backend_extras %}
+
+{% load static %}
+
+{% block content %}
+<style>
+.active_category > a
+{
+    color: #e03a3c !important;
+}
+</style>  
+<section id="blog" class="blog">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-8 entries">
+
+          {% if object_list %}
+            {% for blog in object_list %}
+              <article class="entry">
+
+                {% if blog.image %}
+                <div class="entry-img">
+                  <img src="{{blog.image.url}}" alt="" class="img-fluid">
+                </div>
+                {% endif %}
+
+                <h2 class="entry-title">
+                  <a href="{% url 'blog_view' blog.slug %}">{{blog.title|title}}</a>
+                </h2>
+
+                <div class="entry-meta">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="#"><time datetime="2020-01-01">{{blog.createdAt|date:"M d, Y"}}</time></a></li>
+                    <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a href="#">{{blog.blogcomment_set.count}} Comments</a></li>
+                  </ul>
+                </div>
+
+                <div class="entry-content">
+                  <p>
+                    {{ blog.description|safe|truncatechars:230 }}
+                  </p>
+                  <div class="read-more">
+                    <a href="{% url 'blog_view' blog.slug %}">Read More</a>
+                  </div>
+                </div>
+
+              </article><!-- End blog entry -->
+            {% endfor %}
+              {% if object_list.has_other_pages %}
+                <div class="blog-pagination">
+                  <ul class="justify-content-center">
+                  {% if object_list.has_previous %}
+                  <li><a href="?page={{ object_list.previous_page_number }}">&laquo;</a></li>
+                  {% else %}
+                  <li class="disabled"><i class="icofont-rounded-left"></i></li>
+                  {% endif %}
+        
+                  {% for i in object_list.paginator.page_range %}
+                  {% if object_list.number > 10 and forloop.first %}
+                  <li class=""><a class="" href="?page=1">1</a></li>
+                  <li class="disabled"><a class="" href="#">...</a></li>
+                  {% endif %}
+                  {% if object_list.number == i %}
+                  <li class="active"><a class="" href="#">{{ i }}</a></li>
+                  {% elif i > object_list.number|add:'-10' and i < object_list.number|add:'10' %}
+                  <li class=""><a class="" href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                  {% if object_list.paginator.num_pages > object_list.number|add:'10' and forloop.last %}
+                  <li class="disabled"><a class="" href="#">...</a></li>
+                  <li class=""><a class="" href="?page={{ object_list.paginator.num_pages }}">{{ object_list.paginator.num_pages }}</a></li>
+                  {% endif %}
+                  {% endfor %}
+                  {% if object_list.has_next %}
+                  <li class=""><a class="" href="?page={{ object_list.next_page_number }}">&raquo;</a></li>
+                  {% else %}
+                  <li class="disabled"><i class="icofont-rounded-right"></i></li>
+                  {% endif %}
+                  </ul>
+                </div>
+              {% endif %}
+
+          {% else %}
+              <div class="alert alert-info alert-dismissible " role="alert">
+                {% if request.POST %}
+                  Your search did not match any records.
+                {% else %}
+                  Blog not found.
+                {% endif %}
+              </div>
+          {% endif %}
+
+        </div><!-- End blog entries list -->
+
+        <div class="col-lg-4">
+
+          <div class="sidebar">
+            
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                  <form method="POST" id="blog_search_form">
+                      {% csrf_token %}
+                      {{ form.search}}
+                      {{ form.category}}
+                      <button type="submit"><i class="icofont-search"></i></button>
+                  </form>
+              </div><!-- End sidebar search formn-->
+              <h3 class="sidebar-title">Categories</h3>
+              <div class="sidebar-item categories">
+                <ul>
+                  <li {% if filter_category == 'All' %}class="active_category"{% endif %}><a href="javascript:BlogFilterSubmit('All')">ALL <span>({{all_blog}})</span></a></li>
+                  {% for category in categories %}
+                  <li {% if filter_category == category.slug %}class="active_category"{% endif %}><a href="javascript:BlogFilterSubmit('{{category.slug}}')">{{category.name}} {% if category.blog_set.count > 0%}<span>({{category.blog_set.count}})</span>{% endif %}</a></li>
+                  {% endfor %}
+                </ul>
+              </div><!-- End sidebar categories-->
+          </div><!-- End sidebar -->
+        </div><!-- End blog sidebar -->
+      </div>
+    </div>
+  </section>
+  
+{% endblock  %}

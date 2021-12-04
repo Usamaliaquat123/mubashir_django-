@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+{% block title %}Find Job Seekers{% endblock %}
+{% block pagetitle %}Find Job Seekers{% endblock %}
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+  <li>Find Job Seekers</li>
+{% endblock %}
+{% load backend_extras %}
+{% load static %}
+{% block content %}
+  <style>
+  #id_category{
+  list-style-type:none !important;
+  }
+  .custom-card-header{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 12rem;
+  background-image: url('data:image/jpeg;base64,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');
+  }
+  
+  .title-image{
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  }
+  
+  .card-title-name{
+  font-size: 14px;
+  font-weight: bold;
+  }
+  .card-title-profession{
+  font-size: 13px;
+  font-weight: bold;
+  }
+  /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: green;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+  </style>
+  <section id="blog" class="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="sidebar">
+            
+            <form method="POST">
+              <h3 class="sidebar-title">{{ form.search.label }}</h3>
+              <div class="form-group">
+                {{ form.search|addclass:"form-control" }}
+              </div>
+              
+              <h3 class="sidebar-title">{{ form.radius.label }}</h3>
+              <div class="form-group">
+                {{ form.radius|addclass:"form-control" }}
+              </div>
+              
+              <h3 class="sidebar-title">{{ form.category.label }}</h3>
+              
+              <div class="form-group">
+                {{ form.category}}
+              </div>
+              <br/>
+              <button type="submit" class="btn btn-danger btn-block" value="searchbtn" name="searchbtn">Submit</button>
+              <button type="submit" class="btn btn-dark btn-block" value="clearbtn" name="clearbtn">Clear</button>
+              {% csrf_token %}
+            </form>
+            </div><!-- End sidebar -->
+            </div><!-- End blog sidebar -->
+
+             <div class="col-lg-12">
+              <div class="row">
+                <!-- Search By -->
+                <div class="col-lg-3 ">
+                  <label for="searchBy" class="font-weight-bold">Search By</label> 
+                <select id="searchBy" class="form-control form-control-sm">
+                  <option value="">75240</option>}
+                  option
+                </select>
+                </div>
+                <!-- Search By -->
+                <!-- Radius Start -->
+                <div class="col-lg-3 ">
+                  <label for="radiusMiles" class="font-weight-bold">Radius (miles)</label> 
+                <select id="radiusMiles" class="form-control form-control-sm">
+                  <option value="">10</option>}
+                  option
+                </select>
+                </div>
+                <!-- Radius End -->
+
+               <!-- Radius Start -->
+                <div class="col-lg-3 ">
+                  <label for="categoryBy" class="font-weight-bold">Category </label> 
+                <select id="categoryBy" class="form-control form-control-sm">
+                  <option value="">ALL</option>}
+                  option
+                </select>
+                </div>
+                <div class="col-lg-3  d-flex flex-row justify-content-around align-items-center">
+                  <label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+<p class="font-weight-bold" style="font-size: 14px;">Show avaliable job seekers</p>
+                </div>
+
+              </div>
+             </div>
+            
+            <div class="col-lg-12">
+              
+              
+              {% if object_list %}
+                <div class="row">
+                  {% for obj in object_list %}
+                    <div class="col-lg-4 col-md-8 d-flex align-items-stretch mb-4">
+                      <div class="card w-100" >
+                        <div class="card-header m-0 p-0 custom-card-header"></div>
+                        <div class="card-body  custom-card-body">
+                          <div class="row">
+                            <div class="col-md-9">
+                              <div class="row">
+                                <div class="col-md-2 d-flex flex-row justify-content-center align-items-center ">
+                                  <img src="data:image/jpeg;base64,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" class="title-image" />
+                                </div>
+                                <div class="col-md-8  d-flex flex-column">
+                                  <span class="card-title-name"> SCOTT ANDREWS</span>
+                                  <span class="card-title-profession">
+                                    Sales
+                                  </span>
+                                  
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-3 d-flex flex-row justify-content-around alin-items-center">
+                              <i class="fa fa-car"></i>
+                              <i class="fa fa-graduation-cap text-primary"></i>
+                            </div>
+                          </div>
+
+                          <!-- DESCRIPTION START -->
+                          <div class="row p-1 ">
+                            <div class="col-md-12   p-0  pb-2  ">
+                              <small class="font-weight-bold ">I have 15 years of outisde and inside sales experience.  </small>
+                            </div>
+                            <div class="col-md-6   p-0  d-flex flex-row justify-content-start align-items-center ">
+                              <i class="fa fa-star text-danger"></i>
+                              <span>
+                                <span class="text-danger font-weight-bold">5.0</span>
+                                <span class="">(5)</span>
+                              </span>
+                              
+                            </div>
+                            <div class="col-md-6   p-0  d-flex flex-row justify-content-end align-items-center ">
+                              
+                              <small class="text-danger font-weight-bold mr-2"style="font-size: 9px;">AVALIABLE</small>
+                              
+                              <i class="fa fa-circle text-success"></i>
+                              
+                            </div>
+                          </div>
+
+                          <!-- DESCRIPTION END  -->
+                          
+                        </div>
+                        <!-- FOOTER -->
+                        <div class="card-footer bg-white">
+                         <div class="row">
+                            <div class="col-md-6  ">
+                            <i class="fa fa-bars"></i>
+                            <i class="fa fa-heart text-danger"></i>
+                          </div>
+                          <div class="col-md-6  ">
+                            <span class="d-flex flex-row justify-content-center align-items-center">
+                              <span class="mr-2 "><small class="text-muted font-weight-bold">STARTING AT</small> </span>
+                              <span class=""> <small class="font-weight-bold">$15hr</small> </span>
+                            </span>
+                          </div>
+                         </div>
+                        </div>
+                        <!-- FOOTER -->
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <div class="alert alert-info alert-dismissible " role="alert">
+                  {% if request.POST %}
+                    Your search did not match any records.
+                  {% else %}
+                    Job Seekers not available.
+                  {% endif %}
+                </div>
+              {% endif %}
+              
+              <div class="row">
+                <div class="x-footer clearfix pt-5">
+                  {% if object_list.has_other_pages %}
+                    <ul class="pagination pagination-sm m-0">
+                      {% if object_list.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ object_list.previous_page_number }}">&laquo;</a></li>
+                      {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
+                      {% endif %}
+                      
+                      {% for i in object_list.paginator.page_range %}
+                        {% if object_list.number > 10 and forloop.first %}
+                          <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                          <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                        {% endif %}
+                        {% if object_list.number == i %}
+                          <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                          {% elif i > object_list.number|add:'-10' and i < object_list.number|add:'10' %}
+                          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                        {% if object_list.paginator.num_pages > object_list.number|add:'10' and forloop.last %}
+                          <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                          <li class="page-item"><a class="page-link" href="?page={{ object_list.paginator.num_pages }}">{{ object_list.paginator.num_pages }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if object_list.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ object_list.next_page_number }}">&raquo;</a></li>
+                      {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">»</a></li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+                </div>
+                
+              </div>
+              </div><!-- End blog entries list -->
+            </div>
+          </div>
+          </section><!-- End Blog Section -->
+        {% endblock  %}

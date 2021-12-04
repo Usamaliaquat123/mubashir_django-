@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 500 250" preserveAspectRatio="xMinYMin meet">
+  <mask id="circular-hole">
+    <rect width="150" height="100%" fill="white"/><!-- part to keep -->
+    <circle cx="155" cy="125" r="150" fill="black"/><!-- black for the hole -->
+  </mask>
+  <rect width="150" height="100%" fill="#1e3b66" mask="url(#circular-hole)"/>
+</svg>

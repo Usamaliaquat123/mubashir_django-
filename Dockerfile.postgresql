@@ -1,0 +1,7 @@
+FROM postgres:9.4
+ENV POSTGRES_PASSWORD="gtwa@2021"
+ENV POSTGRES_USER="gtwa"
+ENV POSTGRES_UDATABSE="gotoworkamerica_db"
+
+
+# COPY *.sql /docker-entrypoint-initdb.d/

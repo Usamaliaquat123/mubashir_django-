@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Hello {{contact.name}},
+
+Thank you for contact us.
+
+Thank you,
+{{SITE_NAME}}
+{% endautoescape %}

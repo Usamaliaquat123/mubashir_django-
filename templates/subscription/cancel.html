@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Cancel Subscription{% endblock %}
+
+{% block pagetitle %}Cancel Subscription{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'subscription' %}">Subscription</a></li>
+	<li>Cancel Subscription</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="inner-page">
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger">{{ message|safe }}</div><br/>
+                {% else%}
+                    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br/>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <div class="form">
+            <form method="post">
+                {% csrf_token %}
+                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                    <strong>Confirm Delete!</strong> <br/ >Are you sure you want to cancel membership subscription?
+                    <br/>
+                    <br/>
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{% url 'subscription' %}" class="btn btn-dark">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock  %}
