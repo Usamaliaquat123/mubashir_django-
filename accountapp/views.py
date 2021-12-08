@@ -305,10 +305,10 @@ def subcategories(request, pk):
             return e
 
 #find job seekers
-@login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
-@check_role_permission() # - check role permission
-@check_subscription_permission() # - check subscription
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+# @login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
+# @check_role_permission() # - check role permission
+# @check_subscription_permission() # - check subscription
+# @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def find_job_seekers(request, template_name='jobseeker/listing.html'):
     try:
         #get post
@@ -384,12 +384,17 @@ def find_job_seekers(request, template_name='jobseeker/listing.html'):
         
         paginator   = Paginator(objs, settings.PER_PAGE_RECORD)
         page        = request.GET.get('page')
-        records     = paginator.get_page(page)
+        # records     = paginator.get_page(page)
+        records=User.objects.all()
         data = {}
         data['object_list']     = records
         data['form']            = form
         return render(request, template_name, data)
     except Exception as e:
+            print("*************************************************")
+            print(e)
+            print("*************************************************")
+
             db_logger.exception(e)
             return e
 
