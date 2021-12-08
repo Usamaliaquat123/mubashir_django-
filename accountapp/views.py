@@ -213,16 +213,16 @@ def password_reset_complete(request):
     return render(request, 'password_reset_complete.html')
 
 # Dashboard
-# @login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
-# @check_role_permission() # - check role permission
-# @cache_control(no_cache=True, must_revalidate=True, no_store=True)
+@login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
+@check_role_permission() # - check role permission
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def dashboard(request):
     try:
         context                 =   {}
-        # subscription            =   Subscription.objects.filter(user=request.user, status='Current', expired=False, active=True).first()
+        subscription            =   Subscription.objects.filter(user=request.user, status='Current', expired=False, active=True).first()
         isSubscription          = False
-        # if subscription:
-        #     isSubscription      = True
+        if subscription:
+            isSubscription      = True
         context['isSubscription']   =   isSubscription
         return render(request, 'dashboard.html', context)
     except Exception as e:
@@ -305,10 +305,10 @@ def subcategories(request, pk):
             return e
 
 #find job seekers
-# @login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
-# @check_role_permission() # - check role permission
-# @check_subscription_permission() # - check subscription
-# @cache_control(no_cache=True, must_revalidate=True, no_store=True)
+@login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
+@check_role_permission() # - check role permission
+@check_subscription_permission() # - check subscription
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def find_job_seekers(request, template_name='jobseeker/listing.html'):
     try:
         #get post
@@ -386,17 +386,10 @@ def find_job_seekers(request, template_name='jobseeker/listing.html'):
         page        = request.GET.get('page')
         records     = paginator.get_page(page)
         data = {}
-        records=User.object.all()
-        print(records)
         data['object_list']     = records
-        # data['object_list']     = [{'first_name':'ahmed','last_name':'kabeer shaukat','image':{'url':''}}]
         data['form']            = form
         return render(request, template_name, data)
     except Exception as e:
-            print("****************************************************")
-            print(e)
-            print("****************************************************")
-
             db_logger.exception(e)
             return e
 
