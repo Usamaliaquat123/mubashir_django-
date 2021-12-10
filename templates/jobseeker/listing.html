@@ -109,6 +109,28 @@ input:checked + .slider:before {
   height: 500px;
   width: 500px;
 }
+.vjs-control-bar{
+  display: none !important;
+}
+.video-js .vjs-big-play-button {
+  float: right;
+  left: auto !important;
+  top: 20px;
+  right: 20px !important;
+  font-size: 1.5em;
+  width: 1.5em;
+  border-radius: 50%;
+  border: none;
+}
+
+
+video {
+  opacity: 0.5;
+}
+#my-video {
+  width: auto;
+  height: 170px;
+}
   </style>
   <section id="blog" class="blog">
     <div class="container-fluid">
@@ -169,12 +191,19 @@ input:checked + .slider:before {
                   option
                 </select>
                 </div>
-                <div class="col-lg-3  d-flex flex-row justify-content-around align-items-center">
-                  <label class=" switch">
-  <input type="checkbox">
-  <span class=" slider round"></span>
-</label>
-<p class="font-weight-bold ml-2 mt-2" style="font-size: 14px;color:#000; ">Show avaliable seekers</p>
+                <div class="col-lg-3   d-flex flex-row justify-content-around align-items-end">
+                  <div class="d-block">
+
+                  <label class=" switch" style="display: inline-block;margin-bottom: 0%;">
+                    <input type="checkbox">
+                    <span class=" slider round"></span>
+                  </label>
+                  <div class="d-inline-block">
+                    <div class="d-flex justify-content-center align-items-center">
+                      <p class="font-weight-bold ml-2 mt-2 mb-0" style="font-size: 14px;color:#000;display: inline-block;">Show avaliable job seekers</p>
+                    </div>
+                  </div>
+                </div>
                 </div>
 
               </div>
@@ -188,7 +217,40 @@ input:checked + .slider:before {
                   {% for obj in object_list %}
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-4">
                       <div class="card" >
-                        <div class="card-header m-0 p-0 custom-card-header"></div>
+                        <!-- <video class="img-fluid" playsinline autoplay muted loop>
+                          <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4">
+                          </video> -->
+
+
+
+
+                          <div className="card-header">
+                            <video
+                            id="my-video"
+                            class="video-js"
+                            controls
+                            preload="auto"
+                            poster="MY_VIDEO_POSTER.jpg"
+                            data-setup="{}"
+                          >
+                            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+                            <source src="https://vjs.zencdn.net/v/oceans.webm" type="video/webm" />
+                            <p class="vjs-no-js">
+                              To view this video please enable JavaScript, and consider upgrading to a
+                              web browser that
+                              <a href="https://videojs.com/html5-video-support/" target="_blank"
+                                >supports HTML5 video</a
+                              >
+                            </p>
+                            <!-- <iframe src="https://www.youtube.com/embed/pWahNIMRxR0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+                          </div>
+
+
+
+
+
+                        <!-- <div class="card-header m-0 p-0"></div> -->
                         <div class="card-body  custom-card-body ">
                           <div class="row ">
                             <div class="col-md-9">

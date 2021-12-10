@@ -110,11 +110,11 @@ WSGI_APPLICATION = 'gotoworkamerica.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST':'172.21.0.2',
-        'USER': 'root',
+        'HOST':'127.0.0.1',
+        'USER': 'usman',
         'NAME':'test',
         'PORT': '3306',
-        'PASSWORD': 'root',
+        'PASSWORD': 'usman12345',
     }
 }
 
