@@ -384,8 +384,8 @@ def find_job_seekers(request, template_name='jobseeker/listing.html'):
         
         paginator   = Paginator(objs, settings.PER_PAGE_RECORD)
         page        = request.GET.get('page')
-        # records     = paginator.get_page(page)
-        records=User.objects.all()
+        records     = paginator.get_page(page)
+        # records=User.objects.all()
         data = {}
         data['object_list']     = records
         data['form']            = form

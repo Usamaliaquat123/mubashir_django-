@@ -75,13 +75,18 @@ class ProfileForm(forms.ModelForm):
 #employer create form
 class RegisterForm(ModelForm):
 
-    company         = forms.CharField(max_length=55, required=True, label='Company', widget=forms.TextInput(attrs={'placeholder': 'Enter your Company'}))
-    title           = forms.CharField(max_length=30, required=False, label='Title', widget=forms.TextInput(attrs={'placeholder': 'Enter your Title'}))
-    first_name      = forms.CharField(max_length=30, required=True, label='First Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your First Name'}))
-    last_name       = forms.CharField(max_length=30, required=True, label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your Last Name'}))
-    password1       = forms.CharField(max_length=30, required=True, label='Create your Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Password'}))
-    password2       = forms.CharField(max_length=30, required=True, label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Confirm Password'}))
-    
+    # company         = forms.CharField(max_length=55, required=True, label='Company', widget=forms.TextInput(attrs={'placeholder': 'Enter your Company'}))
+    # title           = forms.CharField(max_length=30, required=False, label='Title', widget=forms.TextInput(attrs={'placeholder': 'Enter your Title'}))
+    # first_name      = forms.CharField(max_length=30, required=True, label='First Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your First Name'}))
+    # last_name       = forms.CharField(max_length=30, required=True, label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your Last Name'}))
+    # password1       = forms.CharField(max_length=30, required=True, label='Create your Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Password'}))
+    # password2       = forms.CharField(max_length=30, required=True, label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Confirm Password'}))
+    company         = forms.CharField(max_length=55, required=True, label='Company', widget=forms.TextInput())
+    title           = forms.CharField(max_length=30, required=False, label='Title', widget=forms.TextInput( ))
+    first_name      = forms.CharField(max_length=30, required=True, label='First Name', widget=forms.TextInput())
+    last_name       = forms.CharField(max_length=30, required=True, label='Last Name', widget=forms.TextInput())
+    password1       = forms.CharField(max_length=30, required=True, label='Create your Password', widget=forms.PasswordInput())
+    password2       = forms.CharField(max_length=30, required=True, label='Confirm Password', widget=forms.PasswordInput())
     class Meta:
         model = User
         fields = ['image','first_name','last_name','company','title','email','mobile','password1','password2']
@@ -135,8 +140,8 @@ class PasswordResetRequestForm(forms.Form):
 
 #Job List Filter
 class JobSeekerFilter(forms.Form):
-    search      = forms.CharField(required=False, label='Search By',widget=TextInput(attrs={'placeholder': 'Search by city, state & zipcode'}),)
-    radius      = forms.CharField(required=False, label='Radius (miles)',widget=TextInput(attrs={'placeholder': 'Search by Radius(miles)','type':'number'}),)
+    search      = forms.CharField(required=False, label='Location',widget=TextInput(attrs={'placeholder': 'City, State or Zip'}),)
+    radius      = forms.CharField(required=False, label='Radius',widget=TextInput(attrs={'placeholder': 'Miles','type':'number'}),)
     category    = forms.ModelMultipleChoiceField(label='Category', required=False,queryset=Category.objects.filter(publish=True).order_by('name'),widget=forms.CheckboxSelectMultiple)
 
 

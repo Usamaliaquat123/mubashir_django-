@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5&hl1gzo9p+e-p17fy&gds-&ol3$y5exrk7&cn_a4e$=(y!@&v'
 
 #Site URL
-SITE_URL = 'http://localhost:7000'
+SITE_URL = 'http://localhost:8001'
 
 #Site Name
 SITE_NAME = 'Go To Work America'
@@ -109,14 +109,18 @@ WSGI_APPLICATION = 'gotoworkamerica.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST':'127.0.0.1',
-        'USER': 'usman',
-        'NAME':'test',
-        'PORT': '3306',
-        'PASSWORD': 'usman12345',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

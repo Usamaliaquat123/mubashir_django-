@@ -25,8 +25,6 @@
         font-size: 14px;
         font-weight: bold;
         color: #000;
-        text-transform: uppercase;
-        ;
     }
     
     .card-title-profession {
@@ -194,28 +192,27 @@
                 <div class="row">
                     <!-- Search By -->
                     <div class="col-lg-3 ">
-                        <h3 class=" sidebar-title">{{ form.search.label }}</h3>
-                        <div class="form-group">
-                            {{ form.search|addclass:"form-control" }}
-                        </div>
+                        <label for=" searchBy" class="font-weight-bold">Location</label>
+                        <select id=" searchBy" class="form-control ">
+                  <option value="">City, State or Zip</option>}
+                </select>
                     </div>
                     <!-- Search By -->
                     <!-- Radius Start -->
                     <div class="col-lg-3 ">
-                        <h3 class=" sidebar-title">{{ form.radius.label }}</h3>
-                        <div class="form-group">
-                            {{ form.radius|addclass:"form-control" }}
-                        </div>
+                        <label for="radiusMiles" class="font-weight-bold">Radius</label>
+                        <select id="radiusMiles" class="form-control ">
+                  <option value="">Miles</option>}
+                </select>
                     </div>
                     <!-- Radius End -->
 
                     <!-- Radius Start -->
                     <div class="col-lg-3 ">
-                        <h3 class=" sidebar-title">{{ form.category.label }}</h3>
-
-                        <div class="form-group">
-                            {{ form.category}}
-                        </div>
+                        <label for="categoryBy" class="font-weight-bold">Category </label>
+                        <select id="categoryBy" class="form-control ">
+                  <option value="">ALL</option>}
+                </select>
                     </div>
                     <div class="col-lg-3   d-flex flex-row justify-content-around align-items-end">
                         <div class="d-block">
@@ -242,7 +239,6 @@
                 <div class="row">
                     {% for obj in object_list %}
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-4">
-
                         <div class="card">
                             <!-- <video class="img-fluid" playsinline autoplay muted loop>
                           <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4">
@@ -258,7 +254,6 @@
                                 >supports HTML5 video</a
                               >
                             </p>
-                        
                           </div> 
                             <!-- <div class="card-header m-0 p-0"></div> -->
                             <div class="card-body  custom-card-body ">
@@ -269,10 +264,7 @@
                                                 <img src="{% static 'assets/img/avatar_1.jpeg' %}" class="title-image" />
                                             </div>
                                             <div class="col-md-8  d-flex flex-column">
-                                <a href="{% url 'job_seeker_profile' obj.token %}">
-
-                                                <span class="card-title-name">{{obj.first_name}} {{obj.last_name}}</span>
-                                                </a>
+                                                <span class="card-title-name"> SCOTT ANDREWS</span>
                                                 <span class="card-title-profession">
                                     Sales
                                   </span>
