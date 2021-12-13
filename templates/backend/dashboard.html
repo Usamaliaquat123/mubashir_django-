@@ -1,0 +1,248 @@
+{% extends "backend/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block pagetitle %}Dashboard{% endblock %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block content %}
+<div class="right_col" role="main">
+		<!-- top tiles -->
+		
+		<div class="col-md-12">
+			<div class="row">
+				<div class="x_content">
+					<div class="row">
+					<div class=" col-lg-3 col-md-3 col-sm-6  ">
+						<a href="{% url 'backend_employer_list' %}">
+							<div class="tile-stats">
+								<div class="icon"><i class="fa fa-building"></i>
+								</div>
+								<div class="count">{{total_emp}}</div>
+								<h3>Employers</h3>
+							</div>
+						</a>
+					</div>
+					<div class=" col-lg-2 col-md-3 col-sm-6  ">
+						<a href="{% url 'backend_jobseeker_list' %}">
+							<div class="tile-stats">
+								<div class="icon"><i class="fa fa-users"></i>
+								</div>
+								<div class="count">{{total_js}}</div>
+								<h3>Jobseekers</h3>
+							</div>
+						</a>
+					</div>
+					<div class=" col-lg-2 col-md-2 col-sm-6  ">
+						<a href="{% url 'backend_job_list' %}">
+							<div class="tile-stats">
+								<div class="icon"><i class="fa fa-briefcase"></i>
+								</div>
+								<div class="count">{{total_jobs}}</div>
+								<h3>Jobs</h3>
+							</div>
+						</a>
+					</div>
+					<div class=" col-lg-2 col-md-2 col-sm-6  ">
+						<a href="{% url 'backend_job_list' %}">
+							<div class="tile-stats">
+								<div class="icon"><i class="fa fa-gift"></i>
+								</div>
+								<div class="count">{{total_offers}}</div>
+								<h3>Offers</h3>
+							</div>
+						</a>
+					</div>
+					<div class=" col-lg-3 col-md-3 col-sm-6  ">
+						<a href="{% url 'backend_subscription_list' %}">
+							<div class="tile-stats">
+								<div class="icon"><i class="fa fa-user-plus"></i>
+								</div>
+								<div class="count">{{total_subs}}</div>
+								<h3>Subscriptions</h3>
+							</div>
+						</a>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12  ">
+			  <div class="x_panel">
+				<div class="x_title">
+				  <h2>Last 7 Days Registrations</h2>
+				  <div class="clearfix"></div>
+				</div>
+				<div class="x_content">
+				  <canvas id="registrationBarChart"></canvas>
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+		<!-- /top tiles -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Recent Registered Employers</h2>
+						<div class="clearfix"></div>
+					</div>
+					<ul class="list-unstyled top_profiles scroll-view">
+							{% for obj in employers %}
+							<li class="media event">
+							<a class="pull-left border-aero profile_thumb">
+							<i class="fa fa-user aero"></i>
+							</a>
+							<div class="media-body">
+							<a class="title" href="{% url 'backend_employer_view' obj.token %}">{{obj.first_name}} {{obj.last_name}}</a>
+							<p>{{obj.company}}</p>
+							<p> <small>{{ obj.date_joined|naturaltime }}</small>
+							</p>
+							</div>
+							</li>
+							{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Recent Registered Jobseekers</h2>
+						<div class="clearfix"></div>
+					</div>
+					<ul class="list-unstyled top_profiles scroll-view">
+							{% for obj in Jobseekers %}
+							<li class="media event">
+							<a class="pull-left border-aero profile_thumb">
+							<i class="fa fa-user aero"></i>
+							</a>
+							<div class="media-body">
+							<a class="title" href="{% url 'backend_jobseeker_view' obj.token %}">{{obj.first_name}} {{obj.last_name}}</a>
+							<p>{{obj.address}}, {{obj.city.name}}, {{obj.state.name}} {{obj.zipcode}}</p>
+							<p> <small>{{ obj.date_joined|naturaltime }}</small>
+							</p>
+							</div>
+							</li>
+							{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!-- /top tiles -->
+		<div class="row">
+				<div class="col-md-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>Recent Created Jobs</h2>
+							<div class="clearfix"></div>
+						</div>
+						<ul class="list-unstyled top_profiles scroll-view">
+								{% for obj in jobs %}
+								<li class="media event">
+								<a class="pull-left border-aero profile_thumb">
+								<i class="fa fa-briefcase aero"></i>
+								</a>
+								<div class="media-body">
+								<a class="title" href="{% url 'backend_job_view' obj.token %}">{{obj.title}}</a>
+								<p>{{obj.description|truncatechars:140}}</p>
+								<p> <small>{{ obj.createdAt|naturaltime }}</small>
+								</p>
+								</div>
+								</li>
+								{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		
+			
+		<div class="row">
+			{% if accept_offers %}
+			<div class="col-md-4">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Recent Accepted Offers</h2>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						{% for obj in accept_offers %}
+							<article class="media event">
+								<a class="pull-left date">
+									<p class="month">{{ obj.updatedAt|date:"M" }}</p>
+									<p class="day">{{ obj.updatedAt|date:"d" }}</p>
+								</a>
+								<div class="media-body">
+									<a class="title" href="{% url 'backend_jobseeker_view' obj.user.token %}">{{obj.user.first_name}} {{obj.user.last_name}}</a>
+									<p>{{obj.job.title}}</p>
+									<p>&nbsp;</p>
+								</div>
+							</article>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			{% endif %}
+
+			{% if decline_offers %}
+			<div class="col-md-4">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Recent Declined Offers</h2>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						{% for obj in decline_offers %}
+							<article class="media event">
+								<a class="pull-left date">
+									<p class="month">{{ obj.updatedAt|date:"M" }}</p>
+									<p class="day">{{ obj.updatedAt|date:"d" }}</p>
+								</a>
+								<div class="media-body">
+									<a class="title" href="{% url 'backend_jobseeker_view' obj.user.token %}">{{obj.user.first_name}} {{obj.user.last_name}}</a>
+									<p>{{obj.job.title}}</p>
+									<p>&nbsp;</p>
+								</div>
+							</article>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			{% endif %}
+
+			{% if pending_offers %}
+			<div class="col-md-4">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Recent Pending Offers</h2>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						{% for obj in pending_offers %}
+							<article class="media event">
+								<a class="pull-left date">
+									<p class="month">{{ obj.updatedAt|date:"M" }}</p>
+									<p class="day">{{ obj.updatedAt|date:"d" }}</p>
+								</a>
+								<div class="media-body">
+									<a class="title" href="{% url 'backend_jobseeker_view' obj.user.token %}">{{obj.user.first_name}} {{obj.user.last_name}}</a>
+									<p>{{obj.job.title}}</p>
+									<p>&nbsp;</p>
+								</div>
+							</article>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+
+	</div>
+
+{% endblock  %}

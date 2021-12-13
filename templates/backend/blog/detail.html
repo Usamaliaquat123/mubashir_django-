@@ -1,0 +1,105 @@
+{% extends "backend/base.html" %}
+
+{% block title %}View Blog{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ">
+        {% if messages %}
+          {% for message in messages %}
+            {% if message.tags == 'error' %}
+              <div class="alert alert-danger">{{ message|safe }}</div>
+            {% else%}
+              <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>{{object.title}}</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="col-md-3 col-sm-3  profile_left">
+              <div class="profile_img">
+                <div id="crop-avatar">
+                  <!-- Current avatar -->
+                  <img class="img-responsive avatar-view" src="{% if object.image %}{{object.image.url}}{% else %}{% static 'backend/images/avatar.jpeg' %}{% endif %}" alt="Avatar" title="Change the avatar" width="220" height="150">
+                </div>
+              </div>
+              <ul class="list-unstyled user_data">
+                <li>
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{object.category.name}}
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-9 col-sm-9 ">
+              
+              <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#tab_content1" id="tab1" role="tab" data-toggle="tab" aria-expanded="true">Description</a></li>
+                  <li role="presentation" class=""><a href="#tab_content3" role="tab" id="tab3" data-toggle="tab" aria-expanded="false">Comments</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div role="tabpanel" class="tab-pane active " id="tab_content1" aria-labelledby="tab1">
+                    {{ object.description|safe}}
+                  </div>
+                  
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="tab3">
+                     
+                     <!-- start user projects -->
+                    <table class="data table table-striped no-margin">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Comment</th>
+                          <th>Date & Time</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% if object.blogcomment_set.count %}
+                          {% for obj in object.blogcomment_set.all %}
+                          <tr>
+                            <td>{{obj.user.first_name}} {{obj.user.last_name}}</td>
+                            <td >{{obj.comment}}</td>
+                            <td >{{obj.createdAt}}</td>
+                            <td ><a href="{% url 'backend_blog_comment_delete' object.token obj.id %}" title="Delete" alt="Delete"><i class="fa fa-trash"></i></a></td>
+                          </tr>
+                          {% endfor %}
+                        {% else %}
+                        <tr class="odd even pointer">
+                            <td colspan="4">
+                              <div class="alert alert-info alert-dismissible">
+                                Comments not found.
+                              </div>
+                            </td>
+                          </tr>
+                        {% endif %}
+                      </tbody>
+                    </table>
+                    <!-- end user projects -->
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
+
+{% endblock  %}

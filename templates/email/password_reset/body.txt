@@ -1,0 +1,8 @@
+Thank you for contacting us to reset your password.
+
+Please use the temporary password below to create your new account password.
+
+Temporary Password: {{ password }}
+
+Thank you,<br/>
+{{SITE_NAME}}

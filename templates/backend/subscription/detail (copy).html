@@ -1,0 +1,113 @@
+{% extends "backend/base.html" %}
+
+{% block title %}View Subscription{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Subscription</h3>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Information</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <section class="content invoice">
+              <!-- title row -->
+              <div class="row">
+                <div class="  invoice-header">
+                  <h1>{{object.user.first_name}} {{object.user.last_name}}</h1>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- info row -->
+              <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                  <address>
+                      <strong>{{object.user.company}}</strong>
+                      <br>Phone: {{object.user.mobile}}
+                      <br>Email: {{object.user.email}}
+                  </address>
+                </div>
+                <div class="col-sm-4 invoice-col">
+                  <b>Plan:</b> {{object.plan.name}}({{object.get_period_display}})
+                  <br>
+                  <b>Active:</b> {% if object.active %}Yes{% else %}No{% endif %}
+                  <br>
+                  <b>Start Date:</b> {{object.startdate}}
+                  <br>
+                  <b>End Date:</b> {{object.enddate}}
+                  <br>
+                  <br>
+                </div>
+                <div class="col-sm-4 invoice-col">
+                  <b>Payment Mode:</b> {{object.payment_type}}
+                  <br>
+                  <b>Payment Amount:</b> ${{object.payment_amount}}
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <!-- Table row -->
+              {% if objects %}
+              <div class="row">
+                <div class="  invoice-header">
+                  <h2>Subscription History</h2>
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="  table">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Plan</th>
+                        <th>Active</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Payment Mode</th>
+                        <th>Payment Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for obj in objects %}
+                      <tr>
+                        <td>{{obj.plan.name}}({{obj.get_period_display}})</td>
+                        <td>{% if obj.active %}Yes{% else %}No{% endif %}</td>
+                        <td>{{obj.startdate}} </td>
+                        <td>{{obj.enddate}} </td>
+                        <td>{{obj.payment_type}}</td>
+                        <td>${{obj.payment_amount}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              {% endif %}
+              <!-- /.row -->
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
+{% endblock  %}

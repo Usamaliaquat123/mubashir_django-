@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}{{object.title}}{% endblock %}
+
+{% block pagetitle %}{{object.title}}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'blog_list' %}">Blog</a></li>
+	<li>{{object.title}}</li>
+{% endblock %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block content %}
+  
+<section id="blog" class="blog">
+    <div class="container">
+    
+        <div class="row">
+
+            <div class="col-lg-12 entries">
+  
+              <article class="entry entry-single">
+                
+                {% if object.image %}
+                  <div class="entry-img">
+                    <img src="{{object.image.url}}" alt="" class="img-fluid">
+                  </div>
+                {% endif %}
+                
+                <h2 class="entry-title">
+                  <a href="blog-single.html">{{object.title}}</a>
+                </h2>
+  
+                <div class="entry-meta">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="#"><time datetime="2020-01-01">{{object.createdAt|date:"M d, Y"}}</time></a></li>
+                    <li class="d-flex align-items-center"><i class="icofont-comment"></i> <a href="#" id="top_comments_count">{{total_comments}} Comments</a></li>
+                  </ul>
+                </div>
+                
+                <div class="entry-content">
+                    {{ object.description|safe}}
+                </div>
+              
+              </article><!-- End blog entry -->
+              
+              
+              <div class="blog-comments">
+  
+                <h4 class="comments-count" id="comments-count">{{total_comments}} Comments</h4>
+                <div id="comment_section">
+                  {% if comments %}
+                    {% for comment in comments %}
+                      <div id="comment-{{ comment.id }}" class="comment clearfix">
+                        {% if comment.user.image %}
+                          <img src="{{ comment.user.image.url }}" alt="{{comment.user.first_name}} {{comment.user.last_name}}" class="comment-img  float-left" width="50" height="50">
+                        {% else %}
+                          <img src="{% static 'assets/img/avatar.jpeg' %}" alt="{{comment.user.first_name}} {{comment.user.last_name}}" class="comment-img  float-left" width="50" height="50">
+                        {% endif %}
+                        <h5><a>{{comment.user.first_name}} {{comment.user.last_name}}</a></h5>
+                        <time datetime="{{comment.createdAt}}">{{comment.createdAt|naturaltime}}</time>
+                        <p>{{comment.comment}}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <input type="hidden" name="total_comments" id="total_comments" value="{{total_comments}}">
+                <input type="hidden" name="total_comments_load" id="total_comments_load" value="3">
+                {% if comments and comments.next_page_number %}
+                  <input type="hidden" name="next_page_number" id="next_page_number" value="{{ comments.next_page_number }}">
+                {% else %}
+                  <input type="hidden" name="next_page_number" id="next_page_number" value="0">
+                {% endif %}
+
+                <div id="loading-box" class="text-center" {% if comments.has_next %} style="display:block" {% else %} style="display:none" {% endif %}>
+                    <button type="button" class="btn btn-primary btn-block" id="load-btn" o>Load more</button>
+                </div>
+                <div class="reply-form">
+                  <h4>Leave a Reply </h4>
+
+                  <div class="alert alert-success" role="alert" id="comment_added" style="display:none">
+                    Comment added
+                  </div>
+
+                  <form action="POST" id="blog_comment">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col form-group">
+                        <textarea name="comment" id="id_comment" class="form-control" placeholder="Your Comment*" required></textarea>
+                        <span id="rchars">150</span> Character(s) Remaining
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                    <input type="hidden" name="blog" id="id_blog" value="{{object.id}}">
+                  </form>
+  
+                </div>
+  
+              </div>
+             
+              <!-- End blog comments -->
+  
+            </div><!-- End blog entries list -->
+  
+           
+  
+          </div>
+          
+    </div>
+  </section>
+  
+{% endblock  %}

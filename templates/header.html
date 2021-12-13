@@ -1,0 +1,39 @@
+{% load static %}
+<header id="header" class="fixed-top">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 d-flex align-items-center">
+        <a href="{% url 'home'%}" class="logo mr-auto"><img src="{% static 'assets/gif/logo.gif' %}" alt=""></a>
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+              {% if user.is_authenticated %}
+              <li class="drop-down {% if request.resolver_match.view_name == 'dashboard' %}active{% endif %} "><a href="{% url 'dashboard'%}">DASHBOARD</a>
+                <ul>
+                  <li><a href="{% url 'profile'%}">PROFILE</a></li>
+                  <li class="drop-down"><a href="#">JOB</a>
+                    <ul>
+                      <li><a href="{% url 'job_list' %}">VIEW ALL JOBS</a></li>
+                      <li><a href="{% url 'job_create' %}">CREATE NEW JOB</a></li>
+                      <li><a href="{% url 'job_offers' %}">ACCEPTED OFFERS</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="{% url 'find_job_seekers'%}">FIND JOB SEEKERS</a></li>
+                  <li><a href="{% url 'subscription'%}">SUBSCRIPTIONS</a></li>
+                  <li><a href="{% url 'how_it_works'%}">HOW TO USE THIS SITE</a></li>
+                  <li><a href="{% url 'change_password'%}">CHANGE PASSWORD</a></li>
+                  <li><a href="{% url 'sign_out'%}">SIGN OUT</a></li>
+                </ul>
+              </li>
+            {% endif %}
+
+            <li {% if request.resolver_match.view_name == 'how_it_works' %} class="active" {% endif %}><a href="{% url 'how_it_works'%}">HOW IT WORKS</a></li>
+            {% if user.is_authenticated %}
+            {% else %}
+              <li {% if request.resolver_match.view_name == 'sign_up' %} class="active" {% endif %}><a href="{% url 'sign_up'%}">EMPLOYER SIGN UP</a></li>
+              <li {% if request.resolver_match.view_name == 'sign_in' %} class="active" {% endif %}><a href="{% url 'sign_in'%}">EMPLOYER SIGN IN</a></li>
+            {% endif %}
+          </ul>
+        </nav><!-- .nav-menu -->
+      </div>
+    </div>

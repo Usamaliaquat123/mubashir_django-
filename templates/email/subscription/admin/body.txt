@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Hello Admin,
+
+Purchase new subscription of ${{subscription.payment_amount}} at {{SITE_NAME}}
+
+Thank you,
+{{SITE_NAME}}
+{% endautoescape %}

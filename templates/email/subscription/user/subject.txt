@@ -1,0 +1,1 @@
+Purchase new subscription of ${{subscription.payment_amount}} at {{SITE_NAME}}

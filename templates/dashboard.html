@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block pagetitle %}Dashboard{% endblock %}
+
+{% block breadcrumbs %}
+	{{ block.super }}
+	<li>Dashboard</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="tabs">
+    
+    {% if isSubscription == False %}
+    <div class="container">
+        <a href="{% url 'subscription_plan' %}">Click Here</a> to purchase a subscription and start adding jobs and finding great emplyees today!
+    </div>
+    {% endif %}
+    
+    <div class="container pt-4">
+        <h4>Hi {{user.first_name}} {{user.last_name}}! What would you like to do?</h4>
+    </div>
+
+      <div class="container pt-4">
+        <ul class="nav nav-tabs row d-flex">
+          <li class="nav-item col-3">
+            <a class="nav-link" href="{% url 'job_create' %}">
+              <i class="ri-edit-box-line"></i>
+              <h4 class="d-none d-lg-block">CREATE A JOB</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" href="{% url 'find_job_seekers' %}">
+              <i class="ri-search-line"></i>
+              <h4 class="d-none d-lg-block">FIND JOB SEEKERS</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" href="{% url 'job_offers' %}">
+              <i class="ri-eye-line"></i>
+              <h4 class="d-none d-lg-block">VIEW ACCEPTED OFFERS</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" href="{% url 'how_it_works' %}">
+              <i class="ri-sun-line"></i>
+              <h4 class="d-none d-lg-block">HOW TO USE THIS SITE</h4>
+            </a>
+          </li>
+        </ul>
+
+        
+      </div>
+    </section><!-- End Tabs Section -->
+
+
+  
+{% endblock  %}

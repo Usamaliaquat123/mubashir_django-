@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Hello {{subscription.user.first_name}} {{subscription.user.last_name}},
+
+Thank You! Your payment of ${{subscription.payment_amount}} has been successfully paid.
+
+Thank you,
+{{SITE_NAME}}
+
+{% endautoescape %}

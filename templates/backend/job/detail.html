@@ -1,0 +1,320 @@
+{% extends "backend/base.html" %}
+
+{% block title %}View Job{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Job Details</h3>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Information</h2>
+            <div class="panel_toolbox">
+              <a href="{% url 'backend_job_edit' object.token %}" class="btn btn-secondary">Edit Job</a>
+              <a href="{% url 'backend_job_jobseeker_list' object.token %}" class="btn btn-secondary">Create Job Offers</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+          <div class="x_content">
+
+            <section class="content invoice">
+              <!-- title row -->
+              <div class="row">
+                <div class="  invoice-header">
+                  <h1>{{object.title}}</h1>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- info row -->
+              <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                  <address>
+                      <strong>{{object.hiring_company}}</strong>
+                      <br>{{object.address}},
+                      <br>{{object.city.name}},
+                      <br>{{object.state.code}} {{object.state.zipcode}}
+                      <br>Phone: {{object.phone}}
+                      <br>Email: {{object.email}}
+                  </address>
+                </div>
+                <div class="col-sm-4 invoice-col">
+                  <b>Hiring Manager:</b> {{object.hiring_manager_name}}
+                  <br>
+                  <b>Hourly Rate:</b> ${{object.hourly_rate}}
+                  <br>
+                  <b># of Roles:</b> ${{object.number_of_roles}}
+                  <br>
+                  <b>Active:</b> {% if object.publish %}Yes{% else %}No{% endif %}
+                  <br>
+                  <b>Category:</b> {{object.category.name}}
+                  <br>
+                  <b>Sub Categories:</b> {% for cat in object.subcategory.all %} {{cat.name}}, {% endfor %}
+                  <br>
+                  <br>
+                </div>
+                <div class="col-sm-4 invoice-col">
+                  <b># of Job Offers          :</b> {{ object.joboffer_set.count }}
+                  <br>
+                  <b># of Job Offers Pending  :</b> {{ no_of_pending|length }}
+                  <br>
+                  <b># of Job Offers Accept   :</b> {{ no_of_accept|length }}
+                  <br>
+                  <b># of Job Offers Decline  :</b> {{ no_of_decline|length }}
+                  <br>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </section>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+            <div class="x_content">
+    <div class="col-md-12 col-sm-12 ">
+              
+        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+          <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#tab_content1" id="tab1" role="tab" data-toggle="tab" aria-expanded="true">Job Description</a></li>
+            <li role="presentation" class=""><a href="#tab_content2" role="tab" id="tab2" data-toggle="tab" aria-expanded="false">Job Offers Pending</a></li>
+            <li role="presentation" class=""><a href="#tab_content3" role="tab" id="tab3" data-toggle="tab" aria-expanded="false">Job Offers Accept</a></li>
+            <li role="presentation" class=""><a href="#tab_content4" role="tab" id="tab4" data-toggle="tab" aria-expanded="false">Job Offers Decline</a></li>
+            <li role="presentation" class=""><a href="#tab_content5" role="tab" id="tab5" data-toggle="tab" aria-expanded="false">Job Shift Schedule</a></li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            
+            <div role="tabpanel" class="tab-pane active" id="tab_content1" aria-labelledby="tab1">
+              <p>{{object.description}}</p>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="tab2">
+
+                <!-- start user projects -->
+                <table class="data table table-striped no-margin">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Request Date & Time</th>
+                      <th>Request Status</th>
+                      <th>Action Date & Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if no_of_pending %}
+                      {% for obj in no_of_pending %}
+                      <tr>
+                        <td>{{obj.user.first_name}} {{obj.user.last_name}}</td>
+                        <td>{{obj.user.email}}</td>
+                        <td >{{obj.user.mobile}}</td>
+                        <td >{{obj.createdAt}}</td>
+                        <td >{{obj.action}}</td>
+                        <td >{{obj.updatedAt}}</td>
+                      </tr>
+                      {% endfor %}
+                    {% else %}
+                    <tr class="odd even pointer">
+                        <td colspan="6">
+                          <div class="alert alert-info alert-dismissible">
+                            Request not found.
+                          </div>
+                        </td>
+                      </tr>
+                    {% endif %}
+                  </tbody>
+                </table>
+                <!-- end user projects -->
+  
+              </div>
+            
+              <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="tab3">
+
+                  <!-- start user projects -->
+                  <table class="data table table-striped no-margin">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Request Date & Time</th>
+                        <th>Request Status</th>
+                        <th>Action Date & Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if no_of_accept %}
+                        {% for obj in no_of_accept %}
+                        <tr>
+                          <td>{{obj.user.first_name}} {{obj.user.last_name}}</td>
+                          <td>{{obj.user.email}}</td>
+                          <td >{{obj.user.mobile}}</td>
+                          <td >{{obj.createdAt}}</td>
+                          <td >{{obj.action}}</td>
+                          <td >{{obj.updatedAt}}</td>
+                        </tr>
+                        {% endfor %}
+                      {% else %}
+                      <tr class="odd even pointer">
+                          <td colspan="6">
+                            <div class="alert alert-info alert-dismissible">
+                              Request not found.
+                            </div>
+                          </td>
+                        </tr>
+                      {% endif %}
+                    </tbody>
+                  </table>
+                  <!-- end user projects -->
+    
+                </div>
+            
+                <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="tab4">
+
+                    <!-- start user projects -->
+                  <table class="data table table-striped no-margin">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <th>Request Date & Time</th>
+                          <th>Request Status</th>
+                          <th>Action Date & Time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% if no_of_decline %}
+                          {% for obj in no_of_decline %}
+                          <tr>
+                            <td>{{obj.user.first_name}} {{obj.user.last_name}}</td>
+                            <td>{{obj.user.email}}</td>
+                            <td >{{obj.user.mobile}}</td>
+                            <td >{{obj.createdAt}}</td>
+                            <td >{{obj.action}}</td>
+                            <td >{{obj.updatedAt}}</td>
+                          </tr>
+                          {% endfor %}
+                        {% else %}
+                        <tr class="odd even pointer">
+                            <td colspan="6">
+                              <div class="alert alert-info alert-dismissible">
+                                Request not found.
+                              </div>
+                            </td>
+                          </tr>
+                        {% endif %}
+                      </tbody>
+                    </table>
+                    <!-- end user projects -->
+                  </div>
+            
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="tab5">
+
+                    {% if schedule %}
+
+                    <p> Start Date : {{schedule.startdate}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date : {{schedule.enddate}}
+
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Day</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% if schedule.sun %}
+                          <tr>
+                            <th scope="row">Sunday</th>
+                            <td>{{schedule.sun_start_hr}} {{schedule.sun_start_ap}}</td>
+                            <td>{{schedule.sun_end_hr}} {{schedule.sun_end_ap}}</td>
+                          </tr>
+                          {% endif %}
+                          {% if schedule.mon %}
+                          <tr>
+                            <th scope="row">Monday</th>
+                            <td>{{schedule.mon_start_hr}} {{schedule.mon_start_ap}}</td>
+                            <td>{{schedule.mon_end_hr}} {{schedule.mon_end_ap}}</td>
+                          </tr>
+                          {% endif %}
+                          {% if schedule.tue %}
+                          <tr>
+                            <th scope="row">Tuesday</th>
+                            <td>{{schedule.tue_start_hr}} {{schedule.tue_start_ap}}</td>
+                            <td>{{schedule.tue_end_hr}} {{schedule.tue_end_ap}}</td>
+                          </tr>
+                          {% endif %}
+                          {% if schedule.wed %}
+                          <tr>
+                            <th scope="row">Wendsday</th>
+                            <td>{{schedule.wed_start_hr}} {{schedule.wed_start_ap}}</td>
+                            <td>{{schedule.wed_end_hr}} {{schedule.wed_end_ap}}</td>
+                          </tr>
+                          {% endif %}
+                          {% if schedule.thu %}
+                          <tr>
+                            <th scope="row">Thursday</th>
+                            <td>{{schedule.thu_start_hr}} {{schedule.thu_start_ap}}</td>
+                            <td>{{schedule.thu_end_hr}} {{schedule.thu_end_ap}}</td>
+                          </tr>
+                          {% endif %}
+                          {% if schedule.fri %}
+                          <tr>
+                            <th scope="row">Friday</th>
+                            <td>{{schedule.fri_start_hr}} {{schedule.fri_start_ap}}</td>
+                            <td>{{schedule.fri_end_hr}} {{schedule.fri_end_ap}}</td>
+                          </tr>
+                          {% endif %}
+                          {% if schedule.sat %}
+                          <tr>
+                            <th scope="row">Saturday</th>
+                            <td>{{schedule.sat_start_hr}} {{schedule.sat_start_ap}}</td>
+                            <td>{{schedule.sat_end_hr}} {{schedule.sat_end_ap}}</td>
+                          </tr>
+                          {% endif %}
+                        </tbody>
+                      </table>
+
+                    {% else %}
+                      <div class="alert alert-info alert-dismissible " role="alert">
+                      Schedule not available
+                      </div>
+                    {% endif %}
+
+                  </div>
+                  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+<!-- /page content -->
+
+
+{% endblock  %}

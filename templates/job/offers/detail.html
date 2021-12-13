@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}View Job Offer{% endblock %}
+
+{% block pagetitle %}View Job Offer{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'job_list' %}">View All Jobs</a></li>
+	  <li><a href="{% url 'job_offers' %}">Accepted Offers</a></li>
+	  <li>View Job Offer</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- page content -->
+<section class="inner-page">
+  <div class="container">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Job Title</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                <a href="{% url 'job_view' object.job.token %}">{{object.job.title}}</a>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Jobseeker Name</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                <a href="{% url 'job_seeker_profile' object.user.token %}">{{object.user.first_name}} {{object.user.last_name}}</a>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Jobseeker Email</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{object.user.email}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Jobseeker Phone</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{object.user.mobile}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Request Date</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{object.createdAt|date:"M d, Y"}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Accepted Date</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{object.updatedAt|date:"M d, Y"}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Payroll Services Request Send?</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {% if object.isPayrollService %} Yes {% else %} No {% endif %}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Contacted?</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {% if object.contacted %} Yes {% else %} No {% endif %}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Rating(%)</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {% if object.rating %} {{object.rating}} {% else %} - {% endif %}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Showed Up?</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {% if object.showed_up %} {{object.showed_up}} {% else %} - {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>  
+  </div>
+</section>
+<!-- /page content -->
+
+{% endblock  %}
