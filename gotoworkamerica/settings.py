@@ -31,12 +31,12 @@ SITE_NAME = 'Go To Work America'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['13.58.229.35','127.0.0.1','0.0.0.0','0.0.0.0:8080']
 
 AUTH_USER_MODEL = 'accountapp.User'
 
 # Application definition
-
+#  gunicorn --bind 0.0.0.0:8080 gotoworkamerica.wsgi
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
