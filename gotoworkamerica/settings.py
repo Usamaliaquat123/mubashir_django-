@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5&hl1gzo9p+e-p17fy&gds-&ol3$y5exrk7&cn_a4e$=(y!@&v'
 
 #Site URL
-SITE_URL = 'http://localhost:8001'
+SITE_URL = 'http://13.58.229.35/'
 
 #Site Name
 SITE_NAME = 'Go To Work America'
@@ -111,12 +111,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'go_to_america',
-        'USER': 'go_to_america',
+        'USER': 'postgres',
         'PASSWORD': 'go_to_america',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
+# psql -- username=go_to_america
+# ALTER TABLE public.<table_name> OWNER TO go_to_america;
 
 
 
