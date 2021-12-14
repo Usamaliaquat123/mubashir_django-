@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5&hl1gzo9p+e-p17fy&gds-&ol3$y5exrk7&cn_a4e$=(y!@&v'
 
 #Site URL
-SITE_URL = 'http://13.58.229.35/'
+SITE_URL = 'http://13.58.229.35'
 
 #Site Name
 SITE_NAME = 'Go To Work America'
@@ -31,7 +31,7 @@ SITE_NAME = 'Go To Work America'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['13.58.229.35','127.0.0.1','0.0.0.0','0.0.0.0:8080']
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'accountapp.User'
 
