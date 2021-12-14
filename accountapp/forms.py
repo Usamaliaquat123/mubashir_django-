@@ -59,7 +59,7 @@ class ProfileForm(forms.ModelForm):
             self.fields['email'].widget.attrs['placeholder']        = 'Enter your Email Address'
             self.fields['email'].label                              = 'Email Address'
             self.fields['mobile'].label                             = 'Phone'
-            self.fields['image'].label                              = 'Take Picture / Upload File'
+            self.fields['image'].label                              = 'Current Image'
             
             for field in self.fields.values():
                 field.widget.attrs['class'] = 'form-control'

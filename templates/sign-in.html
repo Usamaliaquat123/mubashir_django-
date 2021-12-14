@@ -6,18 +6,18 @@
 
 {% block breadcrumbs %}
 	{{ block.super }}
-	<li>EMPLOYER SIGN IN</li>
+
 {% endblock %}
 
 {% load static %}
 
 {% block content %}
-  
+
 <section class="inner-page">
     <div class="container">
         <div class="form">
-            <h4>EMPLOYER SIGN IN</h4>
-            <p>Sign in with your Go To Work America employer account.</p>
+           
+          <!--  <p>Sign in with your Go To Work America employer account.</p> -->
             {% if messages %}
               {% for message in messages %}
                 {% if message.tags == 'error' %}

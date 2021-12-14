@@ -13,12 +13,16 @@
 {% load static %}
 
 {% block content %}
-  
+    <style>
+  #id_image{
+   border: 0px !important;
+  }
+  </style>
 <section class="inner-page">
     <div class="container">
         <div class="form">
-            <h4>Profile</h4>
-            <p>Fill all details and update your Employer Profile. </p>
+           <!-- <h4>Profile</h4> -->
+           <!-- <p>Fill all details and update your Employer Profile. </p>-->
             {% if messages %}
               {% for message in messages %}
                 {% if message.tags == 'error' %}
