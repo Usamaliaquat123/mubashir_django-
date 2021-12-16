@@ -165,7 +165,7 @@ def password_reset(request):
             email    = email.lower()
             user     = User.objects.filter(email=email).first()
             #send email
-            send_reset_password_email(request,user)
+            # send_reset_password_email(request,user)
             return redirect(str(settings.SITE_URL)+'/password_reset/done/')
         else:
             messages.error(request, 'Please correct the error below.')
