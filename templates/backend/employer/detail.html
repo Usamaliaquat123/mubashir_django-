@@ -1,0 +1,155 @@
+{% extends "backend/base.html" %}
+
+{% block title %}View Employer{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Employer Report</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="col-md-3 col-sm-3  profile_left">
+              <div class="profile_img">
+                <div id="crop-avatar">
+                  <!-- Current avatar -->
+                  <img class="img-responsive avatar-view" src="{% if object.image %}{{object.image.url}}{% else %}{% static 'backend/images/avatar.jpeg' %}{% endif %}" alt="Avatar" title="Change the avatar" width="220" height="220">
+                </div>
+              </div>
+              <h3>{{object.first_name}} {{object.last_name}}</h3>
+
+              <ul class="list-unstyled user_data">
+                
+                <li>
+                  <i class="fa fa-briefcase user-profile-icon"></i> {{object.company}}
+                </li>
+
+                <li>
+                  <i class="fa fa-phone"></i> {{object.mobile}}
+                </li>
+
+                <li>
+                  <i class="fa fa-inbox"></i> {{object.email}}
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-9 col-sm-9 ">
+              
+              <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#tab_content1" id="tab1" role="tab" data-toggle="tab" aria-expanded="true">Jobs</a></li>
+                  <li role="presentation" class=""><a href="#tab_content3" role="tab" id="tab3" data-toggle="tab" aria-expanded="false">Subscription</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div role="tabpanel" class="tab-pane active " id="tab_content1" aria-labelledby="tab1">
+                    <!-- start user projects -->
+                    <table class="data table table-striped no-margin">
+                        <thead>
+                          <tr>
+                            <th>Job Title</th>
+                            <th>Hiring Company</th>
+                            <th>Hiring Manager</th>
+                            <th>Hiring Rate</th>
+                            <th>View</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% if jobs %}
+                            {% for job in jobs %}
+                            <tr>
+                              <td class=" ">{{job.title}}</td>
+                              <td class=" ">{{job.hiring_company}}</td>
+                              <td class=" ">{{job.hiring_manager_name}}</td>
+                              <td class=" ">${{job.hourly_rate}}</td>
+                              <td class=" "><a href="{% url 'backend_job_view' job.token %}" title="View" alt="View"><i class="fa fa-eye"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                          {% else %}
+                            <tr class="odd pointer">
+                                <td colspan="5">
+                                  <div class="alert alert-info alert-dismissible " role="alert">
+                                    Jobs not found.
+                                  </div>
+                                </td>
+                              </tr>
+                          {% endif %}
+                        </tbody>
+                    </table>
+                    <!-- end user projects -->
+                  </div>
+                  
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="tab3">
+                    <!-- start user projects -->
+                    <table class="data table table-striped no-margin">
+                        <thead>
+                          <tr>
+                            <th class="">Plan </th>
+                            <th class="">Amount </th>
+                            <th class="">Start Date </th>
+                            <th class="">End Date </th>
+                            <th class="">Active </th>
+                            <th class="">Expired </th>
+                            <th>View</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% if subscriptions %}
+                            {% for sub in subscriptions %}
+                            <tr>
+                              <td class=" ">{{sub.plan.name}} - {{sub.get_period_display}}</td>
+                              <td class=" ">${{sub.payment_amount}}</td>
+                              <td class=" ">{{sub.startdate}}</td>
+                              <td class=" ">{{sub.enddate}}</td>
+                              <td class=" ">
+                                {% if sub.active %}
+                                  <i class="fa fa-check"></i>
+                                {% else %}
+                                  <i class="fa fa-times"></i>
+                                {% endif %}
+                              </td>
+                              <td class=" ">
+                                {% if sub.expired %}
+                                  <i class="fa fa-check"></i>
+                                {% else %}
+                                  <i class="fa fa-times"></i>
+                                {% endif %}
+                              </td>
+                              <td class=" "><a href="{% url 'backend_subscription_view' sub.token %}" title="View" alt="View"><i class="fa fa-eye"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                          {% else %}
+                            <tr class="odd pointer">
+                                <td colspan="7">
+                                  <div class="alert alert-info alert-dismissible " role="alert">
+                                    Subscriptions not found.
+                                  </div>
+                                </td>
+                              </tr>
+                          {% endif %}
+                        </tbody>
+                    </table>
+                    <!-- end user projects -->
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
+
+{% endblock  %}

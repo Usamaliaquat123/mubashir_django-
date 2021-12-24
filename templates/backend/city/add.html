@@ -1,0 +1,79 @@
+{% extends "backend/base.html" %}
+
+{% block title %}Add New City{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Add New City</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Information</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                    <div class="alert alert-danger">{{ message|safe }}</div><br/>
+                                {% else%}
+                                    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br/>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <h4>Please fix the following errors</h4>
+                                <ul>
+                                {% for field in form %}
+                                    {% if field.errors %}
+                                        {% for error in field.errors %}
+                                            <li>{{ error|escape }}</li>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                                {% if form.non_field_errors %}
+                                    {{ form.non_field_errors }}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <br />
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for field in form.visible_fields %}
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="id_{{ field.name }}">{{ field.label }} {% if field.field.required %}<span class="required">*</span>{% endif %}</label>
+                                    <div class="col-md-6 col-sm-6 ">{{ field }}</div>
+                                </div>
+                            {% endfor %}
+                            
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-4">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <a href="{% url 'backend_city_list' %}" class="btn btn-primary">Cancel</a>
+                                </div>
+                            </div>
+                            {% for hidden_field in form.hidden_fields %}
+                                {{ hidden_field }}
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

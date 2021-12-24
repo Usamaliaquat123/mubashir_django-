@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block pagetitle %}Checkout{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'subscription' %}">Subscription</a></li>
+    <li><a href="{% url 'subscription_plan' %}">Membership Plan</a></li>
+	  <li>Checkout</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<section class="inner-page">
+  <div class="container">
+      <h1>Checkout</h1>
+      <div class="form">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Plan</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  {{plan.name}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Period</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  {{plan.period}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Amount</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  ${{plan.amount}}
+              </div>
+            </div>
+            <hr>
+            {% if plan.info %}
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Information</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{plan.info}}
+              </div>
+            </div>
+            <hr>
+            {% endif %}
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Pay</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                  <script src="https://js.stripe.com/v3/"></script>
+                  <button id="checkout-button" class="btn-buy" data-secret="{{ session_id }}">
+                      Checkout
+                  </button>
+                  <script type="text/javascript">
+                    var sessionid              = "{{session_id}}";
+                    var stripe_publishable_key = "{{stripe_publishable_key}}"
+                  </script>
+                  <script src="{% static "assets/js/checkout.js" %}"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+{% endblock  %}

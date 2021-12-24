@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Subscription Expired{% endblock %}
+
+{% block pagetitle %}Subscription Expired{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li>Subscription Expired</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<section class="inner-page">
+  <div class="container">
+      <h1>Subscription Expired</h1>
+      <a href="{% url 'subscription_plan' %}">Click Here</a> to purchase a subscription and start adding jobs and finding great emplyees today!
+  </div>
+</section>
+{% endblock  %}

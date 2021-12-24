@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block pagetitle %}Profile{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+	<li>Profile</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+  
+<section class="inner-page">
+    <div class="container">
+        <div class="form">
+            <h4>Profile</h4>
+            <p>Fill all details and update your Employer Profile. </p>
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="alert alert-danger">{{ message|safe }}</div><br/>
+                {% else%}
+                <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br/>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+  
+            {% if form.errors %}
+              <div class="alert alert-danger">
+                {% for field in form %}
+                  {% if field.errors %}
+                    {% for error in field.errors %}
+                      <strong>{{ field.label }}</strong> : {{ error|escape }}<br/>
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+                {% if form.non_field_errors %}
+                  {{ form.non_field_errors }}
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="row">
+                  <div class="col form-group">
+                    <label>{{ form.image.label }} {% if form.image.field.required %}*{% endif %}</label>
+                    {{ form.image }}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label>{{ form.first_name.label }} {% if form.first_name.field.required %}*{% endif %}</label>
+                    {{ form.first_name }}
+                  </div>
+                  <div class="col-md-6 form-group">
+                      <label>{{ form.company.label }} {% if form.company.field.required %}*{% endif %}</label>
+                      {{ form.company }}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label>{{ form.last_name.label }} {% if form.last_name.field.required %}*{% endif %}</label>
+                    {{ form.last_name }}
+                  </div>
+                  <div class="col-md-6 form-group">
+                      <label>{{ form.title.label }} {% if form.title.field.required %}*{% endif %}</label>
+                      {{ form.title }}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label>{{ form.email.label }} {% if form.email.field.required %}*{% endif %}</label>
+                    {{ form.email }}
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>{{ form.mobile.label }} {% if form.mobile.field.required %}*{% endif %}</label>
+                    {{ form.mobile }}
+                  </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+                {% for hidden_field in form.hidden_fields %}
+                  {{ hidden_field }}
+                {% endfor %}
+            </form>
+        </div>
+
+    </div>
+  </section>
+
+  
+{% endblock  %}

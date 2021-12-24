@@ -1,0 +1,13 @@
+{% autoescape off %}
+
+To initiate the password reset process for your {{ email }} {{SITE_NAME}} Account,
+
+click the link below:
+
+<a href="{{reset_url}}">{{reset_url}}</a>
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser window instead.
+
+Thank you,
+{{SITE_NAME}}
+{% endautoescape %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Access Denied{% endblock %}
+
+{% block pagetitle %}Access Denied{% endblock %}
+
+{% block breadcrumbs %}
+	{{ block.super }}
+	<li>Access Denied</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<section class="inner-page">
+  <div class="container">
+    <p>
+      You don't have permission to view this page.
+    </p>
+  </div>
+</section>
+{% endblock  %}

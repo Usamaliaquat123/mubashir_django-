@@ -1,0 +1,298 @@
+{% extends "backend/base.html" %}
+
+{% block title %}Jobseeker Schedule{% endblock %}
+
+{% load static %}
+
+{% load backend_extras %}
+
+{% block content %}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Jobseeker Schedule</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Avaibility</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                    <div class="alert alert-danger">{{ message|safe }}</div><br/>
+                                {% else%}
+                                    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br/>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <h4>Please fix the following errors</h4>
+                                <ul>
+                                {% for field in form %}
+                                    {% if field.errors %}
+                                        {% for error in field.errors %}
+                                            <li>{{ error|escape }}</li>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                                {% if form.non_field_errors %}
+                                    {{ form.non_field_errors }}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <br />
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                           
+                            <div class="row">
+
+                                <div class="col-md-12 col-sm-12  form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{form.check_all|addclass:""}} {{form.check_all.label}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+
+								<div class="col-md-2 col-sm-12  form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{form.mon|addclass:"chk-days"}} {{form.mon.label}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.mon_start_hr.name}}">{{form.mon_start_hr.label}} :</label>
+                                    {{form.mon_start_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                        <label for="is_{{form.mon_start_ap.name}}">{{form.mon_start_ap.label}} :</label>
+                                    {{form.mon_start_ap|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-1 col-sm-12 form-group" style="text-align:center">
+                                    __
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.mon_end_hr.name}}">{{form.mon_end_hr.label}} :</label>
+                                    {{form.mon_end_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.mon_end_ap.name}}">{{form.mon_end_ap.label}} :</label>
+                                    {{form.mon_end_ap|addclass:"form-control"}}
+                                </div>
+
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{form.tue|addclass:"chk-days"}} {{form.tue.label}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.tue_start_hr.name}}">{{form.tue_start_hr.label}} :</label>
+                                    {{form.tue_start_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.tue_start_ap.name}}">{{form.tue_start_ap.label}} :</label>
+                                    {{form.tue_start_ap|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-1 col-sm-12 form-group" style="text-align:center">
+                                    __
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.tue_end_hr.name}}">{{form.tue_end_hr.label}} :</label>
+                                    {{form.tue_end_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.tue_end_ap.name}}">{{form.tue_end_ap.label}} :</label>
+                                    {{form.tue_end_ap|addclass:"form-control"}}
+                                </div>
+
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{form.wed|addclass:"chk-days"}} {{form.wed.label}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.wed_start_hr.name}}">{{form.wed_start_hr.label}} :</label>
+                                    {{form.wed_start_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.wed_start_ap.name}}">{{form.wed_start_ap.label}} :</label>
+                                    {{form.wed_start_ap|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-1 col-sm-12 form-group" style="text-align:center">
+                                    __
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.wed_end_hr.name}}">{{form.wed_end_hr.label}} :</label>
+                                    {{form.wed_end_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.wed_end_ap.name}}">{{form.wed_end_ap.label}} :</label>
+                                    {{form.wed_end_ap|addclass:"form-control"}}
+                                </div>
+
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{form.thu|addclass:"chk-days"}} {{form.thu.label}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.thu_start_hr.name}}">{{form.thu_start_hr.label}} :</label>
+                                    {{form.thu_start_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.thu_start_ap.name}}">{{form.thu_start_ap.label}} :</label>
+                                    {{form.thu_start_ap|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-1 col-sm-12 form-group" style="text-align:center">
+                                    __
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.thu_end_hr.name}}">{{form.thu_end_hr.label}} :</label>
+                                    {{form.thu_end_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.thu_end_ap.name}}">{{form.thu_end_ap.label}} :</label>
+                                    {{form.thu_end_ap|addclass:"form-control"}}
+                                </div>
+
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{form.fri|addclass:"chk-days"}} {{form.fri.label}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.fri_start_hr.name}}">{{form.fri_start_hr.label}} :</label>
+                                    {{form.fri_start_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.fri_start_ap.name}}">{{form.fri_start_ap.label}} :</label>
+                                    {{form.fri_start_ap|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-1 col-sm-12 form-group" style="text-align:center">
+                                    __
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.fri_end_hr.name}}">{{form.fri_end_hr.label}} :</label>
+                                    {{form.fri_end_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.fri_end_ap.name}}">{{form.fri_end_ap.label}} :</label>
+                                    {{form.fri_end_ap|addclass:"form-control"}}
+                                </div>
+
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{form.sat|addclass:"chk-days"}} {{form.sat.label}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.sat_start_hr.name}}">{{form.sat_start_hr.label}} :</label>
+                                    {{form.sat_start_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.sat_start_ap.name}}">{{form.sat_start_ap.label}} :</label>
+                                    {{form.sat_start_ap|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-1 col-sm-12 form-group" style="text-align:center">
+                                    __
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.sat_end_hr.name}}">{{form.sat_end_hr.label}} :</label>
+                                    {{form.sat_end_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.sat_end_ap.name}}">{{form.sat_end_ap.label}} :</label>
+                                    {{form.sat_end_ap|addclass:"form-control"}}
+                                </div>
+
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            {{form.sun|addclass:"chk-days"}} {{form.sun.label}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.sun_start_hr.name}}">{{form.sun_start_hr.label}} :</label>
+                                    {{form.sun_start_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.sun_start_ap.name}}">{{form.sun_start_ap.label}} :</label>
+                                    {{form.sun_start_ap|addclass:"form-control"}}
+								</div>
+                                <div class="col-md-1 col-sm-12 form-group" style="text-align:center">
+                                    __
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.sun_end_hr.name}}">{{form.sun_end_hr.label}} :</label>
+                                    {{form.sun_end_hr|addclass:"form-control"}}
+                                </div>
+                                <div class="col-md-2 col-sm-12  form-group">
+                                    <label for="is_{{form.sun_end_ap.name}}">{{form.sun_end_ap.label}} :</label>
+                                    {{form.sun_end_ap|addclass:"form-control"}}
+                                </div>
+    
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-12  form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        {{form.part_time|addclass:"part_time"}} {{form.part_time.label}}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12  form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        {{form.full_time|addclass:"full_time"}} {{form.full_time.label}}
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="clearfix"></div>
+
+                            <div class="ln_solid"></div>
+                            <div class="item form-group">
+                                <div class="col-md-6 col-sm-6 offset-md-4">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <a href="{% url 'backend_jobseeker_list' %}" class="btn btn-primary">Cancel</a>
+                                </div>
+                            </div>
+                            {% for hidden_field in form.hidden_fields %}
+                                {{ hidden_field }}
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
+

@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}View All Jobs{% endblock %}
+
+{% block pagetitle %}View All Jobs{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+	<li>View All Jobs</li>
+{% endblock %}
+
+{% load backend_extras %}
+
+{% load static %}
+
+{% block content %}
+<section class="inner-page">
+    <div class="container">
+        {% if messages %}
+          {% for message in messages %}
+            {% if message.tags == 'error' %}
+              <div class="alert alert-danger">{{ message|safe }}</div>
+            {% else%}
+              <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        <div class="form">
+            <form method="POST">
+
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                      {{ form.search|addclass:"form-control" }}
+                  </div>
+                  <div class="col-md-6 form-group">
+                      <button type="submit" class="btn btn-danger" value="searchbtn" name="searchbtn">Search</button>
+                      <button type="submit" class="btn btn-dark" value="clearbtn" name="clearbtn">Clear</button>
+
+                  </div>
+                </div>
+                {% csrf_token %}
+              </form>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+          
+            <div class="col-md-10">
+                <h4>Job Listing</h4>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'job_create' %}" class="btn btn-primary">Create a Job</a>
+            </div>
+            <br/>
+            <br/>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+          <div class="table-responsive">
+            {% csrf_token %}
+            <table class="table table-striped">
+              <thead>
+              <tr class="headings">
+                <th class="text-center">Hiring Manager Name </th>
+                <th class="text-center">Company Name </th>
+                <th class="text-center">Job Title </th>
+                <th class="text-center">Category </th>
+                <th class="text-center">Hourly Pay Rate </th>
+                <th class="text-center"># of Roles</th>
+                <th class="text-center"># of Accepted</th>
+                <th class="text-center">Created At </th>
+                <th class="text-center" width="30%">Action</th>
+              </tr>
+              </thead>
+              
+              <tbody>
+                {% if object_list %}
+                  {% for obj in object_list %}
+                    <tr class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %} pointer">
+                      <td class="text-center">{{obj.hiring_manager_name}}</td>
+                      <td class="text-center">{{obj.hiring_company}}</td>
+                      <td class="text-center">{{obj.title}}</td>
+                      <td class="text-center">{{obj.category}}</td>
+                      <td class="text-center">${{obj.hourly_rate}}</td>
+                      <td class="text-center">{{obj.number_of_roles}}</td>
+                      <td class="text-center">{{obj.accepted}}</td>
+                      <td class="text-center">{{obj.createdAt|date:"M d, Y"}}</td>
+                      <td class="text-center">
+                        <a href="{% url 'job_edit' obj.token %}" title="Edit Job" alt="Edit Job" class="btn btn-primary btn-sm">EDIT</a>
+                        <a href="{% url 'job_view' obj.token %}" title="View Job" alt="View Job" class="btn btn-info btn-sm">VIEW</a>
+                        <a href="{% url 'job_delete' obj.token %}" title="Delete Job" alt="Delete Job" class="btn btn-danger btn-sm">DELETE</a>
+                        <a href="{% url 'job_schedule' obj.token %}" title="Delete Job" alt="Delete Job" class="btn btn-dark btn-sm">SCHEDULE</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                {% else %}
+                <tr class="odd even pointer">
+                  <td colspan="9">
+                    <div class="alert alert-info alert-dismissible " role="alert">
+                      {% if request.POST %}
+                        Your search did not match any records.
+                      {% else %}
+                        Job not found, <a href="{% url 'job_create' %}" >Click Here</a> to create a job.
+                      {% endif %}
+                    </div>
+                  </td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="x-footer clearfix">
+              {% if object_list.has_other_pages %}
+              <ul class="pagination pagination-sm m-0">
+              {% if object_list.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{ object_list.previous_page_number }}">&laquo;</a></li>
+              {% else %}
+              <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
+              {% endif %}
+    
+              {% for i in object_list.paginator.page_range %}
+              {% if object_list.number > 10 and forloop.first %}
+              <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+              <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+              {% endif %}
+              {% if object_list.number == i %}
+              <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+              {% elif i > object_list.number|add:'-10' and i < object_list.number|add:'10' %}
+              <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+              {% if object_list.paginator.num_pages > object_list.number|add:'10' and forloop.last %}
+              <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+              <li class="page-item"><a class="page-link" href="?page={{ object_list.paginator.num_pages }}">{{ object_list.paginator.num_pages }}</a></li>
+              {% endif %}
+              {% endfor %}
+              {% if object_list.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ object_list.next_page_number }}">&raquo;</a></li>
+              {% else %}
+              <li class="page-item disabled"><a class="page-link" href="#">»</a></li>
+              {% endif %}
+              </ul>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+  </section>
+
+{% endblock  %}
