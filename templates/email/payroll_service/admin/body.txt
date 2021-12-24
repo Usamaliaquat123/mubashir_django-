@@ -1,0 +1,8 @@
+{% autoescape off %}
+Hello Admin,
+
+{{user.company}} is interested Payroll Services.
+
+Thank you,
+{{SITE_NAME}}
+{% endautoescape %}

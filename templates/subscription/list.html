@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Subscription{% endblock %}
+
+{% block pagetitle %}Subscription{% endblock %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+	<li>Subscription</li>
+{% endblock %} 
+
+{% load backend_extras %}
+
+{% load static %}
+
+{% block content %}
+<section class="inner-page">
+  <div class="container">
+      {% if messages %}
+          {% for message in messages %}
+              {% if message.tags == 'error' %}
+                  <div class="alert alert-danger">{{ message|safe }}</div><br/>
+              {% else%}
+                  <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br/>
+              {% endif %}
+          {% endfor %}
+      {% endif %}
+
+      {% if current %}
+      <h4>Subscription Information</h4>
+      <div class="card mb-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Plan</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+              {{current.plan.name}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Period</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+              {{current.period}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Amount</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+              ${{current.payment_amount}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Status</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+              {% if current.active %} Activated {% else %} Inactivated {% endif %}
+          </div>
+        </div>
+        {% if current.cancel_at_period_end%}
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Subscription Enddate</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                {{current.enddate}}
+            </div>
+          </div>
+        {% endif %}
+        {% if current.expired or current.active == False %}
+          <hr>
+          <div class="row">
+              <div class="col-sm-12 text-secondary">
+                <a href="{% url 'subscription_plan' %}" class="btn btn-danger">Click Here</a> to purchase a subscription and start adding jobs and finding great emplyees today!
+            </div>
+          </div>
+        {% else %}
+          {% if current.cancel_at_period_end == False and current.payment_type == 'Online' %}
+          <hr>
+          <div class="row">
+              <div class="col-sm-3">
+                <a href="{% url 'subscription_cancel' %}" class="btn btn-danger">Cancel Subscription</a>
+              </div>
+          </div>
+          {% endif %}
+        {% endif %}
+      </div>
+      {% else %}
+        <a href="{% url 'subscription_plan' %}" class="btn btn-danger">Click Here</a> to purchase a subscription and start adding jobs and finding great emplyees today!
+      {% endif %}
+    </div>
+    
+    {% if object_list %}
+      <h4>Subscription History</h4>
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr class="headings">
+              <th class="text-left">Plan Name</th>
+              <th class="text-center">Period</th>
+              <th class="text-center">Amount</th>
+              <th class="text-center">Payment Mode</th>
+              <th class="text-center">Created At</th>
+            </tr>
+            </thead>
+            <tbody>
+              {% for obj in object_list %}
+                <tr>
+                  <td class="">{{obj.plan.name}}</td>
+                  <td class="text-center">{{obj.get_period_display}}</td>
+                  <td class="text-center">${{obj.payment_amount}}</td>
+                  <td class="text-center">{{obj.payment_type}}</td>
+                  <td class="text-center">{{obj.createdAt}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    {% endif %}
+
+
+  </div>
+</section>
+
+{% endblock  %}

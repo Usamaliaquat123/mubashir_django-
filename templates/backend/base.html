@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/ico" href="{% static 'backend/images/favicon.ico' %}">
+    <title>{% block title %}{{ request.path_info | slugify }}{% endblock %} | Administration Panel</title>
+    <!-- Bootstrap -->
+    <link href="{% static 'backend/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'backend/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="{% static 'backend/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{% static 'backend/vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+    <!-- datepicker -->
+    <link href="{% static 'datepicker/datepicker.min.css' %}" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="{% static 'backend/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="{% static 'backend/vendors/jqvmap/dist/jqvmap.min.css' %}" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static 'backend/vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'backend/build/css/custom.min.css' %}" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+
+    <div class="container body">
+
+      <div class="main_container">
+
+        <!-- top navigation -->
+        {% include 'backend/navbar.html' %}
+        <!-- /top navigation -->
+        
+        <!-- page content -->
+        {% block content %}
+          Body content
+        {% endblock %}
+        <!-- /page content -->
+
+        <!-- footer content -->
+        {% include 'backend/footer.html' %}
+        <!-- /footer content -->
+      </div>
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'backend/vendors/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'backend/vendors/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'backend/vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'backend/vendors/nprogress/nprogress.js' %}"></script>
+    <!-- Chart.js -->
+    <script src="{% static 'backend/vendors/Chart.js/dist/Chart.min.js' %}"></script>
+    <!-- gauge.js -->
+    <script src="{% static 'backend/vendors/gauge.js/dist/gauge.min.js' %}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{% static 'backend/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+    <!-- iCheck -->
+    <script src="{% static 'backend/vendors/iCheck/icheck.min.js' %}"></script>
+    <!-- Skycons -->
+    <script src="{% static 'backend/vendors/skycons/skycons.js' %}"></script>
+    <!-- Flot -->
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.time.js' %}"></script>
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'backend/vendors/Flot/jquery.flot.resize.js' %}"></script>
+    <!-- Flot plugins -->
+    <script src="{% static 'backend/vendors/flot.orderbars/js/jquery.flot.orderBars.js' %}"></script>
+    <script src="{% static 'backend/vendors/flot-spline/js/jquery.flot.spline.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/flot.curvedlines/curvedLines.js' %}"></script>
+    <!-- DateJS -->
+    <script src="{% static 'backend/vendors/DateJS/build/date.js' %}"></script>
+    <!-- JQVMap -->
+    <script src="{% static 'backend/vendors/jqvmap/dist/jquery.vmap.js' %}"></script>
+    <script src="{% static 'backend/vendors/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
+    <script src="{% static 'backend/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js' %}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{% static 'backend/vendors/moment/min/moment.min.js' %}"></script>
+    <script src="{% static 'backend/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+
+    <!-- datepicker -->
+    <script src="{% static 'datepicker/datepicker.min.js' %}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{% static 'backend/build/js/custom.min.js' %}"></script>
+    <script src="{% static 'backend/js/custom.js' %}"></script>
+    
+    {% if request.resolver_match.view_name == 'backend_job_schedule' %}
+    <script>
+      $(function () {
+        $("#id_startdate, #id_enddate").datepicker(
+          {
+            format:'yyyy-mm-dd',
+          })
+      });
+    </script>
+    {% endif %}
+
+    {% if request.resolver_match.view_name == 'backend_dashboard' %}
+    <script>
+    if ($('#registrationBarChart').length) {
+
+        var ctx = document.getElementById("registrationBarChart");
+        var mybarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: JSON.parse('{{last_week_dates|safe}}'),
+                datasets: [{
+                    label: '# of Employers',
+                    backgroundColor: "#26B99A",
+                    data: JSON.parse('{{last_week_employers|safe}}')
+                }, {
+                    label: '# of Jobseekers',
+                    backgroundColor: "#03586A",
+                    data: JSON.parse('{{last_week_jobseekers|safe}}')
+                }]
+            },
+
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+    }
+
+    </script>
+    {% endif %}
+
+  </body>
+</html>

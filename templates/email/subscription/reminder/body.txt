@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Hello {{subscription.user.first_name}} {{subscription.user.last_name}},
+
+Just to let you know that your membership is expired at {{SITE_NAME}}.
+
+Thank you,
+{{SITE_NAME}}
+
+{% endautoescape %}

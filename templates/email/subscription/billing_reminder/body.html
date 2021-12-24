@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Membership Reminder at {{SITE_NAME}}</title>
+    </head>
+    <body>
+        <p>
+            Hello {{subscription.user.first_name}} {{subscription.user.last_name}},
+            <br><br> 
+            Just to let you know that your membership billing is generate on {{subscription.enddate|date:"M d, Y"}}.
+            <br><br>
+            Thank you,<br>
+            {{SITE_NAME}}
+        </p>
+    </body>
+</html>

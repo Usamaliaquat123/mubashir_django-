@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}EMPLOYER SIGN IN{% endblock %}
+
+{% block pagetitle %}EMPLOYER SIGN IN{% endblock %}
+
+{% block breadcrumbs %}
+	{{ block.super }}
+	<li>EMPLOYER SIGN IN</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+  
+<section class="inner-page">
+    <div class="container">
+        <div class="form">
+            <h4>EMPLOYER SIGN IN</h4>
+            <p>Sign in with your Go To Work America employer account.</p>
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags == 'error' %}
+                <div class="alert alert-danger">{{ message|safe }}</div><br/>
+                {% else%}
+                <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br/>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+  
+            {% if form.errors %}
+              <div class="alert alert-danger">
+                {% for field in form %}
+                  {% if field.errors %}
+                    {% for error in field.errors %}
+                      <strong>{{ field.label }}</strong> : {{ error|escape }}<br/>
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+                {% if form.non_field_errors %}
+                  {{ form.non_field_errors }}
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                <div class="row">
+                  <div class="col form-group">
+                    {{ field}}
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="row px-3 mb-4">
+                    <button type="submit" class="btn btn-primary text-center">Login</button>
+                    <a href="{% url 'password_reset' %}" class="ml-auto mb-0 text-sm">Forgot Password?</a>
+                </div>
+                <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account? <a class="text-danger" href="{% url 'sign_up' %}">Sign Up</a></small> </div>
+                {% for hidden_field in form.hidden_fields %}
+                  {{ hidden_field }}
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+  </section>
+
+  
+{% endblock  %}

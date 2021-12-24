@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Thank You{% endblock %}
+
+{% block pagetitle %}Thank You{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'subscription' %}">Subscription</a></li>
+    <li>Thank You</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<section class="inner-page">
+  <div class="container">
+    <div class="container">
+        <h2>Thank You! Your payment of ${{object.amount}} has been successfully paid.</h2>
+        <p>Now <a href="{% url 'job_create' %}">start adding jobs</a> and <a href="{% url 'find_job_seekers' %}">finding great emplyees</a> today!</p>
+    </div>
+  </div>
+</section>
+{% endblock  %}

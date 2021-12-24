@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Hello {{joboffer.job.user.first_name}} {{joboffer.job.user.last_name}},
+
+{{joboffer.user.first_name}} {{joboffer.user.last_name}} has {{joboffer.action}} your job offer for {{joboffer.job.title}}.
+
+Thank you,
+{{SITE_NAME}}
+{% endautoescape %}

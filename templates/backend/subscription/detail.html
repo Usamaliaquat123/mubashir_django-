@@ -1,0 +1,132 @@
+{% extends "backend/base.html" %}
+
+{% block title %}View Subscription{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Subscription</h3>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Information</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <section class="content invoice">
+              <!-- title row -->
+              <div class="row">
+                <div class="  invoice-header">
+                  <h1>{{object.user.first_name}} {{object.user.last_name}}</h1>
+                </div>
+                <!-- /.col -->
+
+                <table class="table">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Company</th>
+                        <td>{{object.user.company}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Phone #</th>
+                        <td>{{object.user.mobile}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Email Address</th>
+                        <td>{{object.user.email}}</td>
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Plan</th>
+                        <td>{{object.plan.name}}({{object.get_period_display}})</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Active</th>
+                        <td>{% if object.active %}Yes{% else %}No{% endif %}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Expired</th>
+                        <td>{% if object.expired %}Yes{% else %}No{% endif %}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Start Date</th>
+                        <td>{{object.startdate}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">{% if object.cancel_at_period_end %} End Date {% else %}Next Billing Date{% endif %}</th>
+                        <td>{{object.enddate}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Payment Mode</th>
+                        <td>{{object.payment_type}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Payment Amount</th>
+                        <td>${{object.payment_amount}}</td>
+                      </tr>
+                      </tbody>
+                  </table>
+
+              </div>
+              
+              <!-- Table row -->
+              {% if objects %}
+              <div class="row">
+                <div class="  invoice-header">
+                  <h2>Subscription History</h2>
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="  table">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Plan</th>
+                        <th>Active</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Payment Mode</th>
+                        <th>Payment Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for obj in objects %}
+                      <tr>
+                        <td>{{obj.plan.name}}({{obj.get_period_display}})</td>
+                        <td>{% if obj.active %}Yes{% else %}No{% endif %}</td>
+                        <td>{{obj.startdate}} </td>
+                        <td>{{obj.enddate}} </td>
+                        <td>{{obj.payment_type}}</td>
+                        <td>${{obj.payment_amount}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              {% endif %}
+              <!-- /.row -->
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
+{% endblock  %}
