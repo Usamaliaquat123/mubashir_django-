@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'accountapp.User'
 
 # Application definition
-
+#  gunicorn --bind 0.0.0.0:8080 gotoworkamerica.wsgi
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -110,13 +110,15 @@ WSGI_APPLICATION = 'gotoworkamerica.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'NAME': 'go_to_america',
+        'USER': 'postgres',
+        'PASSWORD': 'go_to_america',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
+# psql -- username=go_to_america
+# ALTER TABLE public.<table_name> OWNER TO go_to_america;
 
 
 

@@ -25,10 +25,10 @@ from django.urls import resolve
 db_logger = logging.getLogger('jobapp')
 
 #job listing
-# @login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
-# @check_role_permission() # - check role permission
-# @check_subscription_permission() # - check subscription
-# @cache_control(no_cache=True, must_revalidate=True, no_store=True)
+@login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
+@check_role_permission() # - check role permission
+@check_subscription_permission() # - check subscription
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def job_list(request, template_name='job/list.html'):
     try:
         #get post
@@ -71,7 +71,10 @@ def job_list(request, template_name='job/list.html'):
         data['form']        = form
         return render(request, template_name, data)
     except Exception as e:
+<<<<<<< HEAD
             print(e)
+=======
+>>>>>>> alt-history
             db_logger.exception(e)
             return e
 

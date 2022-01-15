@@ -60,14 +60,12 @@
                     </div>
                     <!-- Radius End -->
 
-                    <!-- Radius Start -->
-                    <div class="col-lg-3 ">
-                        <h3 class=" sidebar-title">{{ form.category.label }}</h3>
+                    {% load backend_extras %}
 
-                        <div class="form-group">
+                    <<<<<<< HEAD <div class="form-group">
 
-                            <!-- {{ form.category}} -->
-                            <select name="" class="form-control" id="" multiple>
+                        <!-- {{ form.category}} -->
+                        <select name="" class="form-control" id="" multiple>
                                 {% for i in form.category %}
                              <span>{{i}}</span>
                              <span>{{v}}</span>
@@ -75,34 +73,144 @@
                                 {% endfor %}
                             </select>
 
-                        </div>
-                    </div>
-                    <div class="col-lg-3   d-flex flex-row justify-content-around align-items-end">
-                        <div class="d-block">
+                </div>
+        </div>
+        <div class="col-lg-3   d-flex flex-row justify-content-around align-items-end">
+            <div class="d-block">
 
-                            <label class=" switch" style="display: inline-block;margin-bottom: 0%;">
+                <label class=" switch" style="display: inline-block;margin-bottom: 0%;">
                     <input type="checkbox">
                     <span class=" slider round"></span>
                   </label>
-                            <div class="d-inline-block">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <p class="font-weight-bold ml-2 mt-2 mb-0" style="font-size: 14px;color:#000;display: inline-block;">Show avaliable job seekers</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="d-inline-block">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <p class="font-weight-bold ml-2 mt-2 mb-0" style="font-size: 14px;color:#000;display: inline-block;">Show avaliable job seekers</p>
                     </div>
-
                 </div>
-            </form>
+            </div>
         </div>
-        <!--  -->
-
 
     </div>
+    </form>
+</div>
+<!--  -->
+
+
+</div>
 </div>
 {% endblock %} {% block scripts %}
 <script>
     const locationField = document.getElementById('id_search').classList.add("form-control")
     const radiusField = document.getElementById('id_radius').classList.add("form-control")
     const categoryField = document.getElementById('id_category').classList.add("")
-</script>{% endblock %}
+</script>{% endblock %} ======= {% load static %} {% block content %}
+<style>
+    #id_category {
+        list-style-type: none !important;
+    }
+</style>
+<section id="blog" class="blog">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-4">
+
+                <div class="sidebar">
+
+                    <form method="POST">
+                        <h3 class="sidebar-title">{{ form.search.label }}</h3>
+                        <div class="form-group">
+                            {{ form.search|addclass:"form-control" }}
+                        </div>
+
+                        <h3 class="sidebar-title">{{ form.radius.label }}</h3>
+                        <div class="form-group">
+                            {{ form.radius|addclass:"form-control" }}
+                        </div>
+
+                        <h3 class="sidebar-title">{{ form.category.label }}</h3>
+
+                        <div class="form-group">
+                            {{ form.category}}
+                        </div>
+                        <br/>
+                        <button type="submit" class="btn btn-danger btn-block" value="searchbtn" name="searchbtn">Submit</button>
+                        <button type="submit" class="btn btn-dark btn-block" value="clearbtn" name="clearbtn">Clear</button> {% csrf_token %}
+                    </form>
+                </div>
+                <!-- End sidebar -->
+            </div>
+            <!-- End blog sidebar -->
+
+            <div class="col-lg-8">
+
+
+
+                {% if object_list %}
+                <div class="row">
+                    {% for obj in object_list %}
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-4">
+                        <div class="member">
+                            <div class="member-img">
+                                <a href="{% url 'job_seeker_profile' obj.token %}">
+                          {% if obj.image %}
+                            <div class="job-seeker-avatar" style="background-image: url({{ obj.image.url }})"></div>
+                          {% else %}
+                            <div class="job-seeker-avatar" style="background-image: url({% static 'assets/img/avatar.jpeg' %})"></div>
+                          {% endif %}
+                          </a>
+                            </div>
+                            <div class="member-info">
+
+                                {% if obj.available %}
+                                <span class="badge badge-pill badge-success">&nbsp;</span> {% else %}
+                                <span class="badge badge-pill badge-danger">&nbsp;</span> {% endif %} {{ obj.first_name }} {{ obj.last_name }}
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="alert alert-info alert-dismissible " role="alert">
+                    {% if request.POST %} Your search did not match any records. {% else %} Job Seekers not available. {% endif %}
+                </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="x-footer clearfix pt-5">
+                        {% if object_list.has_other_pages %}
+                        <ul class="pagination pagination-sm m-0">
+                            {% if object_list.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ object_list.previous_page_number }}">&laquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
+                            {% endif %} {% for i in object_list.paginator.page_range %} {% if object_list.number > 10 and forloop.first %}
+                            <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                            {% endif %} {% if object_list.number == i %}
+                            <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                            {% elif i > object_list.number|add:'-10' and i
+                            < object_list.number|add: '10' %} <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %} {% if object_list.paginator.num_pages > object_list.number|add:'10' and forloop.last %}
+                                <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ object_list.paginator.num_pages }}">{{ object_list.paginator.num_pages }}</a></li>
+                                {% endif %} {% endfor %} {% if object_list.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ object_list.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="#">»</a></li>
+                                {% endif %}
+                        </ul>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- End blog entries list -->
+        </div>
+    </div>
+</section>
+<!-- End Blog Section -->
+{% endblock %} >>>>>>> c0d590cfbfd8886d82ff0393c2a2d0ce658eb31e
