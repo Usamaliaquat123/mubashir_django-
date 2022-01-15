@@ -59,7 +59,7 @@ class ProfileForm(forms.ModelForm):
             self.fields['email'].widget.attrs['placeholder']        = 'Enter your Email Address'
             self.fields['email'].label                              = 'Email Address'
             self.fields['mobile'].label                             = 'Phone'
-            self.fields['image'].label                              = 'Current Image'
+            self.fields['image'].label                              = 'Take Picture / Upload File'
             
             for field in self.fields.values():
                 field.widget.attrs['class'] = 'form-control'
@@ -75,18 +75,13 @@ class ProfileForm(forms.ModelForm):
 #employer create form
 class RegisterForm(ModelForm):
 
-    # company         = forms.CharField(max_length=55, required=True, label='Company', widget=forms.TextInput(attrs={'placeholder': 'Enter your Company'}))
-    # title           = forms.CharField(max_length=30, required=False, label='Title', widget=forms.TextInput(attrs={'placeholder': 'Enter your Title'}))
-    # first_name      = forms.CharField(max_length=30, required=True, label='First Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your First Name'}))
-    # last_name       = forms.CharField(max_length=30, required=True, label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your Last Name'}))
-    # password1       = forms.CharField(max_length=30, required=True, label='Create your Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Password'}))
-    # password2       = forms.CharField(max_length=30, required=True, label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Confirm Password'}))
-    company         = forms.CharField(max_length=55, required=True, label='Company', widget=forms.TextInput())
-    title           = forms.CharField(max_length=30, required=False, label='Title', widget=forms.TextInput( ))
-    first_name      = forms.CharField(max_length=30, required=True, label='First Name', widget=forms.TextInput())
-    last_name       = forms.CharField(max_length=30, required=True, label='Last Name', widget=forms.TextInput())
-    password1       = forms.CharField(max_length=30, required=True, label='Create your Password', widget=forms.PasswordInput())
-    password2       = forms.CharField(max_length=30, required=True, label='Confirm Password', widget=forms.PasswordInput())
+    company         = forms.CharField(max_length=55, required=True, label='Company', widget=forms.TextInput(attrs={'placeholder': 'Enter your Company'}))
+    title           = forms.CharField(max_length=30, required=False, label='Title', widget=forms.TextInput(attrs={'placeholder': 'Enter your Title'}))
+    first_name      = forms.CharField(max_length=30, required=True, label='First Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your First Name'}))
+    last_name       = forms.CharField(max_length=30, required=True, label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Enter your Last Name'}))
+    password1       = forms.CharField(max_length=30, required=True, label='Create your Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Password'}))
+    password2       = forms.CharField(max_length=30, required=True, label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder': 'Enter your Confirm Password'}))
+    
     class Meta:
         model = User
         fields = ['image','first_name','last_name','company','title','email','mobile','password1','password2']

@@ -41,3 +41,5 @@ media
 
 # IntelliJ
 out/
+*pyc
+/__pycache__/

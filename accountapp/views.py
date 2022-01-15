@@ -126,12 +126,8 @@ def sign_up(request, template_name='sign-up.html'):
                     'response': recaptcha_response
                 }
                 r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-                # result = r.json()
+                result = r.json()
                 ''' End reCAPTCHA validation '''
-                # By Pass Captacha 
-                result={
-                    'success':True
-                }
 
                 if result['success']:
                     user = form.save()
@@ -165,7 +161,7 @@ def password_reset(request):
             email    = email.lower()
             user     = User.objects.filter(email=email).first()
             #send email
-            # send_reset_password_email(request,user)
+            send_reset_password_email(request,user)
             return redirect(str(settings.SITE_URL)+'/password_reset/done/')
         else:
             messages.error(request, 'Please correct the error below.')
@@ -309,10 +305,10 @@ def subcategories(request, pk):
             return e
 
 #find job seekers
-# @login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
-# @check_role_permission() # - check role permission
-# @check_subscription_permission() # - check subscription
-# @cache_control(no_cache=True, must_revalidate=True, no_store=True)
+@login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
+@check_role_permission() # - check role permission
+@check_subscription_permission() # - check subscription
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def find_job_seekers(request, template_name='jobseeker/listing.html'):
     try:
         #get post
@@ -389,24 +385,19 @@ def find_job_seekers(request, template_name='jobseeker/listing.html'):
         paginator   = Paginator(objs, settings.PER_PAGE_RECORD)
         page        = request.GET.get('page')
         records     = paginator.get_page(page)
-        # records=User.objects.all()
         data = {}
         data['object_list']     = records
         data['form']            = form
         return render(request, template_name, data)
     except Exception as e:
-            print("*************************************************")
-            print(e)
-            print("*************************************************")
-
             db_logger.exception(e)
             return e
 
-# #profile
-# @login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
-# @check_role_permission() # - check role permission
-# @check_subscription_permission() # - check subscription
-# @cache_control(no_cache=True, must_revalidate=True, no_store=True)
+#profile
+@login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
+@check_role_permission() # - check role permission
+@check_subscription_permission() # - check subscription
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def job_seeker_profile(request, token):
     try:
         context             = {}

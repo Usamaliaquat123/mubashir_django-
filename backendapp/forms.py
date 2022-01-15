@@ -107,7 +107,7 @@ class EmployerCreateForm(ModelForm):
             self.fields['mobile'].widget.attrs['placeholder']       = 'Enter a Phone #'
             self.fields['email'].widget.attrs['placeholder']        = 'Enter a Email Address'
             self.fields['mobile'].label                             = 'Phone #'
-            self.fields['image'].label                              = 'Current Image'
+            self.fields['image'].label                              = 'Take Picture / Upload File'
             
             for field in self.fields.values():
                 field.widget.attrs['class'] = 'form-control'
