@@ -1,44 +1,58 @@
-{% extends "base.html" %} {% block title %}How It Works{% endblock %} {% block pagetitle %}How It Works{% endblock %} {% block breadcrumbs %} {{ block.super }} {% endblock %} {% load static %} {% block content %}
+{% extends "base.html" %}
+
+{% block title %}How It Works{% endblock %}
+
+{% block pagetitle %}How It Works{% endblock %}
+
+{% block breadcrumbs %}
+	{{ block.super }}
+	<li>How It Works</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
 <style>
-    #id_category {
-        list-style-type: none !important;
-    }
+#id_category
+{
+  list-style-type:none !important;
+}
 </style>
 
 <section class="tabs">
+  
+  <div class="container">
+      <h4>Using Go To Work America is simple!</h4>
+  </div>
 
-    <div class="container">
-        <h4>Using Go To Work America is simple!</h4>
-    </div>
-
-    <div class="container pt-4">
-        <ul class="nav nav-tabs row d-flex">
-            <li class="nav-item col-3">
-                <a class="nav-link" href="{% url 'sign_up' %}">
-                    <i class="ri-user-line"></i>
-                    <h4 class="d-none d-lg-block">Sign Up as Employer and Select your Plan</h4>
-                </a>
-            </li>
-            <li class="nav-item col-3">
-                <a class="nav-link" href="{% url 'job_create' %}">
-                    <i class="ri-add-line"></i>
-                    <h4 class="d-none d-lg-block">Create a Job</h4>
-                </a>
-            </li>
-            <li class="nav-item col-3">
-                <a class="nav-link" href="{% url 'find_job_seekers' %}">
-                    <i class="ri-eye-line"></i>
-                    <h4 class="d-none d-lg-block">Find Job Seekers</h4>
-                </a>
-            </li>
-            <li class="nav-item col-3">
-                <a class="nav-link" href="{% url 'sign_in' %}">
-                    <i class="ri-sun-line"></i>
-                    <h4 class="d-none d-lg-block">Hire with one Click!</h4>
-                </a>
-            </li>
-        </ul>
-    </div>
-
+  <div class="container pt-4">
+    <ul class="nav nav-tabs row d-flex">
+      <li class="nav-item col-3">
+        <a class="nav-link" href="{% url 'sign_up' %}">
+          <i class="ri-user-line"></i>
+          <h4 class="d-none d-lg-block">Sign Up as Employer and Select your Plan</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" href="{% url 'job_create' %}">
+          <i class="ri-add-line"></i>
+          <h4 class="d-none d-lg-block">Create a Job</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" href="{% url 'find_job_seekers' %}">
+          <i class="ri-eye-line"></i>
+          <h4 class="d-none d-lg-block">Find Job Seekers</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3">
+        <a class="nav-link" href="{% url 'sign_in' %}">
+          <i class="ri-sun-line"></i>
+          <h4 class="d-none d-lg-block">Hire with one Click!</h4>
+        </a>
+      </li>
+    </ul>
+  </div>
+	
 </section>
-{% endblock %}
+{% endblock  %}

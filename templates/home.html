@@ -1,120 +1,115 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block pagetitle %}Home{% endblock %} {% load static %} {% block content %}
-<style>
-    .employer_list {
-        list-style-type: none;
-    }
-    
-    .employer_account_href {
-        text-decoration: underline;
-        color: #7dbaec;
-        font-size: 25px;
-    }
-    
-    .employer_account_href:hover {
-        text-decoration: underline;
-        color: #7dbaec;
-        font-size: 25px;
-        font-weight: lighter;
-    }
-</style>
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %} 
+{% block pagetitle %}Home{% endblock %} 
+{% load static %} 
+{% block content %}
 <!-- ====== Image Section ========= -->
 <section id="__image_left">
-    <div class="container-fluid">
-        <div class="row justify-content-center position-relative">
-            <div class="col-xl-10 position-relative">
+  <div class="container-fluid">
+    <div class="row justify-content-center position-relative">
+      <div class="col-xl-10 position-relative">
+        <div class="row">
+          <div class="col-xl-3">
+            <img
+              src="{% static 'assets/img/phone-homescreen.jpg' %}"
+              width="205"
+              height="400"
+            />
+          </div>
+          <div class="col-xl-9">
+            <h2>LOOKING FOR A JOB?</h2>
+            <p>
+              Tried of looking for work? Let the work find you! Just open the app, and click set your status and wait for the job offers to start rolling in!
+            </p>
+            <ul>
+              <li>Free For Job Seekers</li>
+              <li>Download App and Sign Up</li>
+              <li>Specify Your Availability</li>
+              <li>One-Click to Accept Job Offers</li>
+              <li>Job Offers Right To Your Smartphone</li>
+            </ul>
+            <div class="__box">
+              <div class="h4">Get hired as soon as today!</div>
+              <div class="col-12">
                 <div class="row">
-                    <!-- <div class="col-xl-2">
-                        <img src="{% static 'assets/img/phone-homescreen.jpg' %}" width="205" height="400" />
-                    </div> -->
-                    <div class="col-xl-6 ">
-                        <h2 class="font-weight-bold">LOOKING FOR A JOB?</h2>
-                        <p>
-                            Tired of searching for work? Need something stable? Let employers find you!
-                        </p>
-                        <ul>
-
-
-                            <li> No cost to you</li>
-                            <li>Enroll by downloading app</li>
-                            <li>Specify your availability
-                            </li>
-                            <li>One-click to accept or deny job offers
-                            </li>
-                        </ul>
-                        <div class="__box">
-                            <div class="h4">Get HIRED as soon as today!</div>
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a href=""><img src="{% static 'assets/img/app_store.png' %}" width="150" height="150" /></a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href=""><img src="{% static 'assets/img/play_store.png' %}" width="190" height="190" style="margin-top: -20px; margin-left: -86px" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-xl-6 ">
-                        <img src="{% static 'assets/img/hire.jpg' %}" class="w-100" />
-                    </div>
+                  <div class="col-4">
+                    <a href=""
+                      ><img
+                        src="{% static 'assets/img/app_store.png' %}"
+                        width="150"
+                        height="150"
+                    /></a>
+                  </div>
+                  <div class="col-4">
+                    <a href=""
+                      ><img
+                        src="{% static 'assets/img/play_store.png' %}"
+                        width="190"
+                        height="190"
+                        style="margin-top: -20px; margin-left: -86px;"
+                    /></a>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- ====== Image Section ========= -->
-<section id="__image_right" style="margin-top: -90px">
-    <div class="container-fluid">
-        <div class="row justify-content-center position-relative">
-            <div class="col-xl-10 position-relative">
-                <div class="row">
-                    <div class="col-xl-6 ">
-                        <h2 class="font-weight-bold">EMPLOYERS</h2>
-                        <p>
-                            Skip face-to-face interviews, and hire instantly in 3 EASY steps!
-                        </p>
-                        <ul class="employer_list">
-                            <li>1. Select job seeker</li>
-                            <li>2. Review video resume & experience</li>
-                            <li>3. Send Job Offer</li>
-
-                        </ul>
-                        <p>As a an employer you have access to UNLIMITED hiring with NO long term commitments.</p>
-                        <div class="__box">
-                            <div class="h4">
-                                Start saving time and money on your staffing needs today!
-                            </div>
-                            <div class="col-12">
-                                <a class="employer_account_href" href="{% url 'sign_up'%}">Create Employer Account</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-xl-6 ">
-                        <img src="{% static 'assets/img/hire.jpg' %}" class="w-100" />
-                    </div> -->
-                    <div class="col-xl-6 d-flex flex-row justify-content-center align-items-center">
-                        <img src="{% static 'assets/img/phone-homescreen.jpg' %}" width="205" height="400" />
-                    </div>
-                </div>
+<section id="__image_right" style="margin-top: -90px;">
+  <div class="container-fluid">
+    <div class="row justify-content-center position-relative">
+      <div class="col-xl-10 position-relative">
+        <div class="row">
+          <div class="col-xl-6">
+            <h2>LOOKING TO HIRE?</h2>
+            <p>
+              See who you are hiring, skip face-to-face interviews, and
+              instantly hire! Send job offers from your online hiring portal
+              directly to a job seeker's smartphone.
+            </p>
+            <ul>
+              <li>Select Job Seeker</li>
+              <li>Review Video Resume & Experience</li>
+              <li>Send Job Offer</li>
+              <li>Unlimited Hiring</li>
+              <li>No Long Term Commitments</li>
+            </ul>
+            <div class="__box">
+              <div class="h4">
+                Start saving time and money on your hiring today!
+              </div>
+              <div class="col-12">
+                <a href="{% url 'sign_up'%}">Create Employer Account</a>
+              </div>
             </div>
+          </div>
+          <div class="col-xl-6">
+            <img src="{% static 'assets/img/hire.jpg' %}" class="w-100" />
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">
-    <div class="container">
-        <div class="section-title">
-            <h2>WHO WE ARE</h2>
-            <p>
-                Go To Work America provides job seekers the ability to present their work availability and resume in a short video format. This unique proprietary technology allows employers to search from a pool of available resources and hire immediately.
-            </p>
-        </div>
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Value Proposition</h2>
+      <p>
+        Go To Work America provides job seekers with technology to present their
+        video resume and work availability to employers for immediate hire. Go
+        To Work America provides employers with a pool of available resources
+        that can be searched and hired for open positions.
+      </p>
     </div>
+  </div>
 </section>
 <!-- End Contact Section -->
 

@@ -48,9 +48,9 @@ class JobCreateForm(ModelForm):
             self.fields['zipcode'].label             = 'Job Zipcode'
             self.fields['category'].label            = 'Job Category'
             self.fields['subcategory'].label         = 'Job Sub Categories'
-            self.fields['hourly_rate'].label         = 'Hourly'
+            self.fields['hourly_rate'].label         = 'Hourly Pay Rate'
             self.fields['number_of_roles'].required  = True
-            self.fields['number_of_roles'].label     = 'Roles'
+            self.fields['number_of_roles'].label     = '# of Roles'
     
             self.fields['subcategory'].queryset = Subcategory.objects.none()
             if 'category' in self.data:
