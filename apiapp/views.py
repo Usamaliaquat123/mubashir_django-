@@ -610,8 +610,12 @@ def change_password(request):
 
 #forgot password request
 @api_view(["POST",])
-@permission_classes((hasKey,))
+# @permission_classes((hasKey,))
 def forgot_password_request(request):
+    print("******************************************************")
+    print("******************************************************")
+    print("******************************************************")
+
     try:
         email = request.data.get('email')
         if not email:
