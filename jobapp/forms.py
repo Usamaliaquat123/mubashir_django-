@@ -73,7 +73,7 @@ class JobCreateForm(ModelForm):
                 self.fields['city'].queryset = self.instance.state.city_set.order_by('name')
 
             for field in self.fields.values():
-                field.widget.attrs['class'] = 'form-control'
+                field.widget.attrs['class'] = 'form-control bgColorJumbotron'
 
 #Job schedule update form
 class JobScheduleForm(forms.ModelForm):

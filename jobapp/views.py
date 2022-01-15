@@ -130,10 +130,10 @@ def job_view(request, token, template_name='job/detail.html'):
             return e
 
 #job create
-@login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
-@check_role_permission() # - check role permission
-@check_subscription_permission() # - check subscription
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+# @login_required(login_url=str(settings.SITE_URL)+'/sign-in') # - if not logged in redirect to /
+# @check_role_permission() # - check role permission
+# @check_subscription_permission() # - check subscription
+# @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def job_create(request, template_name='job/create.html'):
     try:
         if request.method == 'POST':

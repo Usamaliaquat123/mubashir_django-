@@ -1,0 +1,184 @@
+{% extends 'dashboardBase.html' %} {% load static %} {% block css %}
+<style>
+    .btnNext {
+        border-radius: 25px 25px 25px 25px !important;
+        width: 50%;
+    }
+    
+    @media (max-width: 600px) {
+        .inputWrapper {
+            padding-top: 5px;
+        }
+    }
+</style>
+{% endblock %} {% block content %}
+
+<div class="col-lg-9 col-md-8">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="fontBold">Create New Job </h2>
+            <h3 class="">Company Information</h3>
+        </div>
+
+        <div class="col-lg-12">
+            <!--  -->
+            <div class="card" style="background-color: aliceblue">
+                <div class="row">
+                    <div class="col-lg-6 p-5 inputWrapper">
+                        <label class="mb-2" for="">Company Name <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="Company Name"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 p-5 inputWrapper">
+                    <label class="mb-2" for=""
+                      >Location <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="Location"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+              <div class="col-lg-12">
+                <h3 class="">Job Details</h3>
+              </div>
+              <!--  -->
+              <div class="card" style="background-color: aliceblue">
+                <div class="row">
+                  <div class="col-lg-6 p-5 inputWrapper pb-2">
+                    <label class="mb-2" for=""
+                      >Title <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="Title"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 p-5 inputWrapper pb-2">
+                    <label class="mb-2" for=""
+                      >Description <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="Description"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 p-5 inputWrapper pt-0 pb-2">
+                    <label class="mb-2" for=""
+                      >Street <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="Street"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 p-5 inputWrapper pt-0 pb-2">
+                    <label class="mb-2" for=""
+                      >State <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="State"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 p-5 inputWrapper pt-0 pb-2">
+                    <label class="mb-2" for=""
+                      >City <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="City"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 p-5 inputWrapper pt-0 pb-2">
+                    <label class="mb-2" for=""
+                      >Zip Code <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="Zip Code"
+                    />
+                  </div>
+
+                  <div class="col-lg-12 p-5 pt-0 pb-2">
+                    <label class="mb-2" for=""
+                      >Category <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="Category"
+                    />
+                  </div>
+
+                  <div class="col-lg-12 p-5 pt-0 pb-2">
+                    <label class="mb-2" for=""
+                      >Sub Category <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="Sub Category"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 p-5 inputWrapper pt-2">
+                    <label class="mb-2" for=""
+                      >Hourly <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="$"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 p-5 inputWrapper pt-2">
+                    <label class="mb-2" for=""
+                      >Roles <span class="textColorRed">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="bgColorJumbotron form-control"
+                      placeholder="#"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+            </div>
+            <!--  -->
+            <div class="mt-3 mb-5 col-lg-9"></div>
+            <div class="mt-3 mb-5 col-lg-3 flexRowEnd">
+              <button class="btn bgColorBlue btnNext textColorWhite">
+                Next
+              </button>
+            </div>
+
+            <!--  -->
+          </div>
+        </div>
+        {% endblock %}
+        {% block scripts %} 
+        
+      
+        {% endblock %}

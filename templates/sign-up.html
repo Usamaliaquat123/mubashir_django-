@@ -1,84 +1,330 @@
-{% extends "base.html" %} {% block title %}EMPLOYER SIGN UP{% endblock %} {% block pagetitle %}EMPLOYER SIGN UP{% endblock %} {% block breadcrumbs %} {{block.super }}
-<!-- <li>EMPLOYER SIGN UP</li> -->
-{% endblock %} {% load static %} {% block content %}
-<style>
-    #id_image {
-        border: 0px !important;
-    }
-</style>
-<section class="inner-page">
-    <div class="container">
-        <div class="form">
-            <h4>EMPLOYER SIGN UP</h4>
-            <!-- <p>Fill all details to sign up as an employe.</p> -->
-            {% if messages %} {% for message in messages %} {% if message.tags == 'error' %}
-            <div class="alert alert-danger">{{ message|safe }}</div>
-            <br /> {% else%}
-            <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">
-                {{ message|safe }}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'signup/assets/css/style.css' %}">
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/GTWA_Favicon.png' %}" rel="icon" sizes="16x16 32x32" type="image/png" />
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon" />
+
+    <title>
+        {% block title %}{{ request.path_info | slugify }}{% endblock %} | Go To Work America
+    </title>
+</head>
+
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100 d-flex flex-row justify-content-center align-items-center">
+            <div class="col-lg-2 col-xl-3 "></div>
+            <div class="col-lg-8 col-xl-6 ">
+                <div class="row">
+                    <div class="col-lg-12 mb-3 text-center">
+                        <img src="{% static 'signup/assets/img/logo.png' %}" class="loginLogo" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card  ">
+                        <div class="card-header  m-0 p-0     ">
+                            <div class="row  m-0 p-0  ">
+                                <div id="signUp" class=" m-0 p-0 col-lg-6 col-md-6 radiusLeftTop    flexRowCenter">
+                                    <a href="{% url 'sign_up' %}" class="fontBold textColorWhite  m-0 " style="padding:10px">Sign Up</a>
+                                </div>
+
+                                <div id="signIn" class=" m-0 p-0 col-lg-6 col-md-6 radiusRightTop    flexRowCenter">
+                                    <a href="{% url 'sign_in' %}" class="fontBold textColorBlack m-0 " style="padding:10px">Sign In</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- SIGNIN CONTENT START   -->
+                        <div id="signInContent" class="card-body">
+                            <div class="row">
+                                <!-- START TITLE -->
+                                <div class="col-lg-12 text-center mt-3">
+                                    <p class="signInTitle fontBold s25Px">Employer Sign In</p>
+                                    <p class=" s15Px">
+                                        Don't have an account?
+                                        <a class=" textColorRed fontBold" href="{% url 'sign_up' %}">Sign Up</a>
+                                    </p>
+                                    {% if messages %} {% for message in messages %} {% if message.tags == 'error' %}
+                                    <div class="alert alert-danger">{{ message|safe }}</div><br /> {% else%}
+                                    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br /> {% endif %} {% endfor %} {% endif %} {% if form.errors %}
+                                    <div class="alert alert-danger">
+                                        {% for field in form %} {% if field.errors %} {% for error in field.errors %}
+                                        <strong>{{ field.label }}</strong> : {{ error|escape }}<br /> {% endfor %} {% endif %} {% endfor %} {% if form.non_field_errors %} {{ form.non_field_errors }} {% endif %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <!-- END TITLE -->
+
+                                <!-- FORM START  -->
+                                <div class="col-md-12   flexRowCenter">
+                                    <form method="POST">
+                                        <div class="row  ">
+                                            {% csrf_token %} {% for field in form.visible_fields %}
+                                            <div class="col-lg-3"></div>
+                                            <div class="col-lg-6 ">
+                                                <div class="inputWrapper">
+                                                    <!-- <input type="email" placeholder="Email Address" id="emailInput" class="form-control" /> -->
+                                                    {{field}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3"></div>
+                                            {% endfor %}
+                                            <!-- START REMEMBER ME   -->
+                                            <div class="col-lg-3 "></div>
+                                            <div class="col-lg-3   ">
+                                                <div class="inputWrapper">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" id="remeberMeCheck" type="checkbox" value="" id="flexCheckDefault">
+                                                        <label class="form-check-label s13Px" for="flexCheckDefault">
+                                                            Remember me
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-3   ">
+                                                <div class="inputWrapper">
+                                                    <a href="{% url 'password_reset' %}" class="textColorRed s14Px" style="font-weight:bold">Forgot
+                                                        Password</a>
+
+                                                </div>
+                                            </div>
+                                            <div class=" col-lg-3 "></div>
+
+
+                                            <!--END REMEBER ME   -->
+
+                                            <!-- START LOGIN BUTTON  -->
+                                            <div class=" mt-3 col-lg-3"></div>
+                                            <div class=" mt-3 col-lg-6">
+                                                <button type="submit" id="signInBtn" class=" w-100 btn bgColorBlue textColorWhite fontBold">Log
+                                                    In</button>
+                                            </div>
+                                            <div class=" mt-3 col-lg-3"></div>
+                                            <!-- END LOGIN BUTTON -->
+
+
+
+                                            {% for hidden_field in form.hidden_fields %} {{ hidden_field }} {% endfor %}
+                                        </div>
+
+                                    </form>
+                                </div>
+
+
+
+
+
+
+
+                                <!-- START LOGIN TEXT   -->
+                                <div class=" mt-3 col-lg-3"></div>
+                                <div class=" mt-3 col-lg-6 text-center">
+                                    <p class="fontBold">or sign in with</p>
+                                </div>
+                                <div class=" mt-3 col-lg-3"></div>
+                                <!-- END LOGIN TEXT  -->
+
+
+
+                                <!-- START ICON     -->
+                                <div class=" mt-1 col-lg-4"></div>
+                                <div class=" mt-1 col-lg-4 pl-2 pr-2 flexRowAround ">
+                                    <span class="bgColorBlue flexRowCenter iconWrapper"><i
+                                            class=" s25Px textColorWhite fa fa-google-plus-official"></i></span>
+                                    <span class="bgColorBlue flexRowCenter iconWrapper"><i
+                                            class=" s25Px  textColorWhite 	fa fa-facebook-official"></i></span>
+                                    <span class="bgColorBlue flexRowCenter iconWrapper"><i
+                                            class=" s25Px  textColorWhite fa fa-twitter"></i></span>
+
+                                </div>
+                                <div class=" mt-1 col-lg-4"></div>
+                                <!-- END ICON    -->
+
+                                <!--  -->
+                                <div class=" mt-1 col-lg-7 ">
+                                    <p class="s15Px fontBold m-0 p-1 ">Are you a job seeker?</p>
+                                    <p class="s13Px p-1">If you are a job seeker please download App and login </p>
+
+                                </div>
+                                <div class=" mt-1 col-lg-5  flexRowAround">
+                                    <img src="{% static 'signup/assets/img/gPlay.png' %}" class="gPlayIcon" />
+                                    <img src="{% static 'signup/assets/img/appleIcon.svg' %}" class="aPlayIcon" />
+
+
+                                </div>
+
+                                <!--  -->
+
+                            </div>
+
+                        </div>
+                        <!-- SIGNIN CONTENT END    -->
+
+
+
+                        <!-- SIGNUP CONTENT START   -->
+                        <div id="signUpContent" class="card-body">
+                            <div class="row">
+                                <!-- START TITLE -->
+                                <div class="col-lg-12 text-center mt-3">
+                                    <p class="signInTitle fontBold s25Px">Employer Sign Up</p>
+                                    <p class=" s15Px">
+                                        Already have a account?
+                                        <span class=" textColorRed"> Sign In</span>
+                                    </p>
+                                </div>
+                                <!-- END TITLE -->
+
+                                <div class="col-md-12">
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+
+                                        <!-- START FORM -->
+                                        <div class="mt-0 row">
+                                            <div class="col-lg-12  flexColCenter  mt-3">
+                                                <div class="uploadImageWrapper ">
+                                                    <img width="50" height="50" src="{% static 'signup/assets/img/profileIcon.png' %}" />
+                                                </div>
+                                                <div class="custom-file flexColCenter">
+                                                    <label class="custom-file-label fontBold" for="customFile">Upload Image or Logo
+    </label>
+                                                    <input type="file" class="custom-file-input" id="customFile">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mt-0 row">
+
+                                            <div class="col-lg-6 col-md-6  mt-3">
+                                                <label class="s12Px text-muted">{{ form.first_name.label }} {% if form.first_name.field.required %}*{% endif %}</label> {{ form.first_name }}
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-6  mt-3">
+                                                <label class="s12Px text-muted">{{ form.company.label }} {% if form.company.field.required %}*{% endif %}</label> {{ form.company }}
+
+                                            </div>
+                                        </div>
+                                        <div class="mt-0 row">
+
+                                            <div class="col-lg-6 col-md-6  mt-3">
+                                                <label class="s12Px text-muted">{{ form.last_name.label }} {% if form.last_name.field.required %}*{% endif %}</label> {{ form.last_name }}
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-6  mt-3">
+                                                <label class="s12Px text-muted">{{ form.title.label }} {% if form.title.field.required %}*{% endif %}</label> {{ form.title }}
+
+                                            </div>
+                                        </div>
+                                        <div class="mt-0 row">
+
+                                            <div class="col-lg-6 col-md-6  mt-3">
+                                                <label class="s12Px text-muted">{{ form.email.label }} {% if form.email.field.required %}*{% endif %}</label> {{ form.email }}
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-6  mt-3">
+                                                <label class="s12Px text-muted">{{ form.password1.label }} {% if form.password1.field.required %}*{% endif %}</label> {{ form.password1 }}
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-0 row">
+
+                                            <div class="col-lg-6 col-md-6  mt-3">
+                                                <label class="s12Px text-muted">{{ form.mobile.label }} {% if form.mobile.field.required %}*{% endif %}</label> {{ form.mobile }}
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-6  mt-3">
+                                                <label class="s12Px text-muted">{{ form.password2.label }} {% if form.password2.field.required %}*{% endif %}</label> {{ form.password2 }}
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- <div class="pt-3 pb-3">
+                                                <div class="g-recaptcha" data-sitekey="{{recaptcha_site_key}}"></div>
+                                            </div> -->
+                                        {% for hidden_field in form.hidden_fields %} {{ hidden_field }} {% endfor %}
+
+                                        <div class="mt-0 row">
+
+                                            <div class="col-lg-8  mt-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="signUpFormCheck">
+                                                    <label class="form-check-label s13Px" for="signUpFormCheck">
+                                            I do accept the <span class="text-danger s13Px fontBold">Terms and
+                                                Conidtions</span> of your site.
+                                        </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 text-center mt-3 flexRowEnd">
+                                                <input type="submit" disabled="true" value="Register" id="signUpBtn" class="registerBtn s15Px btn bgColorBlue textColorWhite fontBold" />
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                                <div class=" mt-1 col-lg-7 col-md-7 ">
+                                    <p class="s15Px fontBold m-0 p-1 ">Are you a job seeker?</p>
+                                    <p class="s13Px p-1">If you are a job seeker please download App and login </p>
+
+                                </div>
+                                <div class=" mt-1 col-lg-5  col-md-5 flexRowAround">
+                                    <img src="{% static 'signup/assets/img/gPlay.png' %}" class="gPlayIcon" />
+                                    <img src="{% static 'signup/assets/img/appleIcon.svg' %}" class="aPlayIcon" />
+
+
+                                </div>
+
+                                <!-- END FORM -->
+                            </div>
+                        </div>
+                        <!-- SIGNUP CONTENT END   -->
+                    </div>
+                </div>
             </div>
-            <br /> {% endif %} {% endfor %} {% endif %} {% if form.errors %}
-            <div class="alert alert-danger">
-                {% for field in form %} {% if field.errors %} {% for error in field.errors %}
-                <strong>{{ field.label }}</strong> : {{ error|escape }}<br /> {% endfor %} {% endif %} {% endfor %} {% if form.non_field_errors %} {{form.non_field_errors }} {% endif %}
-            </div>
-            {% endif %}
-
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-
-                <div class="row">
-                    <div class="col form-group">
-                        <label>Upload Logo {% if form.image.field.required %}*{% endif %}</label> {{ form.image }}
-
-                        <!-- <label>{{ form.image.label }} {% if form.image.field.required %}*{% endif %}</label> {{ form.image }} -->
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>{{ form.first_name.label }} {% if form.first_name.field.required %}*{% endif %}</label> {{ form.first_name }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>{{ form.company.label }} {% if form.company.field.required %}*{% endif %}</label> {{ form.company }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>{{ form.last_name.label }} {% if form.last_name.field.required %}*{% endif %}</label> {{ form.last_name }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>{{ form.title.label }} {% if form.title.field.required %}*{% endif %}</label> {{ form.title }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>{{ form.email.label }} {% if form.email.field.required %}*{% endif %}</label> {{ form.email }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>{{ form.password1.label }} {% if form.password1.field.required %}*{% endif %}</label> {{ form.password1 }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>{{ form.mobile.label }} {% if form.mobile.field.required %}*{% endif %}</label> {{ form.mobile }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>{{ form.password2.label }} {% if form.password2.field.required %}*{% endif %}</label> {{ form.password2 }}
-                    </div>
-                </div>
-
-                <div class="pt-3 pb-3">
-                    <div class="g-recaptcha" data-sitekey="{{recaptcha_site_key}}"></div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button> {% for hidden_field in form.hidden_fields %} {{ hidden_field }} {% endfor %}
-            </form>
+            <div class="col-lg-2 col-xl-3 "></div>
         </div>
     </div>
-</section>
 
-{% endblock %}
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{% static 'signup/assets/js/index.js' %}"></script>
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

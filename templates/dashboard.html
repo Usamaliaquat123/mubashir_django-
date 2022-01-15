@@ -1,62 +1,98 @@
-{% extends "base.html" %}
-
-{% block title %}Dashboard{% endblock %}
-
-{% block pagetitle %}Dashboard{% endblock %}
-
-{% block breadcrumbs %}
-	{{ block.super }}
-	<li>Dashboard</li>
-{% endblock %}
-
-{% load static %}
-
-{% block content %}
-
-<section class="tabs">
+{% extends 'dashboardBase.html' %} {% load static %} {% block css %}
+<style>
+    .cardHeader {
+        height: 5px!important;
+        border-radius: 5px 5px 0px 0px
+    }
     
-    {% if isSubscription == False %}
-    <div class="container">
-        <a href="{% url 'subscription_plan' %}">Click Here</a> to purchase a subscription and start adding jobs and finding great emplyees today!
+    a {
+        text-decoration: none;
+    }
+</style>
+{% endblock %} {% block content %}
+
+<div class="col-lg-9 col-md-8">
+    <div class="row">
+        <div class="col-lg-12 mt-4">
+            <h2 class="fontBold">Dashboard </h2>
+            <p class="">Hi {{user.first_name}}! What would you like to do?</h3>
+        </div>
+
+        <!-- CARDS START  -->
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-2">
+            <a href="{% url 'job_create' %}">
+                <div class="card w-100">
+                    <div class="w-100 cardHeader bgColorBlue"></div>
+                    <div class="card-body flexColCenter">
+                        <i class="fa fa-file fa-4x textColorBlue"></i>
+                        <h3 class="textColorRed mt-3">Create A Job</h3>
+                        <p class="s14Px textColorBlack text-justify">Start adding the positions you need filled</p>
+                        <h5 class="textColorBlue">Lets get started </h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-2">
+            <a href="{% url 'find_job_seekers' %}">
+
+                <div class="card w-100">
+                    <div class="w-100 cardHeader bgColorBlue"></div>
+                    <div class="card-body flexColCenter">
+                        <i class="fa fa-file fa-4x textColorBlue"></i>
+                        <h3 class="textColorRed mt-3">Find Job Seekers</h3>
+                        <p class="s14Px textColorBlack text-justify">Start adding the positions you need filled</p>
+                        <h5 class="textColorBlue">Lets get started </h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mb-2">
+            <a href="{% url 'find_job_seekers' %}">
+                <div class="card w-100">
+                    <div class="w-100 cardHeader bgColorBlue"></div>
+                    <div class="card-body flexColCenter">
+                        <i class="fa fa-file fa-4x textColorBlue"></i>
+                        <h3 class="textColorRed mt-3">View Offers</h3>
+                        <p class="s14Px textColorBlack text-justify">Start adding the positions you need filled</p>
+                        <h5 class="textColorBlue">Lets get started </h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="col-lg-6 col-md-12 col-sm-12 mt-2 mb-2">
+            <div class="card w-100">
+                <div class="card-header flexRowBetween">
+                    <span class="fontBold"> Job Bank</span>
+                    <span> <i class="fa fa-arrow-right"></i></span>
+                </div>
+                <div class="card-body flexColCenter">
+                    <i class="fa fa-file fa-4x textColorRed"></i>
+                    <h3 class="textColorBlack mt-3">Your List is Empty</h3>
+                    <p class="s14Px text-justify">Job bot found, <span class="textColorRed"> Click Here</span> to create a job.</p>
+                    <h5 class="textColorBlue">Lets get started </h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12 mt-2 mb-2">
+            <div class="card w-100">
+                <div class="card-header flexRowBetween">
+                    <span class="fontBold"> Offered Jobs</span>
+                    <span> <i class="fa fa-arrow-right"></i></span>
+                </div>
+                <div class="card-body flexColCenter">
+                    <i class="fa fa-file fa-4x textColorRed"></i>
+                    <h3 class="textColorBlack mt-3">Your List is Empty</h3>
+                    <p class="s14Px text-justify">Job bot found, <span class="textColorRed"> Click Here</span> to create a job.</p>
+                    <h5 class="textColorBlue">Lets get started </h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARDS END  -->
+
     </div>
-    {% endif %}
-    
-    <div class="container pt-4">
-        <h4>Hi {{user.first_name}} {{user.last_name}}! What would you like to do?</h4>
-    </div>
-
-      <div class="container pt-4">
-        <ul class="nav nav-tabs row d-flex">
-          <li class="nav-item col-3">
-            <a class="nav-link" href="{% url 'job_create' %}">
-              <i class="ri-edit-box-line"></i>
-              <h4 class="d-none d-lg-block">CREATE A JOB</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" href="{% url 'find_job_seekers' %}">
-              <i class="ri-search-line"></i>
-              <h4 class="d-none d-lg-block">FIND JOB SEEKERS</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" href="{% url 'job_offers' %}">
-              <i class="ri-eye-line"></i>
-              <h4 class="d-none d-lg-block">VIEW ACCEPTED OFFERS</h4>
-            </a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" href="{% url 'how_it_works' %}">
-              <i class="ri-sun-line"></i>
-              <h4 class="d-none d-lg-block">HOW TO USE THIS SITE</h4>
-            </a>
-          </li>
-        </ul>
-
-        
-      </div>
-    </section><!-- End Tabs Section -->
-
-
-  
-{% endblock  %}
+</div>
+{% endblock %} {% block scripts %} {% endblock %}

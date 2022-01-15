@@ -1,0 +1,105 @@
+remote 
+
+sudo -u postgres psql
+
+
+CREATE DATABASE go_to_america;
+
+
+CREATE USER go_to_america WITH PASSWORD 'go_to_america';
+
+
+ALTER ROLE go_to_america SET client_encoding TO 'utf8';
+ALTER ROLE go_to_america SET default_transaction_isolation TO 'read committed';
+ALTER ROLE go_to_america SET timezone TO 'UTC';
+
+
+GRANT ALL PRIVILEGES ON DATABASE go_to_america TO go_to_america;
+
+
+
+
+
+upload db 
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'go_to_america',
+        'USER': 'postgres',
+        'PASSWORD': 'go_to_america',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+
+sudo -u postgres psql
+
+
+CREATE DATABASE go_to_america;
+
+
+CREATE USER go_to_america WITH PASSWORD 'go_to_america';
+
+
+ALTER ROLE go_to_america SET client_encoding TO 'utf8';
+ALTER ROLE go_to_america SET default_transaction_isolation TO 'read committed';
+ALTER ROLE go_to_america SET timezone TO 'UTC';
+
+
+GRANT ALL PRIVILEGES ON DATABASE go_to_america TO go_to_america;
+
+
+psql go_to_america < go_to_america
+
+13.58.229.35
+
+python manage.py runserver 0.0.0.0:8000
+
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to go_to_america;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public to go_to_america;
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public to go_to_america;
+
+
+psql go_to_america -c "GRANT ALL ON ALL TABLES IN SCHEMA public to go_to_america;"
+psql go_to_america -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to go_to_america;"
+psql go_to_america -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to go_to_america;"
+
+
+psql with --username=gtwa
+ALTER TABLE public.accountapp_adminnotification OWNER TO go_to_america;
+
+
+CREATE USER gtwa WITH PASSWORD 'go_to_america';
+
+ALTER ROLE gtwa SET client_encoding TO 'utf8';
+ALTER ROLE gtwa SET default_transaction_isolation TO 'read committed';
+ALTER ROLE gtwa SET timezone TO 'UTC';
+
+
+GRANT ALL PRIVILEGES ON DATABASE go_to_america TO gtwa;
+
+
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to gtwa;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public to gtwa;
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public to gtwa;
+
+
+psql go_to_america -c "GRANT ALL ON ALL TABLES IN SCHEMA public to gtwa;"
+psql go_to_america -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to gtwa;"
+psql go_to_america -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to gtwa;"
+
+
+
+
+psql -U postgres -h 127.0.0.1 -p 5432 --password go_to_america
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO go_to_america;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO go_to_america;
+
+
+ALTER USER postgres WITH PASSWORD 'go_to_america';

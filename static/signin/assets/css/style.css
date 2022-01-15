@@ -1,0 +1,58 @@
+        body {
+            min-height: 100vh;
+            height: 100vh;
+            overflow: auto;
+        }
+        
+        .loginLogo {
+            height: 30px;
+            width: 200px;
+        }
+        
+        .inputWrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+        
+        .iconWrapper {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+        
+        .registerBtn {
+            width: 130px;
+        }
+        
+        #signInContent {
+            /* height: 500px; */
+        }
+        
+        #signUpContent {
+            /* height: 500px; */
+        }
+        
+        .uploadImageWrapper {
+            border-radius: 50%;
+            height: 80px;
+            width: 80px;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* unvisited link */
+        
+        a {
+            text-decoration: none;
+            /* color: white; */
+        }
+        /* SIGNIN START  */
+        
+        #id_username,
+        #id_password {
+            width: 430px;
+        }
+        /* SIGNIN END  */

@@ -1,0 +1,405 @@
+{% extends "base.html" %} {% block title %}Find Job Seekers{% endblock %} {% block pagetitle %}Find Job Seekers{% endblock %} {% block breadcrumbs %} {{ block.super }}
+<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+<li>Find Job Seekers</li>
+{% endblock %} {% load backend_extras %} {% load static %} {% block content %}
+<style>
+    #id_category {
+        list-style-type: none !important;
+    }
+    
+    .custom-card-header {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: 100%;
+        height: 20rem;
+        background-image: url('{% static "assets/img/avatar_1.jpeg" %}');
+    }
+    
+    .title-image {
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+    }
+    
+    .card-title-name {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        text-transform: uppercase;
+        ;
+    }
+    
+    .card-title-profession {
+        font-size: 13px;
+        font-weight: bold;
+        color: #203560;
+    }
+    /* The switch - the box around the slider */
+    
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+    /* Hide default HTML checkbox */
+    
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    /* The slider */
+    
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: green;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+    
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+    /* Rounded sliders */
+    
+    .slider.round {
+        border-radius: 34px;
+    }
+    
+    .slider.round:before {
+        border-radius: 50%;
+    }
+    
+    .font-25px {
+        font-size: 25px!important;
+    }
+    
+    .custom-card-body {}
+    
+    .card {
+        height: 500px;
+        width: 500px;
+    }
+    
+    .vjs-control-bar {
+        display: none !important;
+    }
+    
+    .video-js .vjs-big-play-button {
+        float: right;
+        left: auto !important;
+        top: 20px;
+        right: 20px !important;
+        font-size: 1.5em;
+        width: 1.5em;
+        border-radius: 50%;
+        border: none;
+    }
+    
+    video {
+        opacity: 0.5;
+    }
+    
+    #my-video {
+        width: auto;
+        height: 17rem;
+    }
+    
+    .collpase {
+        display: none;
+        position: absolute;
+        height: auto;
+        width: 7rem;
+        /* border: 1px solid black; */
+        z-index: 999;
+        top: -3rem;
+        left: 1.5rem;
+        border-radius: 3px;
+    }
+    
+    .collpaseBar {
+        position: relative
+    }
+    
+    .collpaseBar {
+        cursor: -webkit-grabbing;
+        cursor: grabbing;
+    }
+    
+    .collpase-list-item {
+        font-size: 12px;
+    }
+</style>
+<section id="blog" class="blog">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 p-5">
+                {% comment %}
+                <div class=" sidebar">
+
+                    <form method="POST">
+                        <h3 class=" sidebar-title">{{ form.search.label }}</h3>
+                        <div class="form-group">
+                            {{ form.search|addclass:"form-control" }}
+                        </div>
+
+                        <h3 class=" sidebar-title">{{ form.radius.label }}</h3>
+                        <div class="form-group">
+                            {{ form.radius|addclass:"form-control" }}
+                        </div>
+
+                        <h3 class=" sidebar-title">{{ form.category.label }}</h3>
+
+                        <div class="form-group">
+                            {{ form.category}}
+                        </div>
+                        <br/>
+                        <button type=" submit" class="btn btn-danger btn-block" value=" searchbtn" name=" searchbtn">Submit</button>
+                        <button type=" submit" class="btn btn-dark btn-block" value="clearbtn" name="clearbtn">Clear</button> {% csrf_token %}
+                    </form>
+                </div>
+                <!-- End sidebar -->
+            </div>
+            <!-- End blog sidebar -->{% endcomment %}
+
+            <div class="col-lg-12 mb-5 ">
+                <div class="row">
+                    <!-- Search By -->
+                    <div class="col-lg-3 ">
+                        <h3 class=" sidebar-title">{{ form.search.label }}</h3>
+                        <div class="form-group">
+                            {{ form.search|addclass:"form-control" }}
+                        </div>
+                    </div>
+                    <!-- Search By -->
+                    <!-- Radius Start -->
+                    <div class="col-lg-3 ">
+                        <h3 class=" sidebar-title">{{ form.radius.label }}</h3>
+                        <div class="form-group">
+                            {{ form.radius|addclass:"form-control" }}
+                        </div>
+                    </div>
+                    <!-- Radius End -->
+
+                    <!-- Radius Start -->
+                    <div class="col-lg-3 ">
+                        <h3 class=" sidebar-title">{{ form.category.label }}</h3>
+
+                        <div class="form-group">
+                            {{ form.category}}
+                        </div>
+                    </div>
+                    <div class="col-lg-3   d-flex flex-row justify-content-around align-items-end">
+                        <div class="d-block">
+
+                            <label class=" switch" style="display: inline-block;margin-bottom: 0%;">
+                    <input type="checkbox">
+                    <span class=" slider round"></span>
+                  </label>
+                            <div class="d-inline-block">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <p class="font-weight-bold ml-2 mt-2 mb-0" style="font-size: 14px;color:#000;display: inline-block;">Show avaliable job seekers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+
+
+                {% if object_list %}
+                <div class="row">
+                    {% for obj in object_list %}
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-4">
+
+                        <div class="card">
+                            <!-- <video class="img-fluid" playsinline autoplay muted loop>
+                          <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4">
+                          </video> -->
+                            <div className="card-header" style="height:17rem">
+                                <video id="my-video" class="video-js" controls preload="auto" poster='{% static "assets/img/avatar_1.jpeg" %}' data-setup="{}">
+                            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+                            <source src="https://vjs.zencdn.net/v/oceans.webm" type="video/webm" />
+                            <p class="vjs-no-js">
+                              To view this video please enable JavaScript, and consider upgrading to a
+                              web browser that
+                              <a href="https://videojs.com/html5-video-support/" target="_blank"
+                                >supports HTML5 video</a
+                              >
+                            </p>
+                        
+                          </div> 
+                            <!-- <div class="card-header m-0 p-0"></div> -->
+                            <div class="card-body  custom-card-body ">
+                                <div class="row ">
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-2 d-flex flex-row justify-content-center align-items-center ">
+                                                <img src="{% static 'assets/img/avatar_1.jpeg' %}" class="title-image" />
+                                            </div>
+                                            <div class="col-md-8  d-flex flex-column">
+                                <a href="{% url 'job_seeker_profile' obj.token %}">
+
+                                                <span class="card-title-name">{{obj.first_name}} {{obj.last_name}}</span>
+                                                </a>
+                                                <span class="card-title-profession">
+                                    Sales
+                                  </span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 d-flex flex-row justify-content-around alin-items-center">
+                                        <i class="fa fa-car mr-2 font-25px"></i>
+                                        <i class="fa fa-graduation-cap  font-25px" style="color:#203560;"></i>
+                                    </div>
+                                </div>
+
+                                <!-- DESCRIPTION START -->
+                                <div class="row mt-2  p-1 ">
+                                    <div class="col-md-12 mt-2 p-0    ">
+                                        <span style="color:#000;font-family: sans-serif;">I have 15 years of outisde and inside sales experience.  </span>
+                                    </div>
+                                    <div class="col-md-6   p-0 mt-2  d-flex flex-row justify-content-start align-items-center ">
+                                        <i class="fa fa-star text-danger mr-2 font-25px"></i>
+                                        <span>
+                                <span class="text-danger font-weight-bold font-25px" >4.5</span>
+                                        <span class="ml-1 font-25px">(5)</span>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-md-6   p-0 mt-2  d-flex flex-row justify-content-end align-items-center pr-2">
+
+                                        <small class="mr-2" style="font-size: 11px;margin-top:5px;color:#000;font-weight:600">AVALIABLITY</small>
+
+                                        <i class="fa fa-circle font-25px " style="color:#36AE50"></i>
+
+                                    </div>
+                                </div>
+
+                                <!-- DESCRIPTION END  -->
+
+                            </div>
+                            <!-- FOOTER -->
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-4  ">
+
+                                        <i class="fa fa-bars mr-2 font-25px collpaseBar" id="collpaseBar" data-id={{forloop.counter}} style="color:#D1D1D1">
+                              <div class="collpase" id="collpase_{{ forloop.counter }}">
+                                <ul class="list-group">
+                                  <li class="list-group-item m-0 p-2  collpase-list-item"><i class="fa fa-user mr-1 text-success"></i> Cras justo odio</li>
+                                        <li class="list-group-item m-0 p-2  collpase-list-item"><i class="fa fa-user mr-1 text-success"></i> Cras justo odio</li>
+
+
+                                        </ul>
+                                    </div>
+                                    </i>
+                                    <i class="fa fa-heart font-25px" style="color: #F50201;"></i>
+                                </div>
+                                <div class="col-md-8  ">
+                                    <span class="d-flex flex-row justify-content-end align-items-center">
+                            <span class="mr-2" style="color:#8E8E8E;font-size: 17px;">STARTING AT</span>
+                                    <span class="" style="color:#000;font-size: 17px;font-weight: 600;">$15hr</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FOOTER -->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-info alert-dismissible " role="alert">
+                {% if request.POST %} Your search did not match any records. {% else %} Job Seekers not available. {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="row">
+                <div class="x-footer clearfix pt-5">
+                    {% if object_list.has_other_pages %}
+                    <ul class="pagination pagination-sm m-0">
+                        {% if object_list.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ object_list.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
+                        {% endif %} {% for i in object_list.paginator.page_range %} {% if object_list.number > 10 and forloop.first %}
+                        <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                        {% endif %} {% if object_list.number == i %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                        {% elif i > object_list.number|add:'-10' and i
+                        < object_list.number|add: '10' %} <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %} {% if object_list.paginator.num_pages > object_list.number|add:'10' and forloop.last %}
+                            <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ object_list.paginator.num_pages }}">{{ object_list.paginator.num_pages }}</a></li>
+                            {% endif %} {% endfor %} {% if object_list.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ object_list.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#">»</a></li>
+                            {% endif %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        <!-- End blog entries list -->
+    </div>
+    </div>
+</section>
+<!-- End Blog Section -->
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        const collpaseBar = document.getElementsByClassName('collpaseBar');
+        for (var i = 0; i < collpaseBar.length; i++) {
+            collpaseBar[i].addEventListener("click", function() {
+                const collapseId = "collpase_" + $(this).attr("data-id");
+                const currentCollpase = document.getElementById(collapseId);
+                if (currentCollpase.style.display === 'none') {
+                    currentCollpase.style.display = 'block'
+                } else if (currentCollpase.style.display === "") {
+                    currentCollpase.style.display = 'block'
+
+                } else {
+                    currentCollpase.style.display = 'none'
+                }
+
+
+            });
+        }
+    });
+</script>
+{% endblock %}

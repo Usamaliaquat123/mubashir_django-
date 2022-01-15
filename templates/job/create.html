@@ -1,67 +1,125 @@
-{% extends "base.html" %}
-
-{% block title %}Add New Job{% endblock %}
-
-{% block pagetitle %}Create a Job{% endblock %}
-
-{% block breadcrumbs %}
-    {{ block.super }}
-    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-    <li><a href="{% url 'job_list' %}">View All Jobs</a></li>
-	  <li>Create a Job</li>
-{% endblock %}
-
-{% load static %}
-
-{% block content %}
-
-<section class="inner-page">
-        <div class="container">
-            <div class="form">
-                <h4>Create a Job</h4>
-                {% if messages %}
-                  {% for message in messages %}
-                    {% if message.tags == 'error' %}
-                    <div class="alert alert-danger">{{ message|safe }}</div><br/>
-                    {% else%}
-                    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br/>
-                    {% endif %}
-                  {% endfor %}
-                {% endif %}
-      
-                {% if form.errors %}
-                  <div class="alert alert-danger">
-                    {% for field in form %}
-                      {% if field.errors %}
-                        {% for error in field.errors %}
-                          <strong>{{ field.label }}</strong> : {{ error|escape }}<br/>
-                        {% endfor %}
-                      {% endif %}
-                    {% endfor %}
-                    {% if form.non_field_errors %}
-                      {{ form.non_field_errors }}
-                    {% endif %}
-                  </div>
-                {% endif %}
+{% extends '../dashboardBase.html' %} {% block content %}
+<style>
+    .cardHeader {
+        height: 5px !important;
+        border-radius: 5px 5px 0px 0px
+    }
     
-                <form method="POST">
-                    {% csrf_token %}
-                    {% for field in form.visible_fields %}
-                    <div class="row">
-                      <div class="col form-group">
-                        <label>{{ field.label }}{% if field.field.required %}*{% endif %}</label>
-                        {{ field }}
-                      </div>
-                    </div>
-                    {% endfor %}
-                    <div class="row px-3 mb-4">
-                        <button type="submit" class="btn btn-primary text-center">Create Job</button>
-                    </div>
-                    {% for hidden_field in form.hidden_fields %}
-                      {{ hidden_field }}
-                    {% endfor %}
-                </form>
-            </div>
+    a {
+        text-decoration: none;
+    }
+    
+    .btnNext {
+        width: 200px;
+        border-radius: 20px;
+    }
+</style>
+<div class="col-lg-9 col-md-8">
+    <div class="row">
+
+        {% if messages %} {% for message in messages %} {% if message.tags == 'error' %}
+        <div class="alert alert-danger">{{ message|safe }}</div><br /> {% else%}
+        <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div><br /> {% endif %} {% endfor %} {% endif %} {% if form.errors %}
+        <div class="alert alert-danger">
+            {% for field in form %} {% if field.errors %} {% for error in field.errors %}
+            <strong>{{ field.label }}</strong> : {{ error|escape }}<br /> {% endfor %} {% endif %} {% endfor %} {% if form.non_field_errors %} {{ form.non_field_errors }} {% endif %}
         </div>
-      </section>
-{% endblock  %}
+        {% endif %}
+
+
+        <div class="col-lg-12">
+            <h2 class="fontBold">Create New Job</h2>
+            <h3 class="">Company Information</h3>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="col-lg-12">
+                <!--  -->
+                <div class="card" style="background-color: aliceblue">
+                    <div class="row">
+                        <div class="col-lg-6 p-5">
+                            <label class="mb-2" for="">{{ form.hiring_company.label }} {% if form.hiring_company.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.hiring_company }}
+                        </div>
+
+                        <div class="col-lg-6 p-5">
+                            <label class="mb-2" for="">{{ form.hiring_manager_name.label }} {% if form.hiring_manager_name.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.hiring_manager_name }}
+
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="col-lg-12">
+                    <h3 class="">Job Details</h3>
+                </div>
+                <!--  -->
+                <div class="card" style="background-color: aliceblue">
+                    <div class="row">
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.title.label }} {% if form.title.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.title }}
+                        </div>
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.description.label }} {% if form.description.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.description }}
+                        </div>
+
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.address.label }} {% if form.address.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.address }}
+                        </div>
+
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.state.label }} {% if form.state.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.state }}
+                        </div>
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.city.label }} {% if form.city.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.city }}
+                        </div>
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.zipcode.label }} {% if form.zipcode.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.zipcode }}
+                        </div>
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.category.label }} {% if form.category.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.category }}
+                        </div>
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.subcategory.label }} {% if form.subcategory.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.subcategory }}
+                        </div>
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.hourly_rate.label }} {% if form.hourly_rate.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.hourly_rate }}
+                        </div>
+
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.number_of_roles.label }} {% if form.number_of_roles.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.number_of_roles }}
+                        </div>
+
+                        <div class="col-lg-6 p-5 pb-2">
+                            <label class="mb-2" for="">{{ form.number_of_roles.label }} {% if form.number_of_roles.field.required %}<span class="textColorRed">*</span>{% endif %}</label> {{ form.number_of_roles }}
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--  -->
+            </div>
+            <!--  -->
+            {% for hidden_field in form.hidden_fields %} {{ hidden_field }} {% endfor %}
+
+            <div class="mt-3 mb-5 col-lg-9"></div>
+            <div class="mt-3 mb-5 col-lg-3 flexRowEnd">
+                <button type="submit" class="btn bgColorBlue btnNext textColorWhite">
+   Next
+ </button>
+            </div>
+
+            <!--  -->
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}
