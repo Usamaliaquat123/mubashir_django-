@@ -38,20 +38,27 @@ class JobCreateForm(ModelForm):
             self.fields['user'].widget               = forms.HiddenInput()
             self.fields['hiring_manager_name'].label = 'Hiring Manager Name'
             self.fields['hiring_company'].label      = 'Company Name'
-            self.fields['title'].label               = 'Job Title'
-            self.fields['description'].label         = 'Job Description'
+            self.fields['hiring_company'].widget.attrs['placeholder'] = 'Company Name'
+            self.fields['title'].label               = 'Title'
+            self.fields['title'].widget.attrs['placeholder'] = 'Title'
+            self.fields['description'].label         = 'Description'
+            self.fields['description'].widget.attrs['placeholder'] = 'Description'
             self.fields['description'].required      = True
             self.fields['description'].widget.attrs['rows'] = 3
-            self.fields['address'].label             = 'Job Street'
-            self.fields['state'].label               = 'Job State'
-            self.fields['city'].label                = 'Job City'
-            self.fields['zipcode'].label             = 'Job Zipcode'
-            self.fields['category'].label            = 'Job Category'
-            self.fields['subcategory'].label         = 'Job Sub Categories'
-            self.fields['hourly_rate'].label         = 'Hourly Pay Rate'
+            self.fields['address'].label             = 'Street'
+            self.fields['address'].widget.attrs['placeholder']= 'Street'
+            self.fields['state'].label               = 'State'
+            self.fields['city'].label                = 'City'
+            self.fields['zipcode'].label             = 'Zipcode'
+            self.fields['zipcode'].widget.attrs['placeholder']= 'Zipcode'
+            self.fields['category'].label            = 'Category'
+            self.fields['subcategory'].label         = 'Sub Categories'
+            self.fields['subcategory'].widget.attrs['placeholder']= 'Sub Categories'
+            self.fields['hourly_rate'].label         = 'Hourly'
+            self.fields['hourly_rate'].widget.attrs['placeholder']= '$'
             self.fields['number_of_roles'].required  = True
-            self.fields['number_of_roles'].label     = '# of Roles'
-    
+            self.fields['number_of_roles'].label     = 'Roles'
+            self.fields['number_of_roles'].widget.attrs['placeholder']= '#'
             self.fields['subcategory'].queryset = Subcategory.objects.none()
             if 'category' in self.data:
                 try:
@@ -73,7 +80,7 @@ class JobCreateForm(ModelForm):
                 self.fields['city'].queryset = self.instance.state.city_set.order_by('name')
 
             for field in self.fields.values():
-                field.widget.attrs['class'] = 'form-control bgColorJumbotron'
+                field.widget.attrs['class'] = 'form-control'
 
 #Job schedule update form
 class JobScheduleForm(forms.ModelForm):

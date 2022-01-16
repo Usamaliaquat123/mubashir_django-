@@ -1,48 +1,110 @@
-{% extends "base.html" %}
-
-{% block title %}Membership Plan{% endblock %}
-
-{% block pagetitle %}Membership Plan{% endblock %}
-
-{% block breadcrumbs %}
-    {{ block.super }}
-    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-    <li><a href="{% url 'subscription' %}">Subscription</a></li>
-	  <li>Membership Plan</li>
+{% extends 'dashboardBase.html' %} {% load static %} {% block css %}
+<style>
+  .cardSquare {
+    width: 150px;
+    height: 80px;
+    background-color: yellow;
+    -ms-transform: rotate(20deg);
+    /* IE 9 */
+    transform: rotate(20deg);
+  }
+</style>
 {% endblock %}
 
-{% load static %}
 
-{% block content %}
+{% block contentTitle %}
+{% endblock %}
 
-<section id="pricing" class="pricing section-bg">
-    <div class="container">
 
-      <div class="section-title">
-        <h2>Membership Plan</h2>
-      </div>
+{% block breadcrumbs %}
+{% endblock %}
 
-      <div class="row">
 
-        {% for obj in object_list %}
-        <div class="col-lg-4 col-md-6">
-          <div class="box">
-            <h3>{{obj.name}}</h3>
-            <h4><sup>$</sup>{{obj.amount}}<span> / {{obj.period}}</span></h4>
-            <ul>
-              <li>Unlimited Job Create</li>
-              <li>Unlimited Job Offers</li>
-              <li>Find Job Seekers</li>
-            </ul>
-            <div class="btn-wrap">
-              <a href="{% url 'subscription_checkout' obj.token %}" class="btn-buy">Buy Now</a>
+
+{% block sidebar %} {% endblock %}
+{% block content %} {% endblock %}
+
+{% block onlyContent %}
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-12 m-0 p-0  bgColorBlue flexRowCenter" style="height:200px">
+      <h2 class="textColorWhite">Staffing Plans</h2>
+    </div>
+
+
+  </div>
+  <div class="row" style="background-color:#F7F7F7;height:60px">
+    <div class="col-10  offset-1   d-flex flex-row justify-content-start align-items-center">
+      <nav aria-label="breadcrumb m-0 p-0  ">
+        <ol class="breadcrumb m-0 p-0  ">
+          <li class="breadcrumb-item "><a class="textColorBlack" href="/dashboard">Dashboard</a></li>
+          <li class="breadcrumb-item active textColorRed" aria-current="page">Staffing Plans</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-10 offset-1 text-justify">
+    <p>Choose the right option that best meets you staffing needs for your buisness. Once year plan is selected you will
+      have unlimited access for<br />the duration of the term.</p>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-10 offset-1 text-justify">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-10 offset-1">
+            <div class="card">
+              <h5 class="fontBold textColorBlack">SOLO</h5>
+              <p class="fomtBold text-muted">(3 Month Plan)</p>
+              <div>
+                <span class=" cardSquare bgColorRed"></span>
+              </div>
             </div>
           </div>
         </div>
-        {% endfor %}
-
       </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+
     </div>
-  </section>
-  
+  </div>
+</div>
+
+
+
+
+{% comment %} <section id="pricing" class="pricing section-bg">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Membership Plan</h2>
+    </div>
+
+    <div class="row">
+
+      {% for obj in object_list %}
+      <div class="col-lg-4 col-md-6">
+        <div class="box">
+          <h3>{{obj.name}}</h3>
+          <h4><sup>$</sup>{{obj.amount}}<span> / {{obj.period}}</span></h4>
+          <ul>
+            <li>Unlimited Job Create</li>
+            <li>Unlimited Job Offers</li>
+            <li>Find Job Seekers</li>
+          </ul>
+          <div class="btn-wrap">
+            <a href="{% url 'subscription_checkout' obj.token %}" class="btn-buy">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section> {% endcomment %}
+
 {% endblock  %}

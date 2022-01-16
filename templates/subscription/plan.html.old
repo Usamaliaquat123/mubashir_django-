@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Membership Plan{% endblock %}
+
+{% block pagetitle %}Membership Plan{% endblock %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'subscription' %}">Subscription</a></li>
+	  <li>Membership Plan</li>
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<section id="pricing" class="pricing section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Membership Plan</h2>
+      </div>
+
+      <div class="row">
+
+        {% for obj in object_list %}
+        <div class="col-lg-4 col-md-6">
+          <div class="box">
+            <h3>{{obj.name}}</h3>
+            <h4><sup>$</sup>{{obj.amount}}<span> / {{obj.period}}</span></h4>
+            <ul>
+              <li>Unlimited Job Create</li>
+              <li>Unlimited Job Offers</li>
+              <li>Find Job Seekers</li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="{% url 'subscription_checkout' obj.token %}" class="btn-buy">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+  
+{% endblock  %}

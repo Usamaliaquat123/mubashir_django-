@@ -89,31 +89,31 @@
 /* FONT_SIZES */
 
 .s12Px {
-    font-size: 12px;
+    font-size: 12px!important;
 }
 
 .s13Px {
-    font-size: 13px;
+    font-size: 13px!important;
 }
 
 .s14Px {
-    font-size: 14px;
+    font-size: 14px!important;
 }
 
 .s15Px {
-    font-size: 15px;
+    font-size: 15px!important;
 }
 
 .s20Px {
-    font-size: 20px;
+    font-size: 20px!important;
 }
 
 .s25Px {
-    font-size: 25px;
+    font-size: 25px!important;
 }
 
 .s30Px {
-    font-size: 30px;
+    font-size: 30px!important;
 }
 
 
