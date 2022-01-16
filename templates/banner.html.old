@@ -1,0 +1,25 @@
+{% load static %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+
+<div class="col-xl-12 position-absolute __slider_back_section">
+  <div class="row">
+    <div class="col-xl-5 __blue_section">
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row justify-content-center position-relative">
+    <div class="col-xl-10 position-relative">
+      <div class="row">
+        <div class="col-xl-5 pr-5">
+          <h1 class="main_title">THE NEWEST WAY TO HIRE AND GET HIRED FAST</h1>
+          <h2>INSTANT-HIRE</h2>
+          <h2>VIDEO RESUME APP</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section><!-- End Hero -->

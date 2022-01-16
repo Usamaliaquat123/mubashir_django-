@@ -1,116 +1,338 @@
-{% extends "base.html" %} 
-{% block title %}Home{% endblock %} 
-{% block pagetitle %}Home{% endblock %} 
-{% load static %} 
+{% extends 'dashboardBase.html' %}
+{% load static %}
+{% block sidebar %}{% endblock %}
+
 {% block content %}
-<!-- ====== Image Section ========= -->
-<section id="__image_left">
-  <div class="container-fluid">
-    <div class="row justify-content-center position-relative">
-      <div class="col-xl-10 position-relative">
-        <div class="row">
-          <div class="col-xl-3">
-            <img
-              src="{% static 'assets/img/phone-homescreen.jpg' %}"
-              width="205"
-              height="400"
-            />
+<style>
+  .imageSection2 {
+    height: 400px;
+    width: 100%;
+    border-radius: 0px 200px 200px 0px;
+  }
+
+  .homePageSectionList {
+    list-style: none;
+  }
+
+  .homePageSectionList li::before {
+    content: "\2022";
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    width: 20px;
+    margin-left: -2em;
+
+  }
+
+
+  .homeCard {
+    height: auto;
+    border-radius: 5px 5px 5px 5px;
+    padding: 15px;
+    box-shadow: 2px 5px #e2dcdc;
+
+  }
+
+  .homeCardContent p {
+    font-size: 14px;
+  }
+
+  .homeCardContent h6 {
+    font-size: 14px;
+  }
+
+  .cardBadge {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+  }
+
+  .cardBadgeText {
+    font-size: 30px;
+
+  }
+
+  .section6Div {
+    background-image: url('{% static "home/assets/img/home_image_2.jpeg" %}');
+    height: 400px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .homeScreenWrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 2rem;
+
+  }
+</style>
+<div class="col-sm-12 homeScreenWrapper">
+  <div class="row">
+    <!-- ====== Section 1 ========= -->
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  d-flex justify-content-center align-items-center ">
+      <div class="row">
+        <div class="col-sm-8   offset-2">
+          <h1 class="fontBold">The newest way to hire <br /> and get hired fast </h1>
+          <h6>INSTANT-HIRE VIDEO RESUME APP</h6>
+        </div>
+
+        <div class="col-sm-8   offset-2 flexRowAround mt-3 mb-3">
+          <button class="btn btn-sm btnGlobalStyle textColorWhite bgColorRed mr-2  ">Need a job?</button>
+          <button class="btn btn-sm btnGlobalStyle textColorWhite bgColorBlue ml-2 ">Need to hire?</button>
+        </div>
+
+      </div>
+
+
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  flexRowCenter ">
+      <img src="{% static 'home/assets/img/laptop.jpg'%}" class="img-fluid" />
+    </div>
+    <!-- ====== Section 1 ========= -->
+
+
+    <!-- ====== Section 2 ========= -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bgColorJumbotron p-5">
+      <div class=" row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  flexRowCenter" style="height:400px">
+          <img src="{% static 'home/assets/img/home_image_2.jpeg'%}" class="img-fluid imageSection2" />
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  flexRowCenter " style="height:400px">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
+              <h3>Who We Are</h3>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
+              <p>With nearly 40 years of staffing experience, Go To Work America
+                is not only the nation's premier staffing solutions provider for
+                employers, but also now the fastest way for today's job seekers
+                to find employment.
+              </p>
+              <p>
+                Through advanced algorithmic software Go To Work America
+                allows Job Seekers the opportunity to present their work
+                availability in a short video resume format. This unique
+                proprietary technology allows employers to search from a pool
+                of fresh resources and hire immediately.
+              </p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
+              <a type="button" href="/sign-up" class="decorationNone  bgColorBlue textColorWhite btnGlobalStyle">Create
+                Account </a>
+
+            </div>
+
+
           </div>
-          <div class="col-xl-9">
-            <h2>LOOKING FOR A JOB?</h2>
-            <p>
-              Tried of looking for work? Let the work find you! Just open the app, and click set your status and wait for the job offers to start rolling in!
-            </p>
-            <ul>
-              <li>Free For Job Seekers</li>
-              <li>Download App and Sign Up</li>
-              <li>Specify Your Availability</li>
-              <li>One-Click to Accept Job Offers</li>
-              <li>Job Offers Right To Your Smartphone</li>
-            </ul>
-            <div class="__box">
-              <div class="h4">Get hired as soon as today!</div>
-              <div class="col-12">
-                <div class="row">
-                  <div class="col-4">
-                    <a href=""
-                      ><img
-                        src="{% static 'assets/img/app_store.png' %}"
-                        width="150"
-                        height="150"
-                    /></a>
+
+        </div>
+      </div>
+    </div>
+    <!-- ====== Section 2 ========= -->
+
+    <!-- ====== Section 3 ========= -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  mt-5">
+      <div class="row">
+        <div class="col-sm-12 flexColCenter">
+          <h3>Employers Looking To Hire</h3>
+          <p>Tired of searching through old and outdated resume applicants? With Go To Work America <br />
+            you can search for the newest condidates in your area in the shortest amount of time.
+          </p>
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  offset-1">
+          <div class="row">
+            <div class="col-sm-6 flexRowCenter ">
+              <div class="row">
+                <div class="col-sm-12 mt-2 mb-2">
+                  <div class="row ">
+                    <div class="col-sm-2 flexRowCenter">
+                      <img src="{% static 'home/assets/img/number_1.png' %}" height="50" />
+                    </div>
+                    <div class="col-sm-10 ">
+                      <h5>Sign Up</h5>
+                      <p>Enroll as an Employer and select the staffing plan
+                        that fits your budget and needs.</p>
+                    </div>
                   </div>
-                  <div class="col-4">
-                    <a href=""
-                      ><img
-                        src="{% static 'assets/img/play_store.png' %}"
-                        width="190"
-                        height="190"
-                        style="margin-top: -20px; margin-left: -86px;"
-                    /></a>
-                  </div>
+
+
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 mb-2">
+                  <div class="row">
+
+                    <div class="col-sm-2 flexRowCenter">
+                      <img src="{% static 'home/assets/img/number_1.png' %}" height="50" />
+                    </div>
+                    <div class="col-sm-10 ">
+                      <h5>Create Job</h5>
+                      <p>
+                        Post positions instantly with just a few clicks and
+                        save them in your employer Job Bank.</p>
+                    </div>
+                  </div>
+
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 mb-2">
+                  <div class="row">
+
+                    <div class="col-sm-2 flexRowCenter">
+                      <img src="{% static 'home/assets/img/number_1.png' %}" height="50" />
+                    </div>
+                    <div class="col-sm-10 ">
+                      <h5>Find Job Seeker</h5>
+                      <p>View video resume of applicants that fit your
+                        criteria or save them for later.</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 mb-2">
+                  <div class="row">
+                    <div class="col-sm-2 flexRowCenter">
+                      <img src="{% static 'home/assets/img/number_1.png' %}" height="50" />
+                    </div>
+                    <div class="col-sm-10 ">
+                      <h5>Hire Instantly</h5>
+                      <p>Find an applicant you like? Send them an offer
+                        with one-click from your Job Bank.</p>
+                    </div>
+                  </div>
+
+                </div>
+
               </div>
+            </div>
+            <div class="col-sm-6 flexRowCenter">
+              <img src="{% static 'home/assets/img/cards_3.jpg' %}" style="height: 450px;width:100%" />
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <!-- ====== Section 3 ========= -->
+
+    <!-- ====== Section 4 ========= -->
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bgColorJumbotron mt-5">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <img src="{% static 'home/assets/img/section_4_image_1.jpg' %}" width="80%" height="400" />
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 flexColCenter">
+          <div class="row">
+            <div class="col-sm-12">
+              <h3 class="fontBold">Looking for a job?</h3>
+              <p>Tired of searching for work? Need <br /> something
+                stable? Let employers find you!</p>
+              <ul class="homePageSectionList">
+                <li>No cost to you</li>
+                <li>Enroll by downloading app</li>
+                <li>Specify your availability</li>
+                <li>One-click to accept or deny job offers</li>
+
+              </ul>
+              <img src="{% static 'assets/img/appleIcon.svg'%}" class="m-2" height="30" />
+              <img src="{% static 'assets/img/gPlay.png'%}" class="m-2" height="30" width="100" />
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+    <!-- ====== Section 4 ========= -->
+
+    <!-- ====== Section 5 ========= -->
+    <div class="col-sm-10 offset-1 mt-5">
+      <div class="row">
+        <div class="col-sm-12 flexColCenter">
+          <h3>Why Go To Work America?</h3>
+          <p>Tradational staffing solution are outrageoulsy expensive and ineffective</p>
+        </div>
+        <div class="col-sm-4 ">
+          <div class="homeCard bgColorRed">
+            <span class="cardBadge flexRowCenter" style="background-color: #D07E84;">
+              <span class="cardBadgeText textColorWhite">1</span>
+            </span>
+            <div class="mt-3 homeCardContent ">
+              <h6 class="fontBold textColorWhite">COST EFFECTIVE</h6>
+              <p class="textColorWhite">No hidden fees, per post fees or <br /> salary add-ons, just one flat fee for
+                <br />all your staffing
+                needs
+              </p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== Image Section ========= -->
-<section id="__image_right" style="margin-top: -90px;">
-  <div class="container-fluid">
-    <div class="row justify-content-center position-relative">
-      <div class="col-xl-10 position-relative">
-        <div class="row">
-          <div class="col-xl-6">
-            <h2>LOOKING TO HIRE?</h2>
-            <p>
-              See who you are hiring, skip face-to-face interviews, and
-              instantly hire! Send job offers from your online hiring portal
-              directly to a job seeker's smartphone.
-            </p>
-            <ul>
-              <li>Select Job Seeker</li>
-              <li>Review Video Resume & Experience</li>
-              <li>Send Job Offer</li>
-              <li>Unlimited Hiring</li>
-              <li>No Long Term Commitments</li>
-            </ul>
-            <div class="__box">
-              <div class="h4">
-                Start saving time and money on your hiring today!
-              </div>
-              <div class="col-12">
-                <a href="{% url 'sign_up'%}">Create Employer Account</a>
-              </div>
+        <div class="col-sm-4  mt-4 ">
+          <div class="homeCard bgColorwhite ">
+            <span class="cardBadge flexRowCenter" style="background-color: #F8F8F8;">
+              <span class="cardBadgeText textColorBlack">2</span>
+            </span>
+            <div class="mt-3 homeCardContent ">
+              <h6 class="fontBold textColorBlack">TIME EFFICIENT</h6>
+              <p class="textColorBlack">Review fresh video resume with <br /> one click and extend offers with a
+                <br />push of a button
+              </p>
             </div>
           </div>
-          <div class="col-xl-6">
-            <img src="{% static 'assets/img/hire.jpg' %}" class="w-100" />
+        </div>
+        <div class="col-sm-4 ">
+          <div class="homeCard bgColorBlue">
+            <span class="cardBadge flexRowCenter" style="background-color: #3359A2;">
+              <span class="cardBadgeText textColorWhite">3</span>
+            </span>
+            <div class="mt-3 homeCardContent ">
+              <h6 class="fontBold textColorWhite">UNLIMITED ACCESS</h6>
+              <p class="textColorWhite">Need 1 employee today or 30 over
+                <br />the next 90-days? We have you <br /> covered with unlimited hires
+              </p>
+            </div>
           </div>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4"></div>
+
+      </div>
+    </div>
+
+    <!-- ====== Section 5 ========= -->
+
+
+    <!-- ====== Section 6 ========= -->
+    <div class="col-sm-10 offset-1 mt-5 ">
+      <div class="row">
+        <div class="col-sm-12 section6Div flexColCenter">
+          <h1 class=" textColorWhite">Join The Fastest Growing Job <br /> Board in the Nation today With <br />
+            Go To Work America </h1>
+          <a type="button" href="/sign-up"
+            class="decorationNone mt-4 btn btn-xl btnGlobalStyle textColorRed bgColorWhite">Create
+            Account</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ======= Contact Section ======= -->
-<section id="contact" class="contact">
-  <div class="container">
-    <div class="section-title">
-      <h2>Our Value Proposition</h2>
-      <p>
-        Go To Work America provides job seekers with technology to present their
-        video resume and work availability to employers for immediate hire. Go
-        To Work America provides employers with a pool of available resources
-        that can be searched and hired for open positions.
-      </p>
-    </div>
+    <!-- ====== Section 6 ========= -->
+
+
+
+
+
+
   </div>
-</section>
-<!-- End Contact Section -->
+
+</div>
+
 
 {% endblock %}

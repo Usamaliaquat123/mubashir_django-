@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5&hl1gzo9p+e-p17fy&gds-&ol3$y5exrk7&cn_a4e$=(y!@&v'
 
 #Site URL
-SITE_URL = 'http://localhost:8080'
+SITE_URL = 'http://13.58.229.35'
 
 #Site Name
 SITE_NAME = 'Go To Work America'

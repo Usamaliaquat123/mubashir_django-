@@ -16,6 +16,26 @@
 /* END BACKGROUND COLORS  */
 
 
+.bgColorWhite {
+    background-color: white !important;
+}
+
+.bgColorRed {
+    background-color: #b92936 !important;
+}
+
+.bgColorBlue {
+    background-color: #1b3460 !important;
+}
+
+
+.bgColorBlack {
+    background-color: #000 !important;
+}
+
+
+
+
 /* TEXT COLORS  */
 
 .textColorWhite {
@@ -31,9 +51,11 @@
 }
 
 .textColorBlack {
-    color: #1b3460 !important;
+    color: #000 !important;
 }
-
+.decorationNone{
+    text-decoration: none!important;
+}
 
 /* END TEXT  COLORS  */
 
@@ -151,3 +173,15 @@
     width: 100px;
     height: 30px;
 }
+
+
+.btnGlobalStyle{
+    border-radius: 50px 50px 50px 50px;
+    width  :180px;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:10px;
+    padding-right:10px;
+    text-align: center;
+}
+

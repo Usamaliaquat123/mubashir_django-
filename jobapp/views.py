@@ -71,10 +71,6 @@ def job_list(request, template_name='job/list.html'):
         data['form']        = form
         return render(request, template_name, data)
     except Exception as e:
-<<<<<<< HEAD
-            print(e)
-=======
->>>>>>> alt-history
             db_logger.exception(e)
             return e
 

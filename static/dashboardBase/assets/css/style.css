@@ -59,11 +59,12 @@ body {
 }
 
 .progress {
-    margin-top: 10px;
+    margin: 10px 0px 100px 0px;
     width: 150px;
     height: 150px;
     background: none;
     position: relative;
+
 }
 
 .progress::after {
