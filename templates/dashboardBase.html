@@ -76,7 +76,7 @@
                             <span class="lisItemText textColorBlue">Change Password</span>
                         </li>
                     </a>
-                    <a class="sidebarAnchor" href="/dashboard">
+                    <a class="sidebarAnchor" href="/sign-out">
                         <li class="list-group-item listItem flexRowStart">
                             <i class="fa fa-file sidebarIcon fa-2x sideBarIcon"></i>
                             <span class="lisItemText textColorRed">Log Out</span>
@@ -146,18 +146,24 @@
                     <!--  -->
                     <!--  -->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flexRowCenter mt-3">
-                        <img src="{% static 'assets/img/appleIcon.svg'%}" class="m-2" height="30" />
-                        <img src="{% static 'assets/img/gPlay.png'%}" class="m-2" height="30" width="100" />
+                        <img src="{% static 'assets/img/appleIcon.svg'%}" class="m-2" height="35" />
+                        <img src="{% static 'assets/img/gPlay.png'%}" class="m-2" height="35" width="100" />
                     </div>
                     <!--  -->
                     <!--  -->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 flexRowCenter mt-3 mb-5">
-                        <span class="bgColorBlack flexRowCenter footerIconsWrapper"><i
+                        {% comment %} <span class="bgColorBlack flexRowCenter footerIconsWrapper"><i
                                 class="s20Px textColorWhite fa fa-google-plus-official"></i></span>
                         <span class="bgColorBlack flexRowCenter footerIconsWrapper"><i
                                 class="s20Px textColorWhite fa fa-facebook-official"></i></span>
                         <span class="bgColorBlack flexRowCenter footerIconsWrapper"><i
-                                class="s20Px textColorWhite fa fa-twitter"></i></span>
+                                class="s20Px textColorWhite fa fa-twitter"></i></span> {% endcomment %}
+                        <img src="{% static 'assets/img/google.png' %}" class="img-fluid"
+                            style="margin-left:5px;margin-right:5px;" height="45" width="45" />
+                        <img src="{% static 'assets/img/twitter.png' %}" class="img-fluid"
+                            style="margin-left:5px;margin-right:5px;" height="45" width="45" />
+                        <img src="{% static 'assets/img/fb.png' %}" class="img-fluid"
+                            style="margin-left:5px;margin-right:5px;" height="45" width="45" />
                     </div>
                     <!--  -->
                 </div>
