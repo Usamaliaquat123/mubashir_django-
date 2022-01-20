@@ -26,7 +26,8 @@ body {
 }
 
 .navLogoWrapper {
-    padding-left: 10px;
+    padding-left: 50px;
+    margin-top:20px;
 }
 
 .navWrapper {
@@ -34,11 +35,11 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .navLoginInfoWrapper {
     border-radius: 50%;
-    border: 1px solid black;
     height: 45px;
     width: 45px;
     display: flex;
