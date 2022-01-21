@@ -1,3 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: "Lato", sans-serif;
+    -webkit-font-smoothing: "Lato", antialiased;
+    -moz-osx-font-smoothing: "Lato", grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
+  a:hover {
+    text-decoration: none !important;
+  }
+
+
+
 /* BACKGROUND COLORS  */
 
 .bgColorBlue {
@@ -187,8 +215,8 @@
 
 .btnGlobalStyleLg{
     border-radius: 50px 50px 50px 50px;
-    width  :240px;
-    height:50px;
+    width  :200px;
+    height:40px;
     padding-top:5px;
     padding-bottom:5px;
     padding-left:10px;
@@ -201,3 +229,15 @@
 .lineHeight{
    line-height:  200%
 }
+
+/* fonts */
+.font-16{
+    font-size: 16px;
+  }
+  .font-18{
+    font-size: 18px;
+  }
+  .font-20{
+    font-size: 20px;
+  }
+  

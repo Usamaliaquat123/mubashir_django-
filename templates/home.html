@@ -3,6 +3,7 @@
 {% block sidebar %}{% endblock %}
 {% block breadcrumbs %}{% endblock %}
 {% block onlyContent %}
+
 <style>
   .imageSection2 {
     border-radius: 0px 200px 200px 0px;
@@ -68,7 +69,8 @@
 
   .section1Div {
     background-image: url('{% static "home/assets/img/1.png" %}');
-    height: 600px;
+    width: 100%;
+    {% comment %} height: 600px; {% endcomment %}
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
@@ -98,18 +100,23 @@
   .section2Div {
     height: 600px;
   }
+  .hero-H{
+    font-size: 40px;
+  }
 </style>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  homeScreenWrapper m-0 p-0 ">
+<div class="container-fluid">
+<div class="homeScreenWrapper">
   <div class="row ">
     <!-- ====== Section 1 ========= -->
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12   section1Div ">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 section1Div">
+    
       <div class="row  ">
         <div class="col-xs-6 col-sm-6 col-md-6 flexColCenter ">
           <div class="row  ">
-            <div class="col-9 offset-3   " style="margin-top:-0px;margin-right:-0px;">
-              <h1 class="fontBold section1Title">The newest way to hire <br /> and get hired fast </h1>
-              <h4 class="mt-5 mb-5 ">INSTANT-HIRE VIDEO RESUME APP</h4>
+            <div class="col-9 offset-3" style="margin-top:10rem;">
+              <h3 class="fontBold section1Title hero-H">The newest way to hire <br /> and get hired fast </h3>
+              <h5 class="mt-5 mb-5 ">INSTANT-HIRE VIDEO RESUME APP</h5>
             </div>
 
             <div class="col-9 offset-3  d-flex flex-row justify-content-start align-items-center ">
@@ -119,13 +126,13 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  m-0 p-0 section1ImageWrapper  ">
-
-          <img src="{% static 'home/assets/img/laptop-modified.png'%}" class="section1Image " />
-
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <div class="section1ImageWrapper">
+          <img src="{% static 'home/assets/img/laptopSlider.png'%}" class="section1Image " />
+          </div>
         </div>
       </div>
-
+   
 
     </div>
 
@@ -375,6 +382,6 @@
   </div>
 
 </div>
-
+</div>
 
 {% endblock %}
