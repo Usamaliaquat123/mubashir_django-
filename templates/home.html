@@ -21,14 +21,15 @@
   }
 
   .homePageSectionList li::before {
-    content: "\2022";
-    color: red;
+    {% comment %} content: "\2022"; {% endcomment %}
+    content:"\2022";
+    color: #b82d39;
     font-weight: bold;
     display: inline-block;
-    width: 20px;
-    margin-left: -42px;
-
-    padding-right: 35px;
+    width: 10px;
+    height: 15px;
+    margin-left: -45px;
+    padding-right: 25px;
     padding-bottom: 4px;
   }
 
@@ -37,7 +38,9 @@
     height: auto;
     border-radius: 5px 5px 5px 5px;
     padding: 15px;
-    box-shadow: 2px 5px #e2dcdc;
+    -webkit-box-shadow: 0 0 5px 2px #e2dcdc;
+    -moz-box-shadow: 0 0 5px 2px #e2dcdc;
+    box-shadow: 0 0 5px 2px #e2dcdc;
 
   }
 
@@ -62,13 +65,13 @@
 
   .section6Div {
     background-image: url('{% static "home/assets/img/5.png" %}');
-    height: 600px;
+    height: 70vh;
     background-size: 100% 100%;
     border-radius: 10px 10px 10px 10px;
   }
 
   .section1Div {
-    background-image: url('{% static "home/assets/img/1.png" %}');
+    background-image: url('{% static "home/assets/img/hero.png" %}');
     width: 100%;
     {% comment %} height: 600px; {% endcomment %}
     background-size: 100% 100%;
@@ -82,11 +85,10 @@
   }
 
   .section1Image {
-    width: 90%;
+    width: 100%;
     padding: 0px;
-    margin: 0px;
+    margin-top: 3rem;
     height: auto;
-    margin-left: 50px;
 
   }
 
@@ -96,12 +98,18 @@
     justify-content: end;
     align-items: center;
   }
-
-  .section2Div {
-    height: 600px;
-  }
   .hero-H{
     font-size: 40px;
+  }
+
+  .jobimg{
+    text-align: center;
+    position: relative;
+    left: 5rem;
+  }
+  .jobtext{
+    align-items: center;
+    margin-top: 5rem;
   }
 </style>
 <div class="container-fluid">
@@ -114,14 +122,15 @@
       <div class="row  ">
         <div class="col-xs-6 col-sm-6 col-md-6 flexColCenter ">
           <div class="row  ">
-            <div class="col-9 offset-3" style="margin-top:10rem;">
+            <div class="col-9 offset-3">
               <h3 class="fontBold section1Title hero-H">The newest way to hire <br /> and get hired fast </h3>
-              <h5 class="mt-5 mb-5 ">INSTANT-HIRE VIDEO RESUME APP</h5>
+              <h5 class="mt-4 mb-4 ">INSTANT-HIRE VIDEO RESUME APP</h5>
             </div>
 
             <div class="col-9 offset-3  d-flex flex-row justify-content-start align-items-center ">
-              <button class="btn btn-sm btnGlobalStyleLg textColorWhite bgColorRed  ">Need a job?</button>
-              <button class="btn btn-sm btnGlobalStyleLg textColorWhite bgColorBlue  " style="margin-left:20px;">Need to
+              <button class="btn btn-sm btnGlobalStyleLg textColorWhite bgColorRed">Need a job?</button>
+              &nbsp; &nbsp;
+              <button class="btn btn-sm btnGlobalStyleLg textColorWhite bgColorBlue">Need to
                 hire?</button>
             </div>
           </div>
@@ -142,13 +151,13 @@
     <!-- ====== Section 2 ========= -->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bgColorJumbotron mt-5  ">
       <div class=" row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  flexRowCenter section2Div">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7  flexRowCenter section2Div">
           <img src="{% static 'home/assets/img/2.png'%}" class="img-fluid imageSection2" />
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  flexRowCenter ">
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5  flexRowCenter ">
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
-              <h3>Who We Are</h3>
+              <h3 class="fontBold">Who We Are</h3>
 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
@@ -166,7 +175,7 @@
               </p>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
-              <a type="button" href="/sign-up" class="decorationNone  bgColorBlue textColorWhite btnGlobalStyle">Create
+              <a type="button" href="/sign-up" class="decorationNone btn btn-sm btnGlobalStyleLg bgColorBlue textColorWhite btnGlobalStyle">Create
                 Account </a>
 
             </div>
@@ -183,22 +192,22 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  mt-5">
       <div class="row">
         <div class="col-sm-12 flexColCenter">
-          <h3>Employers Looking To Hire</h3>
+          <h3 class="fontBold">Employers Looking To Hire</h3>
           <p>Tired of searching through old and outdated resume applicants? With Go To Work America <br />
             you can search for the newest condidates in your area in the shortest amount of time.
           </p>
         </div>
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  offset-1">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10  offset-1 mt-4">
           <div class="row">
-            <div class="col-sm-6 flexRowCenter ">
+            <div class="col-sm-6 ">
               <div class="row">
                 <div class="col-sm-12 mt-2 mb-2">
                   <div class="row ">
                     <div class="col-sm-2 d-flex flex-row justify-content-end align-items-start m-0 p-0 ">
-                      <img src="{% static 'home/assets/img/number_1.png' %}" height="90" />
+                      <img src="{% static 'home/assets/img/1No.png' %}" height="90" />
                     </div>
-                    <div class="col-sm-10 ml-0  pl-0">
-                      <h3>Sign Up</h3>
+                    <div class="col-sm-10 ml-0 mt-2  pl-0">
+                      <h6 class="fontBold" style="font-size: 18px;">Sign Up</h6>
                       <p>Enroll as an Employer and select the staffing plan<br />
                         that fits your budget and needs.</p>
                     </div>
@@ -210,10 +219,10 @@
                   <div class="row">
 
                     <div class="col-sm-2 d-flex flex-row justify-content-end align-items-start m-0 p-0 ">
-                      <img src="{% static 'home/assets/img/number_1.png' %}" height="90" />
+                      <img src="{% static 'home/assets/img/2No.png' %}" height="90" />
                     </div>
-                    <div class="col-sm-10 ml-0  pl-0">
-                      <h3>Create Job</h3>
+                    <div class="col-sm-10 ml-0 mt-2 pl-0">
+                      <h6 class="fontBold" style="font-size: 18px;">Create Job</h6>
                       <p>
                         Post positions instantly with just a few clicks and<br />
                         save them in your employer Job Bank.</p>
@@ -227,10 +236,10 @@
                   <div class="row">
 
                     <div class="col-sm-2 d-flex flex-row justify-content-end align-items-start m-0 p-0 ">
-                      <img src="{% static 'home/assets/img/number_1.png' %}" height="90" />
+                      <img src="{% static 'home/assets/img/3No.png' %}" height="90" />
                     </div>
-                    <div class="col-sm-10 ml-0  pl-0">
-                      <h3>Find Job Seeker</h3>
+                    <div class="col-sm-10 ml-0 mt-2 pl-0">
+                      <h6 class="fontBold" style="font-size: 18px;">Find Job Seeker</h6>
                       <p>View video resume of applicants that fit your</br />
                         criteria or save them for later.</p>
                     </div>
@@ -241,10 +250,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 mb-2 ">
                   <div class="row">
                     <div class="col-sm-2 d-flex flex-row justify-content-end align-items-start m-0 p-0 ">
-                      <img src="{% static 'home/assets/img/number_1.png' %}" height="90" />
+                      <img src="{% static 'home/assets/img/4No.png' %}" height="90" />
                     </div>
-                    <div class="col-sm-10 ml-0  pl-0">
-                      <h3>Hire Instantly</h3>
+                    <div class="col-sm-10 ml-0 mt-2 pl-0">
+                      <h6 class="fontBold" style="font-size: 18px;">Hire Instantly</h6>
                       <p>Find an applicant you like? Send them an offer</br />
                         with one-click from your Job Bank.</p>
                     </div>
@@ -254,8 +263,8 @@
 
               </div>
             </div>
-            <div class="col-sm-6 flexRowCenter">
-              <img src="{% static 'home/assets/img/3.png' %}" style="height: 600px;width:100%" />
+            <div class="col-sm-6">
+              <img src="{% static 'home/assets/img/3.png' %}" style="width:100%; position:relative; right:5rem;"/>
             </div>
 
           </div>
@@ -273,26 +282,32 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bgColorJumbotron mt-5">
       <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6  flexRowCenter  ">
-          <img src="{% static 'home/assets/img/4.png' %}" class="img-fluid mt-5 mb-5 b " width="500" height="400" />
+          <div class="jobimg">
+          <img src="{% static 'home/assets/img/4.png' %}" class="img-fluid mt-5 mb-5 b " width="60%"/>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 flexColCenter">
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+          <div class="jobtext">
+
+          
           <div class="row">
             <div class="col-sm-12">
-              <h1 class="fontBold">Looking for a job?</h1>
-              <h4>Tired of searching for work? Need <br /> something
-                stable? Let employers find you!</h4>
+              <h3 class="fontBold">Looking for a job?</h3>
+              <p>Tired of searching for work? Need something <br />
+                stable? Let employers find you!</p>
               <ul class="homePageSectionList">
-                <li style="font-size:20px;margin-left:10px;">No cost to you</li>
-                <li style="font-size:20px;margin-left:10px;">Enroll by downloading app</li>
-                <li style="font-size:20px;margin-left:10px;">Specify your availability</li>
-                <li style="font-size:20px;margin-left:10px;">One-click to accept or deny job offers</li>
+                <li style="font-size:14px;margin-left:10px;">No cost to you</li>
+                <li style="font-size:14px;margin-left:10px;">Enroll by downloading app</li>
+                <li style="font-size:14px;margin-left:10px;">Specify your availability</li>
+                <li style="font-size:14px;margin-left:10px;">One-click to accept or deny job offers</li>
 
               </ul>
-              <img src="{% static 'assets/img/appleIcon.svg'%}" class="m-2" height="30" />
-              <img src="{% static 'assets/img/gPlay.png'%}" class="m-2" height="30" width="100" />
+              <h6 class="fontBold">Get HIRED as soon as today!</h6>
+              <img src="{% static 'assets/img/appleIcon.svg'%}" class="mt-2" height="30" />
+              <img src="{% static 'assets/img/gPlay.png'%}" class="mt-2" height="30" width="100" />
             </div>
           </div>
-
+        </div>
 
 
 
@@ -303,14 +318,14 @@
     <!-- ====== Section 4 ========= -->
 
     <!-- ====== Section 5 ========= -->
-    <div class="col-sm-10 offset-1 mt-5 p-5">
+    <div class="col-sm-10 offset-1 p-5">
       <div class="row">
         <div class="col-sm-12 flexColCenter">
-          <h3>Why Go To Work America?</h3>
+          <h3 class="fontBold">Why Go To Work America?</h3>
           <p>Tradational staffing solution are outrageoulsy expensive and ineffective</p>
         </div>
         <div class="col-sm-4 ">
-          <div class="homeCard bgColorRed">
+          <div class="card homeCard bgColorRed">
             <span class="cardBadge flexRowCenter" style="background-color: #D07E84;">
               <span class="cardBadgeText textColorWhite">1</span>
             </span>
@@ -324,9 +339,9 @@
           </div>
         </div>
         <div class="col-sm-4  mt-4 ">
-          <div class="homeCard bgColorwhite ">
-            <span class="cardBadge flexRowCenter" style="background-color: #F8F8F8;">
-              <span class="cardBadgeText textColorBlack">2</span>
+          <div class="card homeCard bgColorwhite ">
+            <span class="cardBadge flexRowCenter" style="background-color: #e5e5ef;">
+              <span class="cardBadgeText textColorBlue">2</span>
             </span>
             <div class="mt-3 homeCardContent ">
               <h6 class="fontBold textColorBlack">TIME EFFICIENT</h6>
@@ -337,7 +352,7 @@
           </div>
         </div>
         <div class="col-sm-4 ">
-          <div class="homeCard bgColorBlue">
+          <div class="card homeCard bgColorBlue">
             <span class="cardBadge flexRowCenter" style="background-color: #3359A2;">
               <span class="cardBadgeText textColorWhite">3</span>
             </span>
@@ -359,12 +374,12 @@
 
 
     <!-- ====== Section 6 ========= -->
-    <div class="col-sm-10 offset-1 mt-5 ">
+    <div class="col-sm-10 offset-1">
       <div class="row">
         <div class="col-sm-12 section6Div flexColCenter">
-          <h1 class=" textColorWhite text-center">Join The Fastest Growing Job <br /> Board in the Nation today With
+          <h3 class=" textColorWhite text-center" style="letter-spacing: 1px;">Join The Fastest Growing Job <br /> Board in the Nation today With
             <br />
-            Go To Work America </h1>
+            Go To Work America </h3>
           <a type="button" href="/sign-up"
             class="decorationNone mt-4 btn btn-xl btnGlobalStyle textColorRed bgColorWhite">Create
             Account</a>

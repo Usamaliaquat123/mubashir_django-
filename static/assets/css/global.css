@@ -2,27 +2,28 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-  body {
+}
+
+body {
     width: 100%;
     overflow-x: hidden;
     font-family: "Lato", sans-serif;
     -webkit-font-smoothing: "Lato", antialiased;
     -moz-osx-font-smoothing: "Lato", grayscale;
-  }
-  
-  code {
+}
+
+code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-      monospace;
-  }
-  
-  p {
-    font-size: 16px;
-  }
-  
-  a:hover {
+        monospace;
+}
+
+p {
+    font-size: 14px !important;
+}
+
+a:hover {
     text-decoration: none !important;
-  }
+}
 
 
 
@@ -49,7 +50,7 @@
 }
 
 .bgColorRed {
-    background-color: #b92936 !important;
+    background-color: #b82d39 !important;
 }
 
 .bgColorBlue {
@@ -71,7 +72,7 @@
 }
 
 .textColorRed {
-    color: #b92936 !important;
+    color: #b82d39 !important;
 }
 
 .textColorBlue {
@@ -81,8 +82,9 @@
 .textColorBlack {
     color: #000 !important;
 }
-.decorationNone{
-    text-decoration: none!important;
+
+.decorationNone {
+    text-decoration: none !important;
 }
 
 /* END TEXT  COLORS  */
@@ -117,31 +119,31 @@
 /* FONT_SIZES */
 
 .s12Px {
-    font-size: 12px!important;
+    font-size: 12px !important;
 }
 
 .s13Px {
-    font-size: 13px!important;
+    font-size: 13px !important;
 }
 
 .s14Px {
-    font-size: 14px!important;
+    font-size: 14px !important;
 }
 
 .s15Px {
-    font-size: 15px!important;
+    font-size: 15px !important;
 }
 
 .s20Px {
-    font-size: 20px!important;
+    font-size: 20px !important;
 }
 
 .s25Px {
-    font-size: 25px!important;
+    font-size: 25px !important;
 }
 
 .s30Px {
-    font-size: 30px!important;
+    font-size: 30px !important;
 }
 
 
@@ -203,41 +205,39 @@
 }
 
 
-.btnGlobalStyle{
+.btnGlobalStyle {
     border-radius: 50px 50px 50px 50px;
-    width  :180px;
-    padding-top:5px;
-    padding-bottom:5px;
-    padding-left:10px;
-    padding-right:10px;
+    width: 180px;
+   
     text-align: center;
 }
 
-.btnGlobalStyleLg{
+.btnGlobalStyleLg {
     border-radius: 50px 50px 50px 50px;
-    width  :200px;
-    height:40px;
-    padding-top:5px;
-    padding-bottom:5px;
-    padding-left:10px;
-    padding-right:10px;
+    width: 200px;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 
-.lineHeight{
-   line-height:  200%
+.lineHeight {
+    line-height: 170% !important;
 }
 
 /* fonts */
-.font-16{
+.font-16 {
     font-size: 16px;
-  }
-  .font-18{
+}
+
+.font-18 {
     font-size: 18px;
-  }
-  .font-20{
+}
+
+.font-20 {
     font-size: 20px;
-  }
-  
+}
+
+/* colors */
+.img-background{
+   background-color: #d4ddeb;
+}
