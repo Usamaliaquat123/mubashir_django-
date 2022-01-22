@@ -32,6 +32,9 @@ a:hover {
 .bgColorBlue {
     background-color: #1b3460 !important;
 }
+.bgColorWhite {
+    background-color: #fff !important;
+}
 
 .bgColorBlack {
     background-color: black;
@@ -240,4 +243,12 @@ a:hover {
 /* colors */
 .img-background{
    background-color: #d4ddeb;
+}
+
+/* Wrappers */
+.inputWrapperLogin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
 }
