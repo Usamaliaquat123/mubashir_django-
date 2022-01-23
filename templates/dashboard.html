@@ -12,12 +12,18 @@
     .dashboardCardWrapper {
         height: 300px;
     }
+    .bgColorRedBlue {
+        background-image: linear-gradient(-90deg, #1b3460, #b82d39) !important;
+        height: 5px !important;
+        background-color: red !important;
+    
+    }
 </style>
 {% endblock %}
 
 
 {% block contentTitle %}
-<h2 class="fontBold">Dashboard </h2>
+<h6 class="signInTitle fontBold s20Px">Dashboard</h6>
 {% endblock %}
 
 
@@ -29,7 +35,7 @@
 
 <div class="col-xs-12 col-md-12">
     <div class="row">
-        <div class="col-xs-12 mt-4">
+        <div class="col-xs-12 mt-2">
 
             <p class="">Hi {{user.first_name}}! What would you like to do?</h3>
         </div>
@@ -37,13 +43,14 @@
         <!-- CARDS START  -->
         <div class="col-xs-12 col-sm-12  col-md-12 col-lg-4 col-xl-4  mt-2 mb-2 ">
             <a href="{% url 'job_create' %}">
-                <div class="card w-100 dashboardCardWrapper">
-                    <div class="w-100 cardHeader bgColorBlue"></div>
+                <div class="card w-100 dashboardCardWrapper bgColorJumbotron">
+                    <div class="w-100 cardHeader bgColorRedBlue"></div>
                     <div class="card-body flexColCenter">
-                        <i class="fa fa-file fa-4x textColorBlue"></i>
-                        <p class="textColorRed mt-3 s25Px fontBold">Create A Job</p>
-                        <p class="s14Px textColorBlack text-center">Start adding the positions <br /> need filled</p>
-                        <h5 class="textColorBlue">Lets get started </h5>
+                        <img src="{% static 'home/assets/img/createajob.png' %}" class="loginLogo" />
+                        
+                        <h5 class="textColorRed mt-3 s22Px fontBold">Create A Job</h5>
+                        <p class="s14Px textColorBlack text-center">Start adding the positions you<br /> need filled</p>
+                        <h6 class="textColorBlue s18Px fontBold">Lets get started </h6>
                     </div>
                 </div>
             </a>
@@ -51,26 +58,26 @@
         <div class="col-xs-12 col-sm-12  col-md-12 col-lg-4 col-xl-4  mt-2 mb-2 ">
             <a href="{% url 'find_job_seekers' %}">
 
-                <div class="card w-100 dashboardCardWrapper">
-                    <div class="w-100 cardHeader bgColorBlue"></div>
+                <div class="card w-100 dashboardCardWrapper bgColorJumbotron">
+                    <div class="w-100 cardHeader bgColorRedBlue"></div>
                     <div class="card-body flexColCenter">
-                        <i class="fa fa-file fa-4x textColorBlue"></i>
-                        <p class="textColorRed mt-3 s25Px fontBold">Find Job Seekers</p>
-                        <p class="s14Px textColorBlack text-center">Search applicant for your next <br />employee</p>
-                        <h5 class="textColorBlue">Lets get started </h5>
+                        <img src="{% static 'home/assets/img/findjobseekes.png' %}" class="loginLogo" />
+                        <h5 class="textColorRed mt-3 s22Px fontBold">Find Job Seekers</h5>
+                        <p class="s14Px textColorBlack text-center">Search applicants for your next <br />employee</p>
+                        <h6 class="textColorBlue s18Px fontBold">Lets get started </h6>
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-xs-12 col-sm-12  col-md-12 col-lg-4 col-xl-4  mt-2 mb-2 ">
             <a href="{% url 'find_job_seekers' %}">
-                <div class="card w-100 dashboardCardWrapper">
-                    <div class="w-100 cardHeader bgColorBlue"></div>
+                <div class="card w-100 dashboardCardWrapper bgColorJumbotron">
+                    <div class="w-100 cardHeader bgColorRedBlue"></div>
                     <div class="card-body flexColCenter">
-                        <i class="fa fa-file fa-4x textColorBlue"></i>
-                        <p class="textColorRed mt-3 s25Px fontBold">View Offers</p>
-                        <p class="s14Px textColorBlack text-center">Look over the pending applicant offers</p>
-                        <h5 class="textColorBlue">Lets get started </h5>
+                        <img src="{% static 'home/assets/img/viewoffer.png' %}" class="loginLogo" />
+                        <h5 class="textColorRed mt-3 s22Px fontBold">View Offers</h5>
+                        <p class="s14Px textColorBlack text-center">Look over pending applicant offers</p>
+                        <h6 class="textColorBlue s18Px fontBold">Lets get started </h6>
                     </div>
                 </div>
             </a>
@@ -78,33 +85,38 @@
 
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-2 mb-2">
-            <div class="card w-100 dashboardCardWrapper">
-                <div class="card-header flexRowBetween">
+            <div class="card w-100 h-100 dashboardCardWrapper">
+                <div class="card-header flexRowBetween bgColorWhite border-0">
                     <span class="fontBold"> Job Bank</span>
-                    <span> <i class="fa fa-arrow-right"></i></span>
+                    <span>
+                        <img src="{% static 'home/assets/img/Shape.png' %}" class="loginLogo" width="25px"/>
+                        
+                        </span>
                 </div>
                 <div class="card-body flexColCenter">
-                    <i class="fa fa-file fa-4x textColorRed"></i>
-                    <h5 class="textColorBlack mt-3">Your List is Empty</h5>
-                    <p class="s14Px text-center">Job bot found, <span class="textColorRed"> Click Here</span> to create
+                    <img src="{% static 'home/assets/img/list.png' %}" class="loginLogo" />
+                    <h6 class="textColorBlack mt-3 s18Px">Your List is Empty</h6>
+                    <p class="s14Px text-center">Job not found, <span class="textColorRed"> Click Here</span> to create
                         a job.</p>
-                    <h5 class="textColorBlue">Lets get started </h5>
+                
                 </div>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-2 mb-2">
-            <div class="card w-100 dashboardCardWrapper">
-                <div class="card-header flexRowBetween">
+            <div class="card w-100 h-100 dashboardCardWrapper">
+                <div class="card-header flexRowBetween bgColorWhite border-0">
                     <span class="fontBold"> Offered Jobs</span>
-                    <span> <i class="fa fa-arrow-right"></i></span>
+                    <span> 
+                        <img src="{% static 'home/assets/img/Shape.png' %}" class="loginLogo" width="25px"/>
+                    </span>
                 </div>
                 <div class="card-body flexColCenter">
-                    <i class="fa fa-file fa-4x textColorRed"></i>
-                    <h5 class="textColorBlack mt-3">Your List is Empty</h5>
-                    <p class="s14Px text-center">Job bot found, <span class="textColorRed"> Click Here</span> to create
+                    <img src="{% static 'home/assets/img/list.png' %}" class="loginLogo" />
+                    <h6 class="textColorBlack mt-3 s18Px">Your List is Empty</h6>
+                    <p class="s14Px text-center">Job not found, <span class="textColorRed"> Click Here</span> to create
                         a job.</p>
-                    <h5 class="textColorBlue">Lets get started </h5>
+                    
                 </div>
             </div>
         </div>
