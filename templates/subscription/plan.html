@@ -1,24 +1,24 @@
 {% extends 'dashboardBase.html' %} {% load static %} {% block css %}
 <style>
-  .cardSquare {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    transform: rotate(45deg);
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-  }
-
   .cardSquareText1 {
-    transform: rotate(-45deg);
+    position: absolute;
+    margin-bottom: 42px;
+    font-size: 40px;
   }
 
   .cardSquareText2 {
-    transform: rotate(-45deg);
-    margin-top: -13px;
-    margin-right: -44px;
-    margin-left: -9px;
+    position: absolute;
+    margin-bottom: -25px;
+
+  }
+
+  .rectangleWrapper {
+    position: relative;
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+
   }
 
 
@@ -33,12 +33,19 @@
   }
 
   .cardWrapper1 {
+    padding-top: 15px;
+    border-radius: 5px;
+
+  }
+
+  .cardWrapper {
     background-color: #F9F9FB;
     border-radius: 5px;
     padding-top: 25px;
     padding-bottom: 25px;
     padding: 15px;
     border: 1px solid black;
+
   }
 
   .hrLine {
@@ -97,79 +104,144 @@
 </div>
 
 <div class="row mt-4">
-  <div class="col-md-10  offset-1 text-justify">
+  <div class="col-md-10  offset-1 text-justify  ">
     <div class="row">
       {% comment %} CARD START {% endcomment %}
 
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4  ">
-        <div class="row cardWrapper1">
-          <div class=" col-md-12 flexColCenter">
-            <h5 class="fontBold textColorBlack">SOLO</h5>
-            <p class="fomtBold text-muted">(3 Month Plan)</p>
-          </div>
-          <div class="col-md-12 flexRowCenter ">
-            <div class="cardSquare bgColorRed d-flex flex-column justify-content-center align-items-center ">
-              <span class="textColorWhite cardSquareText1 s30Px fontBold">$1099</span>
-              <span class="textColorWhite cardSquareText2  pl-5">per Month</span>
+      <div
+        class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex flex-row justify-content-center align-items-center ">
+        <div class="row">
+          <div class="col-md-8 offset-md-2   ">
+            <div class="row cardWrapper1  bgColorJumbotron" style="border:1px solid none;">
+              <div class=" col-md-12 flexColCenter pt-4">
+                <h3 class="fontBold textColorBlack mb-0 pb-0">SOLO</h3>
+                <p class="fomtBold text-muted mt-0 pt-0">(3 Month Plan)</p>
+              </div>
+
+
+              <div class="col-md-12 flexColCenter rectangleWrapper">
+                <img src="{% static 'plan/assets/img/reactangle.png' %}" height="250" />
+                <span class="textColorWhite cardSquareText1  fontBold">$1099</span>
+                <span class="textColorWhite cardSquareText2  ">per Month</span></div>
+
+              <div class="col-md-12 flexRowCenter mt-4 " style="height:45px;background-color:#AEB5C5;">
+                <p class=" m-0 p-0  textColorBlack fontBold" style="letter-spacing: 10px;font-size:35px;">$3299</p>
+              </div>
+              <div class="col-md-12  mb-3 mt-3">
+                <ul class="card1List">
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 1 User</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 1 Brand</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 1 Location</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Searches</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Job Posts</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Hires</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> One-Time Payment</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> No Auto-Renewel</li>
+                </ul>
+              </div>
+              <hr class="hrLine" />
+              <div class="flexRowCenter  text-muted fontBold" style="font-size:25px;">
+                Select Plan
+              </div>
             </div>
           </div>
-          <div class="col-md-12 flexRowCenter mt-3" style="background-color:#ADB4C4;height:50px">
-            <p class="textColorBlack m-0 p-0 s25Px fontBold">$3299</p>
-          </div>
-          <div class="col-md-12  mb-3 mt-3">
-            <ul class="card1List">
-              <li><i class="fa fa-check liCheckIcon"></i> 1 User</li>
-              <li><i class="fa fa-check liCheckIcon"></i> 1 Brand</li>
-              <li><i class="fa fa-check liCheckIcon"></i> 1 Location</li>
-              <li><i class="fa fa-check liCheckIcon"></i> Unlimited Searches</li>
-              <li><i class="fa fa-check liCheckIcon"></i> Unlimited Job Posts</li>
-              <li><i class="fa fa-check liCheckIcon"></i> Unlimited Hires</li>
-              <li><i class="fa fa-check liCheckIcon"></i> One-Time Payment</li>
-              <li><i class="fa fa-check liCheckIcon"></i> No Auto-Renewel</li>
-            </ul>
-          </div>
-          <hr class="hrLine" />
-          <div class="flexRowCenter" style="color:#ADB4C4;">
-            SELECT PLAN
-          </div>
         </div>
+
+
       </div>
       {% comment %} CARD END {% endcomment %}
 
       {% comment %} CARD START {% endcomment %}
 
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
-        <div class="row cardWrapper1">
-          <div class=" col-md-12 flexColCenter">
-            <h5 class="fontBold textColorBlack">SOLO</h5>
-            <p class="fomtBold text-muted">(3 Month Plan)</p>
-          </div>
-          <div class="col-md-12 flexRowCenter ">
-            <div class="cardSquare bgColorRed d-flex flex-column justify-content-center align-items-center ">
-              <span class="textColorWhite cardSquareText1 s30Px fontBold">$1099</span>
-              <span class="textColorWhite cardSquareText2  pl-5">per Month</span>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4  ">
+        <div class="row">
+          <div class="col-md-10 offset-md-1   ">
+            <div class="row cardWrapper1 " style="border: 1px solid #1b3460;">
+              <div class=" col-md-12 flexColCenter    ">
+                <p class="textColorRed fontBold">Recommended</p>
+                <h3 class="fontBold textColorBlack mb-0 pb-0">MULTI</h3>
+                <p class="fomtBold text-muted mt-0 pt-0">(3 Month Plan)</p>
+              </div>
+
+
+              <div class="col-md-12 flexColCenter rectangleWrapper">
+                <img src="{% static 'plan/assets/img/reactangle.png' %}" height="250" />
+                <span class="textColorWhite cardSquareText1  fontBold">$1099</span>
+                <span class="textColorWhite cardSquareText2  ">per Month</span></div>
+
+              <div class="col-md-12 flexRowCenter mt-3 bgColorBlue" style="height:60px">
+                <p class=" m-0 p-0  textColorWhite fontBold" style="letter-spacing: 10px;font-size:40px;">$6599</p>
+              </div>
+              <div class="col-md-12  mb-3 mt-3">
+                <ul class="card1List">
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 3 User</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 3 Brand</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 3 Location</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Searches</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Job Posts</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Hires</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> One-Time Payment</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> No Auto-Renewel</li>
+                </ul>
+              </div>
+              <div class=" bgColorBlue  flexRowCenter" style="height:60px;border-radius:0px 0px 5px 5px;  ">
+                <span class="fontBold w-75    " style="color:#fff;font-size:25px;text-align:right">Select
+                  Plan</span>
+                <img class="" src="{% static 'plan/assets/img/mouseHand.png' %}" height="150 " width="150 " />
+
+              </div>
             </div>
           </div>
-          <div class="col-md-12 flexRowCenter mt-3" style="background-color:#ADB4C4;height:50px">
-            <p class="textColorBlack m-0 p-0 s25Px fontBold">$3299</p>
-          </div>
-          <div class="col-md-12  mb-3 mt-3">
-            <ul class="card1List">
-              <li><i class="fa fa-check liCheckIcon"></i> 1 User</li>
-              <li><i class="fa fa-check liCheckIcon"></i> 1 Brand</li>
-              <li><i class="fa fa-check liCheckIcon"></i> 1 Location</li>
-              <li><i class="fa fa-check liCheckIcon"></i> Unlimited Searches</li>
-              <li><i class="fa fa-check liCheckIcon"></i> Unlimited Job Posts</li>
-              <li><i class="fa fa-check liCheckIcon"></i> Unlimited Hires</li>
-              <li><i class="fa fa-check liCheckIcon"></i> One-Time Payment</li>
-              <li><i class="fa fa-check liCheckIcon"></i> No Auto-Renewel</li>
-            </ul>
-          </div>
-          <hr class="hrLine" />
-          <div class="flexRowCenter" style="color:#ADB4C4;">
-            SELECT PLAN
+        </div>
+
+
+      </div>
+      {% comment %} CARD END {% endcomment %}
+
+
+
+      {% comment %} CARD START {% endcomment %}
+
+      <div
+        class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex flex-row justify-content-center align-items-center ">
+        <div class="row">
+          <div class="col-md-8 offset-md-2   ">
+            <div class="row cardWrapper1  bgColorJumbotron" style="border:1px solid none;">
+              <div class=" col-md-12 flexColCenter pt-4">
+                <h3 class="fontBold textColorBlack mb-0 pb-0">SOLO</h3>
+                <p class="fomtBold text-muted mt-0 pt-0">(3 Month Plan)</p>
+              </div>
+
+
+              <div class="col-md-12 flexColCenter rectangleWrapper">
+                <img src="{% static 'plan/assets/img/reactangle.png' %}" height="250" />
+                <span class="textColorWhite cardSquareText1  fontBold">$1099</span>
+                <span class="textColorWhite cardSquareText2  ">per Month</span></div>
+
+              <div class="col-md-12 flexRowCenter mt-4 " style="height:45px;background-color:#AEB5C5;">
+                <p class=" m-0 p-0  textColorBlack fontBold" style="letter-spacing: 10px;font-size:35px;">$3299</p>
+              </div>
+              <div class="col-md-12  mb-3 mt-3">
+                <ul class="card1List">
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 1 User</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 1 Brand</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> 1 Location</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Searches</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Job Posts</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> Unlimited Hires</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> One-Time Payment</li>
+                  <li class="textColorBlack"><i class="fa fa-check liCheckIcon"></i> No Auto-Renewel</li>
+                </ul>
+              </div>
+              <hr class="hrLine" />
+              <div class="flexRowCenter  text-muted fontBold" style="font-size:25px;">
+                Select Plan
+              </div>
+            </div>
           </div>
         </div>
+
+
       </div>
       {% comment %} CARD END {% endcomment %}
 

@@ -17,9 +17,11 @@ code {
         monospace;
 }
 
-p {
+
+/** NEVER EVER GIVE ELEMENT GLOBAL CSS KITNI DAFFA ROKA HA */
+/* p {
     font-size: 14px !important;
-}
+} */
 
 a:hover {
     text-decoration: none !important;
