@@ -45,11 +45,11 @@
   }
 
   .homeCardContent p {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .homeCardContent h6 {
-    font-size: 14px;
+    font-size: 17px;
   }
 
   .cardBadge {
@@ -151,35 +151,35 @@
     <!-- ====== Section 2 ========= -->
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 bgColorJumbotron mt-5  ">
       <div class=" row">
-        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7  flexRowCenter section2Div">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0 section2Div">
           <img src="{% static 'home/assets/img/2.png'%}" class="img-fluid imageSection2" />
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5  flexRowCenter ">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6  flexRowCenter ">
           <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
+            <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11 col-xl-11">
               <h3 class="fontBold">Who We Are</h3>
 
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
-              <p class="lineHeight">With nearly 40 years of staffing experience, Go To Work America
+    
+              <p class="lineHeight s16Px">With nearly 40 years of staffing experience, Go To Work America
                 is not only the nation's premier staffing solutions provider for
                 employers, but also now the fastest way for today's job seekers
                 to find employment.
               </p>
-              <p class="lineHeight">
+              <p class="lineHeight s16Px">
                 Through advanced algorithmic software Go To Work America
                 allows Job Seekers the opportunity to present their work
                 availability in a short video resume format. This unique
                 proprietary technology allows employers to search from a pool
                 of fresh resources and hire immediately.
               </p>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  ">
+           
               <a type="button" href="/sign-up" class="decorationNone btn btn-sm btnGlobalStyleLg bgColorBlue textColorWhite btnGlobalStyle">Create
                 Account </a>
 
             </div>
+            <div class="col-md-1 col-lg-1 col-xl-1">
 
+            </div>
 
           </div>
 
@@ -193,7 +193,7 @@
       <div class="row">
         <div class="col-sm-12 flexColCenter">
           <h3 class="fontBold">Employers Looking To Hire</h3>
-          <p>Tired of searching through old and outdated resume applicants? With Go To Work America <br />
+          <p class="s16Px">Tired of searching through old and outdated resume applicants? With Go To Work America <br />
             you can search for the newest condidates in your area in the shortest amount of time.
           </p>
         </div>
@@ -208,7 +208,7 @@
                     </div>
                     <div class="col-sm-10 ml-0 mt-2  pl-0">
                       <h6 class="fontBold" style="font-size: 18px;">Sign Up</h6>
-                      <p>Enroll as an Employer and select the staffing plan<br />
+                      <p class="s16Px">Enroll as an Employer and select the staffing plan<br />
                         that fits your budget and needs.</p>
                     </div>
                   </div>
@@ -222,8 +222,8 @@
                       <img src="{% static 'home/assets/img/2No.png' %}" height="90" />
                     </div>
                     <div class="col-sm-10 ml-0 mt-2 pl-0">
-                      <h6 class="fontBold" style="font-size: 18px;">Create Job</h6>
-                      <p>
+                      <h6 class="fontBold " style="font-size: 18px;">Create Job</h6>
+                      <p class="s16Px ">
                         Post positions instantly with just a few clicks and<br />
                         save them in your employer Job Bank.</p>
                     </div>
@@ -239,8 +239,8 @@
                       <img src="{% static 'home/assets/img/3No.png' %}" height="90" />
                     </div>
                     <div class="col-sm-10 ml-0 mt-2 pl-0">
-                      <h6 class="fontBold" style="font-size: 18px;">Find Job Seeker</h6>
-                      <p>View video resume of applicants that fit your</br />
+                      <h6 class="fontBold " style="font-size: 18px;">Find Job Seeker</h6>
+                      <p class="s16Px ">View video resume of applicants that fit your</br />
                         criteria or save them for later.</p>
                     </div>
                   </div>
@@ -253,8 +253,8 @@
                       <img src="{% static 'home/assets/img/4No.png' %}" height="90" />
                     </div>
                     <div class="col-sm-10 ml-0 mt-2 pl-0">
-                      <h6 class="fontBold" style="font-size: 18px;">Hire Instantly</h6>
-                      <p>Find an applicant you like? Send them an offer</br />
+                      <h6 class="fontBold " style="font-size: 18px;">Hire Instantly</h6>
+                      <p class="s16Px ">Find an applicant you like? Send them an offer</br />
                         with one-click from your Job Bank.</p>
                     </div>
                   </div>
@@ -264,7 +264,9 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <img src="{% static 'home/assets/img/3.png' %}" style="width:100%; position:relative; right:5rem;"/>
+              
+              <img class="no-right height-100" src="{% static 'home/assets/img/3.png' %}" style="width:100%; position:relative; right:5rem;"/>
+              
             </div>
 
           </div>
@@ -293,13 +295,13 @@
           <div class="row">
             <div class="col-sm-12">
               <h3 class="fontBold">Looking for a job?</h3>
-              <p>Tired of searching for work? Need something <br />
+              <p class="s16Px ">Tired of searching for work? Need something <br />
                 stable? Let employers find you!</p>
               <ul class="homePageSectionList">
-                <li style="font-size:14px;margin-left:10px;">No cost to you</li>
-                <li style="font-size:14px;margin-left:10px;">Enroll by downloading app</li>
-                <li style="font-size:14px;margin-left:10px;">Specify your availability</li>
-                <li style="font-size:14px;margin-left:10px;">One-click to accept or deny job offers</li>
+                <li class="s16Px" style="margin-left:10px;">No cost to you</li>
+                <li class="s16Px" style="margin-left:10px;">Enroll by downloading app</li>
+                <li class="s16Px" style="margin-left:10px;">Specify your availability</li>
+                <li class="s16Px" style="margin-left:10px;">One-click to accept or deny job offers</li>
 
               </ul>
               <h6 class="fontBold">Get HIRED as soon as today!</h6>
@@ -322,7 +324,7 @@
       <div class="row">
         <div class="col-sm-12 flexColCenter">
           <h3 class="fontBold">Why Go To Work America?</h3>
-          <p>Tradational staffing solution are outrageoulsy expensive and ineffective</p>
+          <p class="s16Px ">Tradational staffing solution are outrageoulsy expensive and ineffective</p>
         </div>
         <div class="col-sm-4 ">
           <div class="card homeCard bgColorRed">
@@ -330,8 +332,8 @@
               <span class="cardBadgeText textColorWhite">1</span>
             </span>
             <div class="mt-3 homeCardContent ">
-              <h6 class="fontBold textColorWhite">COST EFFECTIVE</h6>
-              <p class="textColorWhite">No hidden fees, per post fees or <br /> salary add-ons, just one flat fee for
+              <h6 class="fontBold textColorWhite s17Px ">COST EFFECTIVE</h6>
+              <p class="textColorWhite s16Px ">No hidden fees, per post fees or <br /> salary add-ons, just one flat fee for
                 <br />all your staffing
                 needs
               </p>
@@ -344,8 +346,8 @@
               <span class="cardBadgeText textColorBlue">2</span>
             </span>
             <div class="mt-3 homeCardContent ">
-              <h6 class="fontBold textColorBlack">TIME EFFICIENT</h6>
-              <p class="textColorBlack">Review fresh video resume with <br /> one click and extend offers with a
+              <h6 class="fontBold textColorBlack s17Px">TIME EFFICIENT</h6>
+              <p class="textColorBlack s16Px">Review fresh video resume with <br /> one click and extend offers with a
                 <br />push of a button
               </p>
             </div>
@@ -357,8 +359,8 @@
               <span class="cardBadgeText textColorWhite">3</span>
             </span>
             <div class="mt-3 homeCardContent ">
-              <h6 class="fontBold textColorWhite">UNLIMITED ACCESS</h6>
-              <p class="textColorWhite">Need 1 employee today or 30 over
+              <h6 class="fontBold textColorWhite s17Px">UNLIMITED ACCESS</h6>
+              <p class="textColorWhite s16Px ">Need 1 employee today or 30 over
                 <br />the next 90-days? We have you <br /> covered with unlimited hires
               </p>
             </div>
@@ -377,7 +379,7 @@
     <div class="col-sm-10 offset-1">
       <div class="row">
         <div class="col-sm-12 section6Div flexColCenter">
-          <h3 class=" textColorWhite text-center" style="letter-spacing: 1px;">Join The Fastest Growing Job <br /> Board in the Nation today With
+          <h3 class=" textColorWhite text-center " style="letter-spacing: 1px;">Join The Fastest Growing Job <br /> Board in the Nation today With
             <br />
             Go To Work America </h3>
           <a type="button" href="/sign-up"

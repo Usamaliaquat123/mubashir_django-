@@ -147,14 +147,30 @@ class ContactDetailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model= get_user_model()
+        # fields=("address","zipcode","state","city","mobile","yourself","employee_type","price","availbility","authorized_to_work_in_us","is_us_veteran","years_served","distance_willing_to_travel","bilingual","transportation")
         fields=("address","zipcode","state","city","mobile","yourself")
         extra_kwargs = {
             'address': {'required': True},
             'zipcode': {'required': True},
-            'state': {'required': True},
-            'city': {'required': True},
+            # 'state': {'required': True},
+            # 'city': {'required': True},
+            'state': {'required': False},
+            'city': {'required': False},
             'mobile': {'required': True},
-            'yourself': {'required': True}
+            'yourself': {'required': True},
+            # New
+            # 'employee_type': {'required': True},
+            # 'price': {'required': True},
+            # 'availbility': {'required': True},
+            # 'authorized_to_work_in_us': {'required': True},
+            # 'is_us_veteran': {'required': True},
+            # 'years_served': {'required': True},
+            # 'distance_willing_to_travel': {'required': True},
+            # 'bilingual': {'required': True},
+            # 'transportation': {'required': True},
+
+
+
             }
     
     def update(self, instance, validated_data):
@@ -164,6 +180,16 @@ class ContactDetailSerializer(serializers.ModelSerializer):
         instance.city       = validated_data.get('city', instance.city)
         instance.mobile     = validated_data.get('mobile', instance.mobile)
         instance.yourself   = validated_data.get('yourself', instance.yourself)
+        # New
+        # instance.employee_type       = validated_data.get('employee_type', instance.employee_type)
+        # instance.price               = validated_data.get('price', instance.price)
+        # instance.availbility         = validated_data.get('availbility', instance.availbility)
+        # instance.authorized_to_work_in_us       = validated_data.get('authorized_to_work_in_us', instance.authorized_to_work_in_us)
+        # instance.is_us_veteran       = validated_data.get('is_us_veteran', instance.is_us_veteran)
+        # instance.years_served        = validated_data.get('years_served', instance.years_served)
+        # instance.distance_willing_to_travel     = validated_data.get('distance_willing_to_travel', instance.distance_willing_to_travel)
+        # instance.bilingual           = validated_data.get('bilingual', instance.bilingual)
+        # instance.transportation      = validated_data.get('transportation', instance.transportation)
         instance.save()
         return instance
 

@@ -328,7 +328,10 @@ def profile(request):
         return Response(data={"status":"Success","message":"User Data","data":usersr.data}, status=HTTP_200_OK)
     except Exception as e:
         db_logger.exception(e)
-        return Response(data={"status":"Error","message":"Invalid user"}, status=HTTP_200_OK)
+        print("==============================")
+        print(e)
+        print("==============================")
+        return Response(data={"status":"Error","message":"Invalid user","error":e}, status=HTTP_200_OK)
 
 #update profile
 @api_view(["POST"])
@@ -557,8 +560,10 @@ def contact_details(request):
         return Response(data={"status":"Error","message":errormsg}, status=HTTP_200_OK)
 
     except Exception as e:
-
         db_logger.exception(e)
+        print("==============================")
+        print(e)
+        print("==============================")
         return Response(data={"status":"Error","message":"Invalid user"},status=HTTP_200_OK)
 
 #profile media
